@@ -19,7 +19,7 @@ for snap in snapshot_numbers:
             continue
 
         with h5py.File(file, "r") as f:
-            coords = f["PartType1/Coordinates"][:]
+            coords = f["PartType1/Coordinates"][:, :2]  # Read only x and y coordinates
             chunks.append(coords)
 
     if not chunks:
