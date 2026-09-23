@@ -18,13 +18,15 @@ for snap in snapshot_numbers:
         if not file.exists():
             continue
 
-    with h5py.File(file, "r") as f:
-        positions.append(f["PartType1/Coordinates"][:])
+        with h5py.File(file, "r") as f:
+            coords = f["PartType1/Coordinates"][:]
+            chunks.append(coords)
 
 positions = np.concatenate(positions)
 
-x = positions[:, 0]
-y = positions[:, 1]
+    positions = np.concatenate(chunks)
+    x = positions[:, 0]
+    y = positions[:, 1]
 
 print("Number of particles:", len(x))
 print("x shape:", x.shape)
