@@ -50,7 +50,7 @@ ax.set_ylabel("y [Mpc/h]")
 ax.set_title(f"Particle x-y positions for 5 snapshots, z-slice = {slice_width} Mpc/h")
 ax.legend(markerscale=2)
 plt.tight_layout()
-plt.show()
+plt.savefig("slice.png", dpi=200)
 
 
 
