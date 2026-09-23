@@ -22,15 +22,23 @@ for snap in snapshot_numbers:
             coords = f["PartType1/Coordinates"][:]
             chunks.append(coords)
 
-positions = np.concatenate(positions)
+    if not chunks:
+        print(f"No files found for snapshot {snap:03d}")
+        continue
 
     positions = np.concatenate(chunks)
     x = positions[:, 0]
     y = positions[:, 1]
 
-print("Number of particles:", len(x))
-print("x shape:", x.shape)
-print("y shape:", y.shape)
+    print(f"Snapshot {snap:03d}: {len(x)} particles")
+    ax.scatter(x, y, s=0.5, alpha=0.4, label=f"Snap {snap:03d}")
+
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+ax.set_title("Particle positions for 5 snapshots")
+ax.legend(markerscale=2)
+plt.tight_layout()
+plt.show()
 
 
 
