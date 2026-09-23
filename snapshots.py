@@ -6,7 +6,7 @@ from pathlib import Path
 base_path = Path("/disk12/legacy/GVD_C700_l100n256_SLEGAC/dm_gadget/data")
 snapshot_numbers = [5, 6, 7, 8, 9]  # 5 snapshots
 n_files_per_snapshot = 4
-slice_width = 10.0  # Mpc/h, thickness of the z-slice
+slice_width = 5.0  # Mpc/h, thickness of the z-slice
 
 fig, ax = plt.subplots(figsize=(8, 8))
 
