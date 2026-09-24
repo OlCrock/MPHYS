@@ -98,8 +98,8 @@ for snap in snapshot_numbers:
 
     ds = yt.load(
     str(snapshot_file),
-    units_override={
-        "length_unit": (1.0, "Mpc/h")
+    unit_base={
+        "length": (1.0, "Mpc/h")
     },
     bounding_box=np.array([[0, 100], [0, 100], [0, 100]])
 )
