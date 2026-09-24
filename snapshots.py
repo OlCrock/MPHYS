@@ -14,7 +14,8 @@ base_path = Path(
     "/disk12/legacy/GVD_C700_l100n256_SLEGAC/dm_gadget/data"
 )
 
-snapshot_numbers = [1, 4, 8, 12, 15]
+snapshot_numbers = [15]
+#[1, 4, 8, 12, 15]
 
 n_files_per_snapshot = 4
 
