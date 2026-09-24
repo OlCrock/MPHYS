@@ -5,14 +5,7 @@ from pathlib import Path
 import yt
 from scipy.stats import norm
 
-
-# ============================================================
-# SETTINGS
-# ============================================================
-
-base_path = Path(
-    "/disk12/legacy/GVD_C700_l100n256_SLEGAC/dm_gadget/data"
-)
+base_path = Path("/disk12/legacy/GVD_C700_l100n256_SLEGAC/dm_gadget/data")
 
 snapshot_numbers = [15]
 #[1, 4, 8, 12, 15]
@@ -23,11 +16,6 @@ slice_width = 2.0       # Mpc/h
 sphere_radius = 5.0     # Mpc/h
 n_spheres = 1000
 
-
-# ============================================================
-# FUNCTION: CALCULATE OVERDENSITIES
-# ============================================================
-
 def calculate_overdensities(ds, sphere_radius, n_spheres=1000):
 
     """
@@ -37,10 +25,6 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1000):
 
     # Box size in Mpc/h
     box_size = ds.domain_width[0].to("Mpc/h").value
-
-    # --------------------------------------------------------
-    # Mean density
-    # --------------------------------------------------------
 
     # Total mass in the simulation
     all_data = ds.all_data()
@@ -61,36 +45,29 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1000):
     print(f"Total mass:     {total_mass:.3e} Msun/h")
     print(f"Mean density:   {mean_density:.3e} Msun/h/(Mpc/h)^3")
 
-    # --------------------------------------------------------
     # Random sphere centres
-    # --------------------------------------------------------
 
     centres = np.random.uniform(
         0,
         box_size,
-        size=(n_spheres, 3)
-    )
+        size=(n_spheres, 3))
 
     # Sphere volume
     sphere_volume = (
         (4.0 / 3.0)
         * np.pi
-        * sphere_radius**3
-    )
+        * sphere_radius**3)
 
     overdensities = []
 
-    # --------------------------------------------------------
     # Loop over spheres
-    # --------------------------------------------------------
 
     for i, centre in enumerate(centres):
 
         # yt sphere
         sp = ds.sphere(
             centre,
-            (sphere_radius, "Mpc/h")
-        )
+            (sphere_radius, "Mpc/h"))
 
         # Total mass inside sphere
         sphere_mass = sp.quantities.total_mass()
@@ -107,15 +84,10 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1000):
 
         if (i + 1) % 100 == 0:
             print(
-                f"Calculated {i + 1}/{n_spheres} spheres"
-            )
+                f"Calculated {i + 1}/{n_spheres} spheres")
 
     return np.array(overdensities)
 
-
-# ============================================================
-# SNAPSHOT LOOP
-# ============================================================
 
 for snap in snapshot_numbers:
 
@@ -126,23 +98,12 @@ for snap in snapshot_numbers:
 
     snapdir = base_path / f"snapdir_{snap:03d}"
 
-
-    # ========================================================
-    # LOAD SNAPSHOT WITH YT
-    # ========================================================
-
     snapshot_file = (
-        snapdir / f"snapshot_{snap:03d}.0.hdf5"
-    )
+        snapdir / f"snapshot_{snap:03d}.0.hdf5")
 
     ds = yt.load(str(snapshot_file))
 
     print(ds)
-
-
-    # ========================================================
-    # READ PARTICLE COORDINATES FOR 2D SLICE
-    # ========================================================
 
     chunks = []
 
@@ -150,8 +111,7 @@ for snap in snapshot_numbers:
 
         file = (
             snapdir
-            / f"snapshot_{snap:03d}.{i}.hdf5"
-        )
+            / f"snapshot_{snap:03d}.{i}.hdf5")
 
         if not file.exists():
             continue
@@ -163,21 +123,18 @@ for snap in snapshot_numbers:
             # Header BoxSize is in kpc/h
             box_size = (
                 float(f["Header"].attrs["BoxSize"])
-                / 1000.0
-            )
+                / 1000.0)
 
             # Centre z-slice on middle of box
             z_mid = box_size / 2.0
 
             z_min = (
                 z_mid
-                - slice_width / 2.0
-            )
+                - slice_width / 2.0)
 
             z_max = (
                 z_mid
-                + slice_width / 2.0
-            )
+                + slice_width / 2.0)
 
             # IMPORTANT:
             # coords are apparently in kpc/h,
@@ -187,29 +144,22 @@ for snap in snapshot_numbers:
             mask = (
                 (z >= z_min)
                 &
-                (z <= z_max)
-            )
+                (z <= z_max))
 
             # x and y converted to Mpc/h
             xy_slice = (
                 coords[mask, :2]
-                / 1000.0
-            )
+                / 1000.0)
 
             if xy_slice.size > 0:
                 chunks.append(xy_slice)
 
 
-    # ========================================================
-    # COMBINE PARTICLES
-    # ========================================================
-
     if not chunks:
 
         print(
             f"No particles found for snapshot "
-            f"{snap:03d}"
-        )
+            f"{snap:03d}")
 
         continue
 
@@ -218,14 +168,10 @@ for snap in snapshot_numbers:
     x = positions[:, 0]
     y = positions[:, 1]
 
-    print(
-        f"Particles in z-slice: {len(x)}"
-    )
+    print(f"Particles in z-slice: {len(x)}")
 
 
-    # ========================================================
     # CALCULATE 3D OVERDENSITIES
-    # ========================================================
 
     overdensities = calculate_overdensities(
         ds,
@@ -236,44 +182,29 @@ for snap in snapshot_numbers:
 
     print(
         f"Mean delta:   "
-        f"{np.mean(overdensities):.4f}"
-    )
+        f"{np.mean(overdensities):.4f}")
 
     print(
         f"Std delta:    "
-        f"{np.std(overdensities):.4f}"
-    )
+        f"{np.std(overdensities):.4f}")
 
 
-    # ========================================================
     # FIT GAUSSIAN
-    # ========================================================
 
     mu, sigma = norm.fit(overdensities)
 
-    print(
-        f"Gaussian mu:      {mu:.4f}"
-    )
+    print(f"Gaussian mu:      {mu:.4f}")
 
-    print(
-        f"Gaussian sigma:   {sigma:.4f}"
-    )
+    print(f"Gaussian sigma:   {sigma:.4f}")
 
 
-    # ========================================================
     # CREATE FIGURE
-    # ========================================================
 
     fig, axes = plt.subplots(
         1,
         2,
-        figsize=(14, 6)
-    )
+        figsize=(14, 6))
 
-
-    # ========================================================
-    # LEFT: 2D PARTICLE SLICE
-    # ========================================================
 
     ax = axes[0]
 
@@ -285,34 +216,18 @@ for snap in snapshot_numbers:
         rasterized=True
     )
 
-    ax.set_title(
-        f"Snapshot {snap:03d}"
-    )
+    ax.set_title(f"Snapshot {snap:03d}")
 
-    ax.set_xlabel(
-        "x [Mpc/h]"
-    )
+    ax.set_xlabel("x [Mpc/h]")
 
-    ax.set_ylabel(
-        "y [Mpc/h]"
-    )
+    ax.set_ylabel("y [Mpc/h]")
 
-    ax.set_xlim(
-        0,
-        box_size
-    )
+    ax.set_xlim(0,box_size)
 
-    ax.set_ylim(
-        0,
-        box_size
-    )
+    ax.set_ylim(0,box_size)
 
     ax.set_aspect("equal")
 
-
-    # ========================================================
-    # RIGHT: OVERDENSITY DISTRIBUTION
-    # ========================================================
 
     ax = axes[1]
 
