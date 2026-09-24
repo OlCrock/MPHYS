@@ -383,7 +383,3 @@ for snap in snapshot_numbers:
         output_name,
         dpi=200
     )
-
-    plt.show()
-
-    plt.close()
