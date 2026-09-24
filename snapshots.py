@@ -7,7 +7,7 @@ base_path = Path("/disk12/legacy/GVD_C700_l100n256_SLEGAC/dm_gadget/data")
 
 snapshot_numbers = [1, 4, 8, 12, 15]
 n_files_per_snapshot = 4
-slice_width = 0.5  # Mpc/h
+slice_width = 2.0  # Mpc/h
 
 fig, axes = plt.subplots(
     1,
@@ -25,29 +25,27 @@ for ax, snap in zip(axes, snapshot_numbers):
         file = snapdir / f"snapshot_{snap:03d}.{i}.hdf5"
 
         if not file.exists():
-            print(f"Missing: {file}")
             continue
 
         with h5py.File(file, "r") as f:
 
-            # Coordinates are in kpc/h, so convert to Mpc/h
-            coords = f["PartType1/Coordinates"][:] / 1000.0
+            # KEEPING THE OLD CODE EXACTLY
+            coords = f["PartType1/Coordinates"][:]
 
-            # BoxSize is also originally in kpc/h
+            # Header BoxSize is in kpc/h
             box_size = float(f["Header"].attrs["BoxSize"]) / 1000.0
 
-            # Centre the z-slice on the middle of the simulation box
+            # Centre z-slice on middle of simulation box
             z_mid = box_size / 2.0
             z_min = z_mid - slice_width / 2.0
             z_max = z_mid + slice_width / 2.0
 
-            # Select particles inside the z-slice
+            # OLD WORKING MASK
             mask = (
                 (coords[:, 2] >= z_min) &
                 (coords[:, 2] <= z_max)
             )
 
-            # Keep x and y positions
             xy_slice = coords[mask, :2]
 
             if xy_slice.size > 0:
@@ -71,15 +69,17 @@ for ax, snap in zip(axes, snapshot_numbers):
         x,
         y,
         s=0.01,
-        alpha=0.05
+        alpha=0.1,
+        rasterized=True
     )
 
     ax.set_title(f"Snapshot {snap:03d}")
     ax.set_xlabel("x [Mpc/h]")
     ax.set_ylabel("y [Mpc/h]")
 
-    ax.set_xlim(0, box_size)
-    ax.set_ylim(0, box_size)
+    # Keep the same units as the original working code
+    ax.set_xlim(0, box_size * 1000)
+    ax.set_ylim(0, box_size * 1000)
 
 plt.tight_layout()
 
@@ -87,3 +87,5 @@ plt.savefig(
     "snapshot_evolution.png",
     dpi=200
 )
+
+plt.show()
