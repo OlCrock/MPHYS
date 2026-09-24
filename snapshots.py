@@ -5,9 +5,7 @@ from pathlib import Path
 
 base_path = Path("/disk12/legacy/GVD_C700_l100n256_SLEGAC/dm_gadget/data")
 
-# Available particle snapshots: 000–015
 snapshot_numbers = [1, 4, 8, 12, 15]
-
 n_files_per_snapshot = 4
 slice_width = 2.0  # Mpc/h
 
@@ -27,13 +25,15 @@ for ax, snap in zip(axes, snapshot_numbers):
         file = snapdir / f"snapshot_{snap:03d}.{i}.hdf5"
 
         if not file.exists():
+            print(f"Missing: {file}")
             continue
 
         with h5py.File(file, "r") as f:
 
-            coords = f["PartType1/Coordinates"][:]
+            # Coordinates are in kpc/h, so convert to Mpc/h
+            coords = f["PartType1/Coordinates"][:] / 1000.0
 
-            # Header BoxSize is in kpc/h
+            # BoxSize is also originally in kpc/h
             box_size = float(f["Header"].attrs["BoxSize"]) / 1000.0
 
             # Centre the z-slice on the middle of the simulation box
@@ -47,7 +47,7 @@ for ax, snap in zip(axes, snapshot_numbers):
                 (coords[:, 2] <= z_max)
             )
 
-            # Keep only x and y positions
+            # Keep x and y positions
             xy_slice = coords[mask, :2]
 
             if xy_slice.size > 0:
