@@ -14,7 +14,7 @@ n_files_per_snapshot = 4
 
 slice_width = 2.0       # Mpc/h
 sphere_radius = 5.0     # Mpc/h
-n_spheres = 1
+n_spheres = 100
 
 def calculate_overdensities(ds, sphere_radius, n_spheres=1):
 
@@ -44,6 +44,7 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1):
     print(f"Box size:       {box_size:.3f} Mpc/h")
     print(f"Total mass:     {total_mass:.3e} Msun/h")
     print(f"Mean density:   {mean_density:.3e} Msun/h/(Mpc/h)^3")
+    print("Particles in sphere:", sp["PartType1", "particle_position_x"].size)
 
     # Random sphere centres
 
