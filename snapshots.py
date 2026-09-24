@@ -16,7 +16,7 @@ slice_width = 2.0       # Mpc/h
 sphere_radius = 5.0     # Mpc/h
 n_spheres = 1000
 
-def calculate_overdensities(ds, sphere_radius, n_spheres=1000):
+def calculate_overdensities(ds, sphere_radius, n_spheres=1):
 
     """
     Place random spheres throughout the simulation box and
@@ -47,10 +47,7 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1000):
 
     # Random sphere centres
 
-    centres = np.random.uniform(
-        0,
-        box_size,
-        size=(n_spheres, 3))
+    centres = np.random.uniform(0, 100, size=(n_spheres, 3))
 
     # Sphere volume
     sphere_volume = (
@@ -65,9 +62,7 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1000):
     for i, centre in enumerate(centres):
 
         # yt sphere
-        sp = ds.sphere(
-            centre,
-            (sphere_radius, "Mpc/h"))
+        sp = ds.sphere(centre, (sphere_radius, "code_length"))
 
         # Total mass inside sphere
         sphere_mass = sp.quantities.total_mass()
