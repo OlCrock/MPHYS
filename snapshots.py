@@ -14,7 +14,7 @@ n_files_per_snapshot = 4
 
 slice_width = 2.0       # Mpc/h
 sphere_radius = 5.0     # Mpc/h
-n_spheres = 1000
+n_spheres = 1
 
 def calculate_overdensities(ds, sphere_radius, n_spheres=1):
 
