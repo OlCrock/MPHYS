@@ -44,7 +44,6 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1):
     print(f"Box size:       {box_size:.3f} Mpc/h")
     print(f"Total mass:     {total_mass:.3e} Msun/h")
     print(f"Mean density:   {mean_density:.3e} Msun/h/(Mpc/h)^3")
-    print("Particles in sphere:", sp["PartType1", "particle_position_x"].size)
 
     # Random sphere centres
 
@@ -64,6 +63,7 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1):
 
         # yt sphere
         sp = ds.sphere(centre, (sphere_radius, "Mpc/h"))
+        print("Particles in sphere:", sp["PartType1", "particle_position_x"].size)
 
         # Total mass inside sphere
         sphere_mass = sp.quantities.total_mass()
