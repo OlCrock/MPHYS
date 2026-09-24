@@ -7,7 +7,7 @@ base_path = Path("/disk12/legacy/GVD_C700_l100n256_SLEGAC/dm_gadget/data")
 
 snapshot_numbers = [1, 4, 8, 12, 15]
 n_files_per_snapshot = 4
-slice_width = 2.0  # Mpc/h
+slice_width = 1.0  # Mpc/h
 
 fig, axes = plt.subplots(
     1,
@@ -70,8 +70,8 @@ for ax, snap in zip(axes, snapshot_numbers):
     ax.scatter(
         x,
         y,
-        s=0.5,
-        alpha=0.4
+        s=0.01,
+        alpha=0.05
     )
 
     ax.set_title(f"Snapshot {snap:03d}")
