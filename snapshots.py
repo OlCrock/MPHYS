@@ -62,7 +62,7 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1):
     for i, centre in enumerate(centres):
 
         # yt sphere
-        sp = ds.sphere(centre, (sphere_radius, "code_length"))
+        sp = ds.sphere(centre, (sphere_radius, "Mpc/h"))
 
         # Total mass inside sphere
         sphere_mass = sp.quantities.total_mass()
@@ -98,8 +98,12 @@ for snap in snapshot_numbers:
 
     ds = yt.load(
     str(snapshot_file),
+    units_override={
+        "length_unit": (1.0, "Mpc/h")
+    },
     bounding_box=np.array([[0, 100], [0, 100], [0, 100]])
 )
+
 
     print(ds)
 
