@@ -101,7 +101,10 @@ for snap in snapshot_numbers:
     snapshot_file = (
         snapdir / f"snapshot_{snap:03d}.0.hdf5")
 
-    ds = yt.load(str(snapshot_file))
+    ds = yt.load(
+    str(snapshot_file),
+    bounding_box=np.array([[0, 100], [0, 100], [0, 100]])
+)
 
     print(ds)
 
