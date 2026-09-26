@@ -105,6 +105,7 @@ for snap in snapshot_numbers:
     bounding_box=np.array([[0, 100], [0, 100], [0, 100]])
 )
 
+    ds.force_periodicity()
 
     print(ds)
 
