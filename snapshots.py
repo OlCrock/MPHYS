@@ -99,12 +99,10 @@ for snap in snapshot_numbers:
 
     ds = yt.load(
     str(snapshot_file),
-    unit_base={
-        "length": (1.0, "Mpc/h")
-    },
-    bounding_box=np.array([[0, 100], [0, 100], [0, 100]])
-)
+    unit_base={ "length": (1.0, "Mpc/h")},
+    bounding_box=np.array([[0, 100], [0, 100], [0, 100]]))
 
+    # Force periodicity on the dataset 
     ds.force_periodicity()
 
     print(ds)
@@ -113,9 +111,7 @@ for snap in snapshot_numbers:
 
     for i in range(n_files_per_snapshot):
 
-        file = (
-            snapdir
-            / f"snapshot_{snap:03d}.{i}.hdf5")
+        file = (snapdir / f"snapshot_{snap:03d}.{i}.hdf5")
 
         if not file.exists():
             continue
@@ -125,35 +121,22 @@ for snap in snapshot_numbers:
             coords = f["PartType1/Coordinates"][:]
 
             # Header BoxSize is in kpc/h
-            box_size = (
-                float(f["Header"].attrs["BoxSize"])
-                / 1000.0)
+            box_size = (float(f["Header"].attrs["BoxSize"]) / 1000.0)
 
             # Centre z-slice on middle of box
             z_mid = box_size / 2.0
-
-            z_min = (
-                z_mid
-                - slice_width / 2.0)
-
-            z_max = (
-                z_mid
-                + slice_width / 2.0)
+            z_min = (z_mid - slice_width / 2.0)
+            z_max = (z_mid + slice_width / 2.0)
 
             # IMPORTANT:
             # coords are apparently in kpc/h,
             # so convert z coordinates to Mpc/h
             z = coords[:, 2] / 1000.0
 
-            mask = (
-                (z >= z_min)
-                &
-                (z <= z_max))
+            mask = ((z >= z_min) & (z <= z_max))
 
             # x and y converted to Mpc/h
-            xy_slice = (
-                coords[mask, :2]
-                / 1000.0)
+            xy_slice = (coords[mask, :2]/ 1000.0)
 
             if xy_slice.size > 0:
                 chunks.append(xy_slice)
@@ -161,9 +144,7 @@ for snap in snapshot_numbers:
 
     if not chunks:
 
-        print(
-            f"No particles found for snapshot "
-            f"{snap:03d}")
+        print(f"No particles found for snapshot "f"{snap:03d}")
 
         continue
 
@@ -180,35 +161,21 @@ for snap in snapshot_numbers:
     overdensities = calculate_overdensities(
         ds,
         sphere_radius=sphere_radius,
-        n_spheres=n_spheres
-    )
+        n_spheres=n_spheres)
 
-
-    print(
-        f"Mean delta:   "
-        f"{np.mean(overdensities):.4f}")
-
-    print(
-        f"Std delta:    "
-        f"{np.std(overdensities):.4f}")
+    print(f"Mean delta:   "f"{np.mean(overdensities):.4f}")
+    print(f"Std delta:    "f"{np.std(overdensities):.4f}")
 
 
     # FIT GAUSSIAN
-
     mu, sigma = norm.fit(overdensities)
 
     print(f"Gaussian mu:      {mu:.4f}")
-
     print(f"Gaussian sigma:   {sigma:.4f}")
 
 
     # CREATE FIGURE
-
-    fig, axes = plt.subplots(
-        1,
-        2,
-        figsize=(14, 6))
-
+    fig, axes = plt.subplots(1, 2, figsize=(14, 6))
 
     ax = axes[0]
 
@@ -221,17 +188,11 @@ for snap in snapshot_numbers:
     )
 
     ax.set_title(f"Snapshot {snap:03d}")
-
     ax.set_xlabel("x [Mpc/h]")
-
     ax.set_ylabel("y [Mpc/h]")
-
     ax.set_xlim(0,box_size)
-
     ax.set_ylim(0,box_size)
-
     ax.set_aspect("equal")
-
 
     ax = axes[1]
 
@@ -247,44 +208,27 @@ for snap in snapshot_numbers:
     delta_range = np.linspace(
         overdensities.min(),
         overdensities.max(),
-        500
-    )
+        500)
 
     gaussian = norm.pdf(
         delta_range,
         mu,
-        sigma
-    )
+        sigma)
 
     ax.plot(
         delta_range,
         gaussian,
         linewidth=2,
-        label=(
-            rf"Gaussian "
-            rf"$\mu={mu:.3f}$, "
-            rf"$\sigma={sigma:.3f}$"
-        )
-    )
+        label=(rf"Gaussian " rf"$\mu={mu:.3f}$, " rf"$\sigma={sigma:.3f}$"))
 
     ax.axvline(
         0,
         linestyle="--",
-        linewidth=1
-    )
+        linewidth=1)
 
-    ax.set_xlabel(
-        r"Overdensity $\delta$"
-    )
-
-    ax.set_ylabel(
-        "Probability density"
-    )
-
-    ax.set_title(
-        rf"$R={sphere_radius}\,h^{{-1}}$ Mpc"
-    )
-
+    ax.set_xlabel(r"Overdensity $\delta$")
+    ax.set_ylabel( "Probability density")
+    ax.set_title(rf"$R={sphere_radius}\,h^{{-1}}$ Mpc")
     ax.legend()
 
 
@@ -294,11 +238,6 @@ for snap in snapshot_numbers:
 
     plt.tight_layout()
 
-    output_name = (
-        f"snapshot_{snap:03d}_overdensity.png"
-    )
+    output_name = (f"snapshot_{snap:03d}_overdensity.png")
 
-    plt.savefig(
-        output_name,
-        dpi=200
-    )
+    plt.savefig(output_name, dpi=200)
