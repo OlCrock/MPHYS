@@ -29,10 +29,7 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1):
     # Total mass in the simulation
     all_data = ds.all_data()
 
-    total_mass = all_data[
-        "PartType1",
-        "particle_mass"
-    ].sum()
+    total_mass = all_data["PartType1", "particle_mass"].sum()
 
     total_mass = total_mass.to("Msun/h").value
 
@@ -50,10 +47,7 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1):
     centres = np.random.uniform(0, 100, size=(n_spheres, 3))
 
     # Sphere volume
-    sphere_volume = (
-        (4.0 / 3.0)
-        * np.pi
-        * sphere_radius**3)
+    sphere_volume = ((4.0 / 3.0) * np.pi * sphere_radius**3)
 
     overdensities = []
 
@@ -94,8 +88,7 @@ for snap in snapshot_numbers:
 
     snapdir = base_path / f"snapdir_{snap:03d}"
 
-    snapshot_file = (
-        snapdir / f"snapshot_{snap:03d}.0.hdf5")
+    snapshot_file = (snapdir / f"snapshot_{snap:03d}.0.hdf5")
 
     ds = yt.load(
     str(snapshot_file),
@@ -158,10 +151,7 @@ for snap in snapshot_numbers:
 
     # CALCULATE 3D OVERDENSITIES
 
-    overdensities = calculate_overdensities(
-        ds,
-        sphere_radius=sphere_radius,
-        n_spheres=n_spheres)
+    overdensities = calculate_overdensities(ds, sphere_radius=sphere_radius, n_spheres=n_spheres)
 
     print(f"Mean delta:   "f"{np.mean(overdensities):.4f}")
     print(f"Std delta:    "f"{np.std(overdensities):.4f}")
@@ -179,13 +169,7 @@ for snap in snapshot_numbers:
 
     ax = axes[0]
 
-    ax.scatter(
-        x,
-        y,
-        s=0.01,
-        alpha=0.1,
-        rasterized=True
-    )
+    ax.scatter(x, y, s=0.01, alpha=0.1, rasterized=True)
 
     ax.set_title(f"Snapshot {snap:03d}")
     ax.set_xlabel("x [Mpc/h]")
@@ -204,40 +188,22 @@ for snap in snapshot_numbers:
         label="Sphere measurements"
     )
 
-    # Gaussian curve
-    delta_range = np.linspace(
-        overdensities.min(),
-        overdensities.max(),
-        500)
+    # Fit Gaussian curve
+    delta_range = np.linspace(overdensities.min(), overdensities.max(), 500)
 
-    gaussian = norm.pdf(
-        delta_range,
-        mu,
-        sigma)
+    gaussian = norm.pdf(delta_range, mu, sigma)
 
-    ax.plot(
-        delta_range,
-        gaussian,
-        linewidth=2,
-        label=(rf"Gaussian " rf"$\mu={mu:.3f}$, " rf"$\sigma={sigma:.3f}$"))
+    ax.plot(delta_range, gaussian, linewidth=2,
+    label=(rf"Gaussian " rf"$\mu={mu:.3f}$, " rf"$\sigma={sigma:.3f}$"))
 
-    ax.axvline(
-        0,
-        linestyle="--",
-        linewidth=1)
+    ax.axvline(0, linestyle="--", linewidth=1)
 
     ax.set_xlabel(r"Overdensity $\delta$")
     ax.set_ylabel( "Probability density")
     ax.set_title(rf"$R={sphere_radius}\,h^{{-1}}$ Mpc")
     ax.legend()
 
-
-    # ========================================================
     # SAVE
-    # ========================================================
-
     plt.tight_layout()
-
     output_name = (f"snapshot_{snap:03d}_overdensity.png")
-
     plt.savefig(output_name, dpi=200)
