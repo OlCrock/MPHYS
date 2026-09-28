@@ -14,7 +14,7 @@ n_files_per_snapshot = 4
 
 slice_width = 2.0       # Mpc/h
 sphere_radius = 5.0     # Mpc/h
-n_spheres = 10000
+n_spheres = 100
 
 def calculate_overdensities(ds, sphere_radius, n_spheres=1):
 
@@ -75,6 +75,10 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1):
         if (i + 1) % 100 == 0:
             print(
                 f"Calculated {i + 1}/{n_spheres} spheres")
+
+    # add dianositc to print zero values for the overdnesity 
+
+    print(f"Number of spheres with delta=0: {np.sum(np.array(overdensities) == 0)}")
 
     return np.array(overdensities)
 
