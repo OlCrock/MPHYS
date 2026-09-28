@@ -78,7 +78,26 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1):
 
     # add dianositc to print zero values for the overdnesity 
 
-    print(f"Number of spheres with delta=0: {np.sum(np.array(overdensities) == 0)}")
+    print("\n========== OVERDENSITY DEBUG ==========")
+
+    print("Number of overdensities:", len(overdensities))
+
+    print("Minimum delta:", np.min(overdensities))
+    print("Maximum delta:", np.max(overdensities))
+
+    print("Number delta == -1:",
+        np.sum(np.isclose(overdensities, -1.0)))
+
+    print("Number delta == 0:",
+        np.sum(np.isclose(overdensities, 0.0)))
+
+    print("Number delta > -0.99:",
+        np.sum(overdensities > -0.99))
+
+    print("First 20 values:")
+    print(overdensities[:20])
+
+    print("========================================\n")
 
     return np.array(overdensities)
 
