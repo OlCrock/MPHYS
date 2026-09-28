@@ -64,19 +64,6 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1):
 
     overdensities = np.array(overdensities)
 
-    # Diagnostics
-    print("\n========== OVERDENSITY DEBUG ==========")
-    print("Number of overdensities:", len(overdensities))
-    print("Minimum delta:", np.min(overdensities))
-    print("Maximum delta:", np.max(overdensities))
-    print("Mean delta:", np.mean(overdensities))
-    print("Std delta:", np.std(overdensities))
-    print("Number delta == -1:", np.sum(np.isclose(overdensities, -1.0)))
-    print("Number delta == 0:", np.sum(np.isclose(overdensities, 0.0)))
-    print("First 20 values:")
-    print(overdensities[:20])
-    print("========================================\n")
-
     return overdensities
 
 
