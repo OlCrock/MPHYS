@@ -26,25 +26,20 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1):
     # Box size in Mpc/h
     box_size = ds.domain_width[0].to("Mpc/h").value
 
-    # Total mass in the simulation
+    # Total number of particles
     all_data = ds.all_data()
-
-    total_mass = all_data["PartType1", "particle_mass"].sum()
-
-    total_mass = total_mass.to("Msun/h").value
+    n_total = all_data["PartType1", "particle_position_x"].size
 
     # Volume of simulation box
     box_volume = box_size**3
-
-    mean_density = total_mass / box_volume
+    mean_density = n_total / box_volume
 
     print(f"Box size:       {box_size:.3f} Mpc/h")
-    print(f"Total mass:     {total_mass:.3e} Msun/h")
-    print(f"Mean density:   {mean_density:.3e} Msun/h/(Mpc/h)^3")
+    print(f"Total particles: {n_total}")
+    print(f"Mean density:   {mean_density:.3e} particles/(Mpc/h)^3")
 
     # Random sphere centres
-
-    centres = np.random.uniform(0, 100, size=(n_spheres, 3))
+    centres = np.random.uniform(0, box_size, size=(n_spheres, 3))
 
     # Sphere volume
     sphere_volume = ((4.0 / 3.0) * np.pi * sphere_radius**3)
@@ -52,20 +47,12 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1):
     overdensities = []
 
     # Loop over spheres
-
     for i, centre in enumerate(centres):
 
-        # yt sphere
         sp = ds.sphere(centre, (sphere_radius, "Mpc/h"))
-        print("Particles in sphere:", sp["PartType1", "particle_position_x"].size)
+        n_sphere = sp["PartType1", "particle_position_x"].size
 
-        # Total mass inside sphere
-        sphere_mass = sp.quantities.total_mass()
-
-        sphere_mass = sphere_mass.to("Msun/h").value
-
-        # Density inside sphere
-        density = sphere_mass / sphere_volume
+        density = n_sphere / sphere_volume
 
         # Overdensity
         delta = density / mean_density - 1.0
@@ -73,33 +60,24 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1):
         overdensities.append(delta)
 
         if (i + 1) % 100 == 0:
-            print(
-                f"Calculated {i + 1}/{n_spheres} spheres")
+            print(f"Calculated {i + 1}/{n_spheres} spheres")
 
-    # add dianositc to print zero values for the overdnesity 
+    overdensities = np.array(overdensities)
 
+    # Diagnostics
     print("\n========== OVERDENSITY DEBUG ==========")
-
     print("Number of overdensities:", len(overdensities))
-
     print("Minimum delta:", np.min(overdensities))
     print("Maximum delta:", np.max(overdensities))
-
-    print("Number delta == -1:",
-        np.sum(np.isclose(overdensities, -1.0)))
-
-    print("Number delta == 0:",
-        np.sum(np.isclose(overdensities, 0.0)))
-
-    print("Number delta > -0.99:",
-        np.sum(overdensities > -0.99))
-
+    print("Mean delta:", np.mean(overdensities))
+    print("Std delta:", np.std(overdensities))
+    print("Number delta == -1:", np.sum(np.isclose(overdensities, -1.0)))
+    print("Number delta == 0:", np.sum(np.isclose(overdensities, 0.0)))
     print("First 20 values:")
     print(overdensities[:20])
-
     print("========================================\n")
 
-    return np.array(overdensities)
+    return overdensities
 
 
 for snap in snapshot_numbers:
