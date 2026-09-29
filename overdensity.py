@@ -105,7 +105,7 @@ for snap in snapshot_numbers:
 
     ax.hist(
         overdensities,
-        bins=50,
+        bins=100,
         density=True,
         alpha=0.6,
         label="Sphere measurements"
