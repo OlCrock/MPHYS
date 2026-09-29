@@ -99,25 +99,23 @@ for snap in snapshot_numbers:
 
         with h5py.File(file, "r") as f:
 
+            # Read coordinates in kpc/h and convert once to Mpc/h
             coords = f["PartType1/Coordinates"][:]
+            coords_mpc = coords / 1000.0
 
-            # Header BoxSize is in kpc/h
-            box_size = (float(f["Header"].attrs["BoxSize"]) / 1000.0)
+            # Header BoxSize is in kpc/h, convert to Mpc/h for consistency
+            box_size = float(f["Header"].attrs["BoxSize"]) / 1000.0
 
-            # Centre z-slice on middle of box
+            # Take a slice of thickness `slice_width` about the middle of the box
             z_mid = box_size / 2.0
-            z_min = (z_mid - slice_width / 2.0)
-            z_max = (z_mid + slice_width / 2.0)
+            z_min = z_mid - slice_width / 2.0
+            z_max = z_mid + slice_width / 2.0
 
-            # IMPORTANT:
-            # coords are apparently in kpc/h,
-            # so convert z coordinates to Mpc/h
-            z = coords[:, 2] / 1000.0
+            # Keep only particles inside the z-slice
+            mask = (coords_mpc[:, 2] >= z_min) & (coords_mpc[:, 2] <= z_max)
 
-            mask = ((z >= z_min) & (z <= z_max))
-
-            # x and y converted to Mpc/h
-            xy_slice = (coords[mask, :2]/ 1000.0)
+            # Only append x and y values for particles in the z-range
+            xy_slice = coords_mpc[mask, :2]
 
             if xy_slice.size > 0:
                 chunks.append(xy_slice)
