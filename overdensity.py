@@ -12,7 +12,6 @@ snapshot_numbers = [1, 8, 15]
 
 n_files_per_snapshot = 4
 
-slice_width = 2.0       # Mpc/h
 sphere_radius = 5.0     # Mpc/h
 n_spheres = 1000
 
@@ -88,55 +87,6 @@ for snap in snapshot_numbers:
 
     print(ds)
 
-    chunks = []
-
-    for i in range(n_files_per_snapshot):
-
-        file = (snapdir / f"snapshot_{snap:03d}.{i}.hdf5")
-
-        if not file.exists():
-            continue
-
-        with h5py.File(file, "r") as f:
-
-            # Read coordinates in kpc/h and convert once to Mpc/h
-            coords = f["PartType1/Coordinates"][:]
-            coords_mpc = coords / 1000.0
-
-            # Header BoxSize is in kpc/h, convert to Mpc/h for consistency
-            box_size = float(f["Header"].attrs["BoxSize"]) / 1000.0
-
-            # Take a slice of thickness `slice_width` about the middle of the box
-            z_mid = box_size / 2.0
-            z_min = z_mid - slice_width / 2.0
-            z_max = z_mid + slice_width / 2.0
-
-            # Keep only particles inside the z-slice
-            mask = (coords_mpc[:, 2] >= z_min) & (coords_mpc[:, 2] <= z_max)
-
-            # Only append x and y values for particles in the z-range
-            xy_slice = coords_mpc[mask, :2]
-
-            if xy_slice.size > 0:
-                chunks.append(xy_slice)
-
-
-    if not chunks:
-
-        print(f"No particles found for snapshot "f"{snap:03d}")
-
-        continue
-
-    positions = np.concatenate(chunks)
-
-    x = positions[:, 0]
-    y = positions[:, 1]
-
-    print(f"Particles in z-slice: {len(x)}")
-
-
-    # CALCULATE 3D OVERDENSITIES
-
     overdensities = calculate_overdensities(ds, sphere_radius=sphere_radius, n_spheres=n_spheres)
 
     print(f"Mean delta:   "f"{np.mean(overdensities):.4f}")
@@ -151,20 +101,7 @@ for snap in snapshot_numbers:
 
 
     # CREATE FIGURE
-    fig, axes = plt.subplots(1, 2, figsize=(14, 6))
-
-    ax = axes[0]
-
-    ax.scatter(x, y, s=0.01, alpha=0.1, rasterized=True)
-
-    ax.set_title(f"Snapshot {snap:03d}")
-    ax.set_xlabel("x [Mpc/h]")
-    ax.set_ylabel("y [Mpc/h]")
-    ax.set_xlim(0,box_size)
-    ax.set_ylim(0,box_size)
-    ax.set_aspect("equal")
-
-    ax = axes[1]
+    fig, ax = plt.subplots(figsize=(8, 6))
 
     ax.hist(
         overdensities,
