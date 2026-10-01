@@ -77,6 +77,9 @@ for snap in snapshot_numbers:
 
     snapshot_file = (snapdir / f"snapshot_{snap:03d}.0.hdf5")
 
+    with h5py.File(snapshot_file, "r") as f:
+        print(f["Header"].attrs.keys())
+
     ds = yt.load(
     str(snapshot_file),
     unit_base={ "length": (1.0, "Mpc/h")},

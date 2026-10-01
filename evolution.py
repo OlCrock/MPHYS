@@ -29,7 +29,6 @@ for ax, snap in zip(axes, snapshot_numbers):
 
         with h5py.File(file, "r") as f:
 
-            # KEEPING THE OLD CODE EXACTLY
             coords = f["PartType1/Coordinates"][:]
 
             # Header BoxSize is in kpc/h
@@ -40,7 +39,6 @@ for ax, snap in zip(axes, snapshot_numbers):
             z_min = z_mid - slice_width / 2.0
             z_max = z_mid + slice_width / 2.0
 
-            # OLD WORKING MASK
             mask = (
                 (coords[:, 2] >= z_min) &
                 (coords[:, 2] <= z_max)
@@ -77,7 +75,7 @@ for ax, snap in zip(axes, snapshot_numbers):
     ax.set_xlabel("x [Mpc/h]")
     ax.set_ylabel("y [Mpc/h]")
 
-    # Keep the same units as the original working code
+
     ax.set_xlim(0, box_size * 1000)
     ax.set_ylim(0, box_size * 1000)
 
