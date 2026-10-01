@@ -13,7 +13,7 @@ snapshot_numbers = [1, 8, 12]
 n_files_per_snapshot = 4
 
 sphere_radius = 4.0     # Mpc/h
-n_spheres = 10000
+n_spheres = 10
 
 def calculate_overdensities(ds, sphere_radius, n_spheres=1):
 
