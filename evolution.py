@@ -84,7 +84,7 @@ for ax, snap in zip(axes, snapshot_numbers):
 plt.tight_layout()
 
 plt.savefig(
-    "snapshot_evolution.png",
+    "snapshot_evolution_1.png",
     dpi=200
 )
 
