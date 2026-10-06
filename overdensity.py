@@ -5,7 +5,7 @@ from pathlib import Path
 import yt
 from scipy.stats import norm
 
-base_path = Path("/disk12/legacy/GVD_C700_l100n256_SLEGAC/dm_gadget/data")
+base_path = Path("/Backup00/jonorbe/legacy/GVD_C700_l100n2048_SLEGAC/dm_gadget/data")
 
 snapshot_numbers = [1, 8, 12]
 #[1, 4, 8, 12, 15]
