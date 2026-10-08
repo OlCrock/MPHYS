@@ -24,7 +24,7 @@ base_path = Path("/cephfs2/brs/bw_mw/100Mpc_256/dm-only-L0")
 snapshot_numbers = [0]
 
 sphere_radius = 0.08     # Mpc/h
-n_spheres = 1000
+n_spheres = 10
 
 # --------------------------------
 
@@ -136,7 +136,10 @@ for snap in snapshot_numbers:
     ds.force_periodicity()
     print(ds)
     #-------------------------------
-
+    print("code length:", ds.length_unit)
+    print("domain width:", ds.domain_width)
+    print("4 Mpc/h in code units:", ds.quan(4.0, "Mpc/h").to("code_length"))
+    print("1 code_length in Mpc/h:", ds.quan(1.0, "code_length").to("Mpc/h"))
     overdensities = calculate_overdensities(ds, sphere_radius=sphere_radius, n_spheres=n_spheres)
 
     print(f"Mean delta:   "f"{np.mean(overdensities):.4f}")
