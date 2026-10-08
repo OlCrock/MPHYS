@@ -188,13 +188,17 @@ for snap in snapshot_numbers:
 
     gaussian = norm.pdf(delta_range, mu, sigma)
 
-    ax.plot(delta_range, gaussian, linewidth=2,
-    label=(rf"Gaussian " rf"$\mu={mu:.3f}$, " rf"$\sigma={sigma:.3f}$", rf"$z={redshift:.2f}$"))
+    ax.plot(
+        delta_range,
+        gaussian,
+        linewidth=2,
+        label=rf"Gaussian $\mu={mu:.3f}$, $\sigma={sigma:.3f}$, $z={redshift:.2f}$",
+    )
 
     ax.axvline(0, linestyle="--", linewidth=1)
 
     ax.set_xlabel(r"Overdensity $\delta$")
-    ax.set_ylabel( "Probability density")
+    ax.set_ylabel("Probability density")
     ax.set_title(rf"$R={sphere_radius}\,h^{{-1}}$ Mpc")
     ax.legend()
 
