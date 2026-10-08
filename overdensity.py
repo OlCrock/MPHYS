@@ -23,7 +23,7 @@ base_path = Path("/cephfs2/brs/bw_mw/100Mpc_256/dm-only-L0")
 
 snapshot_numbers = [0]
 
-sphere_radius = 4.0     # Mpc/h
+sphere_radius = 0.08     # Mpc/h
 n_spheres = 1000
 
 # --------------------------------
