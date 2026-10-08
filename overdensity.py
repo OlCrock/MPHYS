@@ -6,6 +6,7 @@ import yt
 from scipy.stats import norm
 
 """
+--------------------------------
 base_path = Path("/disk12/legacy/GVD_C700_l100n256_SLEGAC/dm_gadget/data")
 
 snapshot_numbers = [1, 8, 12]
@@ -15,8 +16,9 @@ n_files_per_snapshot = 4
 
 sphere_radius = 4.0     # Mpc/h
 n_spheres = 10
+--------------------------------
 """
-
+# -------------------------------
 base_path = Path("/cephfs2/brs/bw_mw/100Mpc_256/dm-only-L0")
 
 snapshot_numbers = [0]
@@ -24,7 +26,7 @@ snapshot_numbers = [0]
 sphere_radius = 4.0     # Mpc/h
 n_spheres = 1000
 
-# n_files_per_snapshot = 4
+# --------------------------------
 
 def calculate_overdensities(ds, sphere_radius, n_spheres=1):
 
@@ -32,14 +34,14 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1):
     Place random spheres throughout the simulation box and
     calculate the density contrast delta in each sphere.
     """
-
+    """
+     --------------------------------
     # Box size in Mpc/h
     box_size = ds.domain_width[0].to("Mpc/h").value
 
     # Total number of particles
     all_data = ds.all_data()
-    #n_total = all_data["PartType1", "particle_position_x"].size
-    n_total = all_data["all", "particle_position_x"].size
+    n_total = all_data["PartType1", "particle_position_x"].size
 
     # Volume of simulation box
     box_volume = box_size**3
@@ -51,6 +53,29 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1):
 
     # Random sphere centres
     centres = np.random.uniform(0, box_size, size=(n_spheres, 3))
+    ----------------------- edit back when data is back 
+    """ 
+
+    # --------------------
+    # Box size in Mpc/h
+    box_size = 100.0
+
+    # Total number of particles
+    all_data = ds.all_data()
+    n_total = all_data["all", "particle_position_x"].size
+
+    # Volume of simulation box
+    box_volume = box_size**3
+    mean_density = n_total / box_volume
+
+    print(f"Box size:       {box_size:.3f} Mpc/h")
+    print(f"Total particles: {n_total}")
+    print(f"Mean density:   {mean_density:.3e} particles/(Mpc/h)^3")
+
+    # Random sphere centres
+    centres = np.random.uniform(0, 1, size=(n_spheres, 3))
+    # --------------------
+
 
     # Sphere volume
     sphere_volume = ((4.0 / 3.0) * np.pi * sphere_radius**3)
@@ -86,6 +111,7 @@ for snap in snapshot_numbers:
     print(f"SNAPSHOT {snap:03d}")
     print("=" * 60)
     """
+    --------------------------------
     snapdir = base_path / f"snapdir_{snap:03d}"
 
     snapshot_file = (snapdir / f"snapshot_{snap:03d}.0.hdf5")
@@ -100,14 +126,16 @@ for snap in snapshot_numbers:
 
     # Force periodicity on the dataset 
     ds.force_periodicity()
+    --------------------------------
     """
-
+    #-------------------------------
     snapshot_file = base_path / "DD0000" / "DD0000"
 
     ds = yt.load(str(snapshot_file))
 
     ds.force_periodicity()
     print(ds)
+    #-------------------------------
 
     overdensities = calculate_overdensities(ds, sphere_radius=sphere_radius, n_spheres=n_spheres)
 
