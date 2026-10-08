@@ -23,7 +23,7 @@ base_path = Path("/cephfs2/brs/bw_mw/100Mpc_256/dm-only-L0")
 
 snapshot_numbers = [0]
 
-sphere_radius = 0.08     # Mpc/h
+sphere_radius = 8     # Mpc/h
 n_spheres = 10
 
 # --------------------------------
@@ -85,7 +85,7 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1):
     # Loop over spheres
     for i, centre in enumerate(centres):
 
-        sp = ds.sphere(centre, (sphere_radius, "Mpc/h"))
+        sp = ds.sphere(centre, (sphere_radius/100.0, "Mpc/h"))
         #n_sphere = sp["PartType1", "particle_position_x"].size
         n_sphere = sp["all", "particle_position_x"].size
 
