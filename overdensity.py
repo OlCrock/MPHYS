@@ -87,7 +87,7 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1):
     # Loop over spheres
     for i, centre in enumerate(centres):
 
-        sp = ds.sphere(centre, (sphere_radius/100.0, "Mpc/h"))
+        sp = ds.sphere(centre, (sphere_radius/100.0, "code_length"))
         #n_sphere = sp["PartType1", "particle_position_x"].size
         n_sphere = sp["all", "particle_position_x"].size
 
