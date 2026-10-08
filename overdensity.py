@@ -21,7 +21,7 @@ n_spheres = 10
 # -------------------------------
 base_path = Path("/cephfs2/brs/bw_mw/100Mpc_256/dm-only-L0")
 
-snapshot_numbers = [0]
+snapshot_numbers = [0, 1, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64]
 
 sphere_radius = 8     # Mpc/h
 n_spheres = 1000
@@ -132,7 +132,7 @@ for snap in snapshot_numbers:
     --------------------------------
     """
     #-------------------------------
-    snapshot_file = base_path / "DD0000" / "DD0000"
+    snapshot_file = base_path / f"DD{snap:04d}" / f"DD{snap:04d}"
 
     ds = yt.load(str(snapshot_file))
 
