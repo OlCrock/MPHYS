@@ -107,6 +107,18 @@ redshifts = []
 means = []
 stds = []
 
+def plot_sigma_by_z():
+    fig, ax = plt.subplots(figsize=(8, 6))
+
+    ax.plot(redshifts, stds, marker="o", linestyle="-")
+
+    ax.set_xlabel("Redshift z")
+    ax.set_ylabel(r"Standard deviation $\sigma$")
+    ax.set_title(rf"Overdensity $\delta$ for $R={sphere_radius}\,h^{{-1}}$ Mpc")
+
+    plt.tight_layout()
+    plt.savefig(f"sigma_by_z_R{sphere_radius}_ENZO.png", dpi=200)
+
 for snap in snapshot_numbers:
 
     print()
@@ -190,3 +202,7 @@ for snap in snapshot_numbers:
     plt.tight_layout()
     output_name = (f"snapshot_{snap:03d}_overdensity_ENZO.png")
     plt.savefig(output_name, dpi=200)
+
+# PLOT SIGMA VS REDSHIFT
+plot_sigma_by_z()
+
