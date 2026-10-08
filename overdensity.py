@@ -178,5 +178,5 @@ for snap in snapshot_numbers:
 
     # SAVE
     plt.tight_layout()
-    output_name = (f"snapshot_{snap:03d}_overdensity.png")
+    output_name = (f"snapshot_{snap:03d}_overdensity_ENZO.png")
     plt.savefig(output_name, dpi=200)
