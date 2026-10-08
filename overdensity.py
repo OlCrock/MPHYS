@@ -103,6 +103,9 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1):
 
     return overdensities
 
+redshifts = []
+means = []
+stds = []
 
 for snap in snapshot_numbers:
 
@@ -133,6 +136,9 @@ for snap in snapshot_numbers:
 
     ds = yt.load(str(snapshot_file))
 
+    redshift = ds.current_redshift
+    redshifts.append(redshift)
+
     ds.force_periodicity()
     print(ds)
     #-------------------------------
@@ -145,7 +151,8 @@ for snap in snapshot_numbers:
     print(f"Mean delta:   "f"{np.mean(overdensities):.4f}")
     print(f"Std delta:    "f"{np.std(overdensities):.4f}")
 
-
+    means.append(np.mean(overdensities))
+    stds.append(np.std(overdensities))
     # FIT GAUSSIAN
     mu, sigma = norm.fit(overdensities)
 
@@ -170,7 +177,7 @@ for snap in snapshot_numbers:
     gaussian = norm.pdf(delta_range, mu, sigma)
 
     ax.plot(delta_range, gaussian, linewidth=2,
-    label=(rf"Gaussian " rf"$\mu={mu:.3f}$, " rf"$\sigma={sigma:.3f}$"))
+    label=(rf"Gaussian " rf"$\mu={mu:.3f}$, " rf"$\sigma={sigma:.3f}$", rf"$z={redshift:.2f}$"))
 
     ax.axvline(0, linestyle="--", linewidth=1)
 
