@@ -108,33 +108,16 @@ means = []
 stds = []
 
 def plot_sigma_by_z():
-    if len(redshifts) == 0:
-        print("No redshift data to plot.")
-        return
-
-    z = np.asarray(redshifts, dtype=float)
-    sigma = np.asarray(stds, dtype=float)
-
-    print("redshifts:", z)
-    print("stds:", sigma)
-
-    order = np.argsort(z)
-    z = z[order]
-    sigma = sigma[order]
-
     fig, ax = plt.subplots(figsize=(8, 6))
-    ax.plot(z, sigma, marker="o", linestyle="-", color="C0")
-    ax.scatter(z, sigma, s=25)
+
+    ax.plot(redshifts, stds, marker="o", linestyle="-")
 
     ax.set_xlabel("Redshift z")
     ax.set_ylabel(r"Standard deviation $\sigma$")
     ax.set_title(rf"Overdensity $\delta$ for $R={sphere_radius}\,h^{{-1}}$ Mpc")
-    ax.grid(True, alpha=0.3)
 
-    fig.tight_layout()
-    fig.savefig(f"sigma_by_z_R{sphere_radius}_ENZO.png", dpi=200)
-    plt.show()
-    plt.close(fig)
+    plt.tight_layout()
+    plt.savefig(f"sigma_by_z_R{sphere_radius}_ENZO.png", dpi=200)
 
 for snap in snapshot_numbers:
 
@@ -166,8 +149,7 @@ for snap in snapshot_numbers:
     ds = yt.load(str(snapshot_file))
 
     redshift = ds.current_redshift
-    redshifts.append(float(redshift))
-    print(f"Snapshot {snap}: redshift = {redshift}")
+    redshifts.append(redshift)
 
     ds.force_periodicity()
     print(ds)
@@ -181,8 +163,14 @@ for snap in snapshot_numbers:
     print(f"Mean delta:   "f"{np.mean(overdensities):.4f}")
     print(f"Std delta:    "f"{np.std(overdensities):.4f}")
 
-    means.append(float(np.mean(overdensities)))
-    stds.append(float(np.std(overdensities)))
+    means.append(np.mean(overdensities))
+    stds.append(np.std(overdensities))
+    # FIT GAUSSIAN
+    mu, sigma = norm.fit(overdensities)
+
+    print(f"Gaussian mu:      {mu:.4f}")
+    print(f"Gaussian sigma:   {sigma:.4f}")
+
 
     # CREATE FIGURE
     fig, ax = plt.subplots(figsize=(8, 6))
@@ -216,9 +204,8 @@ for snap in snapshot_numbers:
 
     # SAVE
     plt.tight_layout()
-    output_name = f"snapshot_{snap:03d}_overdensity_ENZO.png"
+    output_name = (f"snapshot_{snap:03d}_overdensity_ENZO.png")
     plt.savefig(output_name, dpi=200)
-    plt.close(fig)  # <-- important
 
 # PLOT SIGMA VS REDSHIFT
 plot_sigma_by_z()
