@@ -5,6 +5,9 @@ from pathlib import Path
 import yt
 from scipy.stats import norm
 
+plot_dir = Path("plots")
+plot_dir.mkdir(exist_ok=True)
+
 """
 --------------------------------
 base_path = Path("/disk12/legacy/GVD_C700_l100n256_SLEGAC/dm_gadget/data")
@@ -21,11 +24,10 @@ n_spheres = 10
 # -------------------------------
 base_path = Path("/cephfs2/brs/bw_mw/100Mpc_256/dm-only-L0")
 
-snapshot_numbers = [0, 1, 2, 4] 
-                   # 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64]
+snapshot_numbers = [0, 1, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64]
 
 sphere_radius = 8     # Mpc/h
-n_spheres = 100
+n_spheres = 10000
 
 # --------------------------------
 
@@ -120,7 +122,7 @@ def plot_sigma_by_z():
     ax.set_title(rf"Overdensity $\delta$ for $R={sphere_radius}\,h^{{-1}}$ Mpc")
 
     plt.tight_layout()
-    plt.savefig(f"sigma_by_z_R{sphere_radius}_ENZOtest.png", dpi=200)
+    plt.savefig(plot_dir / f"sigma_by_z_R{sphere_radius}_ENZOtest.png", dpi=200)
 
 for snap in snapshot_numbers:
 
@@ -209,7 +211,7 @@ for snap in snapshot_numbers:
     # SAVE
     plt.tight_layout()
     output_name = (f"snapshot_{snap:03d}_overdensity_ENZOtest.png")
-    plt.savefig(output_name, dpi=200)
+    plt.savefig(plot_dir / output_name, dpi=200)
 
 # PLOT SIGMA VS REDSHIFT
 plot_sigma_by_z()
