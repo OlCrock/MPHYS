@@ -5,6 +5,31 @@ from pathlib import Path
 import yt
 from scipy.stats import norm
 
+plt.style.use("seaborn-v0_8-whitegrid")
+plt.rcParams.update(
+    {
+        "figure.figsize": (8, 6),
+        "font.size": 11,
+        "axes.titlesize": 13,
+        "axes.labelsize": 11,
+        "axes.linewidth": 1.2,
+        "axes.grid": True,
+        "grid.alpha": 0.25,
+        "grid.linestyle": "-",
+        "legend.frameon": True,
+        "legend.framealpha": 0.95,
+        "legend.fancybox": True,
+        "savefig.dpi": 200,
+        "savefig.bbox": "tight",
+        "savefig.facecolor": "white",
+        "axes.facecolor": "white",
+        "xtick.direction": "out",
+        "ytick.direction": "out",
+        "axes.spines.top": False,
+        "axes.spines.right": False,
+    }
+)
+
 plot_dir = Path("plots")
 plot_dir.mkdir(exist_ok=True)
 
@@ -112,14 +137,23 @@ stds = []
 sigmas = []
 
 def plot_sigma_by_z():
-    fig, ax = plt.subplots(figsize=(8, 6))
+    fig, ax = plt.subplots(figsize=(8.5, 6.0))
 
     sigma_values = sigmas if sigmas else stds
-    ax.plot(redshifts, sigma_values, marker="o", linestyle="-")
+    ax.plot(
+        redshifts,
+        sigma_values,
+        marker="o",
+        linestyle="-",
+        linewidth=2.2,
+        markersize=6,
+        color="#2C5F8A",
+    )
 
     ax.set_xlabel("Redshift z")
     ax.set_ylabel(r"Standard deviation $\sigma$")
-    ax.set_title(rf"Overdensity $\delta$ for $R={sphere_radius}\,h^{{-1}}$ Mpc")
+    ax.set_title(rf"Overdensity amplitude $\sigma_\delta$ for $R={sphere_radius}\,h^{{-1}}$ Mpc")
+    ax.grid(True, alpha=0.25)
 
     plt.tight_layout()
     plt.savefig(plot_dir / f"sigma_by_z_R{sphere_radius}_ENZOtest.png", dpi=200)
@@ -179,14 +213,19 @@ for snap in snapshot_numbers:
 
 
     # CREATE FIGURE
-    fig, ax = plt.subplots(figsize=(8, 6))
+    fig, ax = plt.subplots(figsize=(8.0, 6.0))
 
+    hist_color = "#4C72B0"
+    fit_color = "#C44E52"
     ax.hist(
         overdensities,
         bins=100,
         density=True,
-        alpha=0.6,
-        label="Sphere measurements"
+        alpha=0.65,
+        color=hist_color,
+        edgecolor="white",
+        linewidth=0.6,
+        label="Sphere measurements",
     )
 
     # Fit Gaussian curve
@@ -197,16 +236,18 @@ for snap in snapshot_numbers:
     ax.plot(
         delta_range,
         gaussian,
-        linewidth=2,
-        label=rf"Gaussian $\mu={mu:.3f}$, $\sigma={sigma:.3f}$, $z={redshift:.2f}$",
+        linewidth=2.2,
+        color=fit_color,
+        label=rf"Gaussian fit: $\mu={mu:.3f}$, $\sigma={sigma:.3f}$, $z={redshift:.2f}$",
     )
 
-    ax.axvline(0, linestyle="--", linewidth=1)
+    ax.axvline(0, linestyle="--", linewidth=1.2, color="#2E2E2E")
 
     ax.set_xlabel(r"Overdensity $\delta$")
     ax.set_ylabel("Probability density")
     ax.set_title(rf"$R={sphere_radius}\,h^{{-1}}$ Mpc")
-    ax.legend()
+    ax.legend(loc="best", frameon=True, fontsize=9)
+    ax.grid(True, alpha=0.25)
 
     # SAVE
     plt.tight_layout()

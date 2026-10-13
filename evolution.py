@@ -3,6 +3,30 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 
+plt.style.use("seaborn-v0_8-whitegrid")
+plt.rcParams.update(
+    {
+        "figure.figsize": (18, 5),
+        "font.size": 11,
+        "axes.titlesize": 12,
+        "axes.labelsize": 11,
+        "axes.linewidth": 1.2,
+        "axes.grid": True,
+        "grid.alpha": 0.25,
+        "legend.frameon": True,
+        "legend.framealpha": 0.95,
+        "legend.fancybox": True,
+        "savefig.dpi": 200,
+        "savefig.bbox": "tight",
+        "savefig.facecolor": "white",
+        "axes.facecolor": "white",
+        "xtick.direction": "out",
+        "ytick.direction": "out",
+        "axes.spines.top": False,
+        "axes.spines.right": False,
+    }
+)
+
 base_path = Path("/disk12/legacy/GVD_C700_l100n256_SLEGAC/dm_gadget/data")
 
 snapshot_numbers = [1, 4, 8, 12, 15]
@@ -12,7 +36,9 @@ slice_width = 2.0  # Mpc/h
 fig, axes = plt.subplots(
     1,
     len(snapshot_numbers),
-    figsize=(20, 4)
+    figsize=(18, 5),
+    sharex=True,
+    sharey=True
 )
 
 for ax, snap in zip(axes, snapshot_numbers):
@@ -66,18 +92,22 @@ for ax, snap in zip(axes, snapshot_numbers):
     ax.scatter(
         x,
         y,
-        s=0.01,
-        alpha=0.1,
-        rasterized=True
+        s=3,
+        alpha=0.18,
+        rasterized=True,
+        color="#2F6DA6",
+        edgecolors="none",
     )
 
-    ax.set_title(f"Snapshot {snap:03d}")
-    ax.set_xlabel("x [Mpc/h]")
-    ax.set_ylabel("y [Mpc/h]")
-
+    ax.set_title(f"Snapshot {snap:03d}", pad=8)
+    ax.set_xlabel("x [Mpc/h]", labelpad=8)
+    ax.set_ylabel("y [Mpc/h]", labelpad=8)
 
     ax.set_xlim(0, box_size * 1000)
     ax.set_ylim(0, box_size * 1000)
+
+for ax in axes:
+    ax.set_aspect("equal")
 
 plt.tight_layout()
 
