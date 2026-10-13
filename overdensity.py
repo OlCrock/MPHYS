@@ -120,7 +120,7 @@ def plot_sigma_by_z():
     ax.set_title(rf"Overdensity $\delta$ for $R={sphere_radius}\,h^{{-1}}$ Mpc")
 
     plt.tight_layout()
-    plt.savefig(f"sigma_by_z_R{sphere_radius}_ENZO.png", dpi=200)
+    plt.savefig(f"sigma_by_z_R{sphere_radius}_ENZOtest.png", dpi=200)
 
 for snap in snapshot_numbers:
 
@@ -208,7 +208,7 @@ for snap in snapshot_numbers:
 
     # SAVE
     plt.tight_layout()
-    output_name = (f"snapshot_{snap:03d}_overdensity_ENZO.png")
+    output_name = (f"snapshot_{snap:03d}_overdensity_ENZOtest.png")
     plt.savefig(output_name, dpi=200)
 
 # PLOT SIGMA VS REDSHIFT
