@@ -106,11 +106,13 @@ def calculate_overdensities(ds, sphere_radius, n_spheres=1):
 redshifts = []
 means = []
 stds = []
+sigmas = []
 
 def plot_sigma_by_z():
     fig, ax = plt.subplots(figsize=(8, 6))
 
-    ax.plot(redshifts, stds, marker="o", linestyle="-")
+    sigma_values = sigmas if sigmas else stds
+    ax.plot(redshifts, sigma_values, marker="o", linestyle="-")
 
     ax.set_xlabel("Redshift z")
     ax.set_ylabel(r"Standard deviation $\sigma$")
@@ -167,6 +169,7 @@ for snap in snapshot_numbers:
     stds.append(np.std(overdensities))
     # FIT GAUSSIAN
     mu, sigma = norm.fit(overdensities)
+    sigmas.append(sigma)
 
     print(f"Gaussian mu:      {mu:.4f}")
     print(f"Gaussian sigma:   {sigma:.4f}")
