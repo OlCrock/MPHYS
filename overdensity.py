@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 import yt
 from scipy.stats import norm
+from scipy.integrate import quad
 
 plt.style.use("seaborn-v0_8-whitegrid")
 plt.rcParams.update(
@@ -49,7 +50,7 @@ n_spheres = 10
 # -------------------------------
 base_path = Path("/cephfs2/brs/bw_mw/100Mpc_256/dm-only-L0")
 
-snapshot_numbers = [0,8,16,32,40,48,64]
+snapshot_numbers = [1, 2, 8,16,20,32,40,64]
 
 #[0, 1, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64]
 
@@ -138,27 +139,62 @@ means = []
 stds = []
 sigmas = []
 
-def plot_sigma_by_z():
+def plot_sigma_by_z(sigma_theory=None):
     fig, ax = plt.subplots(figsize=(8.5, 6.0))
 
-    sigma_values = sigmas if sigmas else stds
+    sigma_values = sigmas
+    z = np.asarray(redshifts, dtype=float)
+    sigma_sim = np.asarray(sigma_values, dtype=float)
+
     ax.plot(
-        redshifts,
-        sigma_values,
+        z,
+        sigma_sim,
         marker="o",
         linestyle="-",
         linewidth=2.2,
         markersize=6,
         color="#2C5F8A",
+        label="Simulation",
     )
+
+    if sigma_theory is not None:
+        sigma_theory = np.asarray(sigma_theory, dtype=float)
+        ax.plot(
+            z,
+            sigma_theory,
+            marker="s",
+            linestyle="--",
+            linewidth=2.0,
+            markersize=5,
+            color="#C76A4A",
+            label="Linear theory",
+        )
 
     ax.set_xlabel("Redshift z")
     ax.set_ylabel(r"Standard deviation $\sigma$")
     ax.set_title(rf"Overdensity amplitude $\sigma_\delta$ for $R={sphere_radius}\,h^{{-1}}$ Mpc")
     ax.grid(True, alpha=0.25)
+    ax.legend(loc="best")
 
     plt.tight_layout()
     plt.savefig(plot_dir / f"sigma_by_z_R{sphere_radius}_ENZOtest.png", dpi=200)
+    plt.close(fig)
+
+def linear_sigma(H0, Omega_m, Omega_L, z, sigma0_sq):
+    a = 1.0 / (1.0 + z)
+
+    def H_of_a(ap):
+        return H0 * np.sqrt(Omega_m / ap**3 + Omega_L)
+
+    def delta_m(a):
+        integral = quad(
+            lambda ap: H_of_a(ap)**-3,
+            1e-8, a
+        )[0]
+        return (5/2) * H0**2 * Omega_m * H_of_a(a) * integral
+
+    D = delta_m(a) / delta_m(1.0)
+    return D**2 * sigma0_sq    
 
 for snap in snapshot_numbers:
 
@@ -257,5 +293,12 @@ for snap in snapshot_numbers:
     plt.savefig(plot_dir / output_name, dpi=200)
 
 # PLOT SIGMA VS REDSHIFT
-plot_sigma_by_z()
-
+varr_theory = linear_sigma(
+    H0=67.4,
+    Omega_m=0.315,
+    Omega_L=0.685,
+    z=np.array(redshifts),
+    sigma0_sq=0.811**2,
+)
+sigma_theory = np.sqrt(varr_theory)
+plot_sigma_by_z(sigma_theory=sigma_theory)
