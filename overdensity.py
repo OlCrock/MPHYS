@@ -181,19 +181,25 @@ def plot_sigma_by_z(sigma_theory=None):
     plt.close(fig)
 
 def linear_sigma(H0, Omega_m, Omega_L, z, sigma0_sq):
+    z = np.asarray(z, dtype=float)
     a = 1.0 / (1.0 + z)
 
     def H_of_a(ap):
         return H0 * np.sqrt(Omega_m / ap**3 + Omega_L)
 
-    def delta_m(a):
-        integral = quad(
+    def delta_m_scalar(a_scalar):
+        integral, _ = quad(
             lambda ap: H_of_a(ap)**-3,
-            1e-8, a
-        )[0]
-        return (5/2) * H0**2 * Omega_m * H_of_a(a) * integral
+            1e-8,
+            float(a_scalar),
+        )
+        return (5.0 / 2.0) * H0**2 * Omega_m * H_of_a(float(a_scalar)) * integral
 
-    D = delta_m(a) / delta_m(1.0)
+    D_today = delta_m_scalar(1.0)
+    D = np.empty_like(a, dtype=float)
+    for i, a_i in enumerate(a):
+        D[i] = delta_m_scalar(a_i) / D_today
+
     return D**2 * sigma0_sq    
 
 for snap in snapshot_numbers:
