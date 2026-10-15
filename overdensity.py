@@ -178,29 +178,18 @@ def plot_sigma_by_z(sigma_theory=None):
 
     plt.tight_layout()
     plt.savefig(plot_dir / f"sigma_by_z_R{sphere_radius}_ENZOtest.png", dpi=200)
-    plt.close(fig)
+
 
 def linear_sigma(H0, Omega_m, Omega_L, z, sigma0_sq):
-    z = np.asarray(z, dtype=float)
-    a = 1.0 / (1.0 + z)
+    H = lambda a: H0 * np.sqrt(Omega_m / a**3 + Omega_L)
+    integrand = lambda a: (a * H(a))**-3
 
-    def H_of_a(ap):
-        return H0 * np.sqrt(Omega_m / ap**3 + Omega_L)
+    def D(a):
+        return H(a) * quad(integrand, 0, a)[0]
 
-    def delta_m_scalar(a_scalar):
-        integral, _ = quad(
-            lambda ap: H_of_a(ap)**-3,
-            1e-8,
-            float(a_scalar),
-        )
-        return (5.0 / 2.0) * H0**2 * Omega_m * H_of_a(float(a_scalar)) * integral
-
-    D_today = delta_m_scalar(1.0)
-    D = np.empty_like(a, dtype=float)
-    for i, a_i in enumerate(a):
-        D[i] = delta_m_scalar(a_i) / D_today
-
-    return D**2 * sigma0_sq    
+    a = 1.0 / (1.0 + np.atleast_1d(z))
+    D_ratio = np.array([D(ai) for ai in a]) / D(1.0)
+    return D_ratio**2 * sigma0_sq
 
 for snap in snapshot_numbers:
 
