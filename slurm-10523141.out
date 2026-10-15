@@ -1,22 +1,0 @@
-yt : [INFO     ] 2026-09-28 16:46:16,347 Calculating time from 4.783e-02 to be 5.799e+15 seconds
-yt : [INFO     ] 2026-09-28 16:46:16,453 Parameters: current_time              = 5799142244602275.0 s
-yt : [INFO     ] 2026-09-28 16:46:16,453 Parameters: domain_dimensions         = [1 1 1]
-yt : [INFO     ] 2026-09-28 16:46:16,454 Parameters: domain_left_edge          = [0. 0. 0.]
-yt : [INFO     ] 2026-09-28 16:46:16,454 Parameters: domain_right_edge         = [100. 100. 100.]
-yt : [INFO     ] 2026-09-28 16:46:16,454 Parameters: cosmological_simulation   = True
-yt : [INFO     ] 2026-09-28 16:46:16,454 Parameters: current_redshift          = 19.90800041278718
-yt : [INFO     ] 2026-09-28 16:46:16,454 Parameters: omega_lambda              = b'0.715'
-yt : [INFO     ] 2026-09-28 16:46:16,454 Parameters: omega_matter              = b'0.285'
-yt : [INFO     ] 2026-09-28 16:46:16,454 Parameters: omega_radiation           = 0.0
-yt : [INFO     ] 2026-09-28 16:46:16,454 Parameters: hubble_constant           = b'0.695'
-yt : [WARNING  ] 2026-09-28 16:46:16,454 A bounding box was explicitly specified, so we are disabling periodicity.
-yt : [INFO     ] 2026-09-28 16:46:17,604 Allocating for 1.678e+07 particles
-
-============================================================
-SNAPSHOT 001
-============================================================
-snapshot_001
-Particles in z-slice: 16777216
-Initializing coarse index :   0%|          | 0/67 [00:00<?, ?it/s]Initializing coarse index :  13%|█▎        | 9/67 [00:00<00:00, 84.66it/s]Initializing coarse index :  28%|██▊       | 19/67 [00:00<00:00, 89.25it/s]Initializing coarse index :  42%|████▏     | 28/67 [00:00<00:00, 85.59it/s]Initializing coarse index :  57%|█████▋    | 38/67 [00:00<00:00, 87.41it/s]Initializing coarse index :  70%|███████   | 47/67 [00:00<00:00, 87.03it/s]Initializing coarse index :  85%|████████▌ | 57/67 [00:00<00:00, 89.14it/s]Initializing coarse index :  99%|█████████▊| 66/67 [00:00<00:00, 88.97it/s]Initializing coarse index : 100%|██████████| 67/67 [00:00<00:00, 86.86it/s]
-Initializing refined index:   0%|          | 0/67 [00:00<?, ?it/s]Initializing refined index:   7%|▋         | 5/67 [00:00<00:01, 42.79it/s]Initializing refined index:  15%|█▍        | 10/67 [00:00<00:01, 40.35it/s]Initializing refined index:  22%|██▏       | 15/67 [00:00<00:01, 40.47it/s]Initializing refined index:  31%|███▏      | 21/67 [00:00<00:01, 43.65it/s]Initializing refined index:  39%|███▉      | 26/67 [00:00<00:00, 43.20it/s]Initializing refined index:  46%|████▋     | 31/67 [00:00<00:00, 42.01it/s]Initializing refined index:  55%|█████▌    | 37/67 [00:00<00:00, 43.88it/s]Initializing refined index:  63%|██████▎   | 42/67 [00:00<00:00, 41.56it/s]Initializing refined index:  70%|███████   | 47/67 [00:01<00:00, 42.12it/s]Initializing refined index:  79%|███████▉  | 53/67 [00:01<00:00, 44.26it/s]Initializing refined index:  87%|████████▋ | 58/67 [00:01<00:00, 43.45it/s]Initializing refined index:  94%|█████████▍| 63/67 [00:01<00:00, 41.30it/s]Initializing refined index: 100%|██████████| 67/67 [00:01<00:00, 41.79it/s]
-[2026-09-28T17:16:24.008] error: *** JOB 10523141 ON worker091 CANCELLED AT 2026-09-28T17:16:24 DUE TO TIME LIMIT ***

@@ -1,129 +1,0 @@
-yt : [INFO     ] 2026-09-24 17:38:08,480 Calculating time from 1.000e+00 to be 4.342e+17 seconds
-yt : [INFO     ] 2026-09-24 17:38:08,533 Parameters: current_time              = 4.3420248466376794e+17 s
-yt : [INFO     ] 2026-09-24 17:38:08,533 Parameters: domain_dimensions         = [1 1 1]
-yt : [INFO     ] 2026-09-24 17:38:08,533 Parameters: domain_left_edge          = [0. 0. 0.]
-yt : [INFO     ] 2026-09-24 17:38:08,533 Parameters: domain_right_edge         = [100. 100. 100.]
-yt : [INFO     ] 2026-09-24 17:38:08,533 Parameters: cosmological_simulation   = True
-yt : [INFO     ] 2026-09-24 17:38:08,533 Parameters: current_redshift          = 4.440892098500626e-16
-yt : [INFO     ] 2026-09-24 17:38:08,533 Parameters: omega_lambda              = b'0.715'
-yt : [INFO     ] 2026-09-24 17:38:08,533 Parameters: omega_matter              = b'0.285'
-yt : [INFO     ] 2026-09-24 17:38:08,533 Parameters: omega_radiation           = 0.0
-yt : [INFO     ] 2026-09-24 17:38:08,533 Parameters: hubble_constant           = b'0.695'
-yt : [WARNING  ] 2026-09-24 17:38:08,533 A bounding box was explicitly specified, so we are disabling periodicity.
-yt : [INFO     ] 2026-09-24 17:38:09,080 Allocating for 1.678e+07 particles
-
-============================================================
-SNAPSHOT 015
-============================================================
-snapshot_015
-Particles in z-slice: 16777216
-Initializing coarse index :   0%|          | 0/66 [00:00<?, ?it/s]Initializing coarse index :  21%|██        | 14/66 [00:00<00:00, 133.58it/s]Initializing coarse index :  42%|████▏     | 28/66 [00:00<00:00, 131.37it/s]Initializing coarse index :  65%|██████▌   | 43/66 [00:00<00:00, 136.83it/s]Initializing coarse index :  89%|████████▉ | 59/66 [00:00<00:00, 142.96it/s]Initializing coarse index : 100%|██████████| 66/66 [00:00<00:00, 136.95it/s]
-Initializing refined index:   0%|          | 0/66 [00:00<?, ?it/s]Initializing refined index:   6%|▌         | 4/66 [00:00<00:02, 29.62it/s]Initializing refined index:  11%|█         | 7/66 [00:00<00:02, 27.02it/s]Initializing refined index:  15%|█▌        | 10/66 [00:00<00:02, 25.66it/s]Initializing refined index:  20%|█▉        | 13/66 [00:00<00:02, 24.43it/s]Initializing refined index:  24%|██▍       | 16/66 [00:00<00:02, 23.67it/s]Initializing refined index:  30%|███       | 20/66 [00:00<00:01, 25.13it/s]Initializing refined index:  35%|███▍      | 23/66 [00:00<00:01, 23.49it/s]Initializing refined index:  39%|███▉      | 26/66 [00:01<00:01, 22.92it/s]Initializing refined index:  44%|████▍     | 29/66 [00:01<00:01, 22.54it/s]Initializing refined index:  48%|████▊     | 32/66 [00:01<00:01, 22.90it/s]Initializing refined index:  53%|█████▎    | 35/66 [00:01<00:01, 23.46it/s]Initializing refined index:  58%|█████▊    | 38/66 [00:01<00:01, 22.19it/s]Initializing refined index:  62%|██████▏   | 41/66 [00:01<00:01, 22.18it/s]Initializing refined index:  67%|██████▋   | 44/66 [00:01<00:00, 22.43it/s]Initializing refined index:  71%|███████   | 47/66 [00:02<00:00, 22.07it/s]Initializing refined index:  76%|███████▌  | 50/66 [00:02<00:00, 22.89it/s]Initializing refined index:  82%|████████▏ | 54/66 [00:02<00:00, 25.04it/s]Initializing refined index:  86%|████████▋ | 57/66 [00:02<00:00, 24.20it/s]Initializing refined index:  91%|█████████ | 60/66 [00:02<00:00, 22.87it/s]Initializing refined index:  95%|█████████▌| 63/66 [00:02<00:00, 23.38it/s]Initializing refined index: 100%|██████████| 66/66 [00:02<00:00, 23.89it/s]Initializing refined index: 100%|██████████| 66/66 [00:02<00:00, 23.39it/s]
-Box size:       100.000 Mpc/h
-Total mass:     7.909e+16 Msun/h
-Mean density:   7.909e+10 Msun/h/(Mpc/h)^3
-Particles in sphere: 1067
-Particles in sphere: 14829
-Particles in sphere: 5916
-Particles in sphere: 2251
-Particles in sphere: 3919
-Particles in sphere: 2785
-Particles in sphere: 1523
-Particles in sphere: 10210
-Particles in sphere: 1735
-Particles in sphere: 2862
-Particles in sphere: 914
-Particles in sphere: 2622
-Particles in sphere: 10370
-Particles in sphere: 9816
-Particles in sphere: 85215
-Particles in sphere: 1727
-Particles in sphere: 6780
-Particles in sphere: 14168
-Particles in sphere: 16076
-Particles in sphere: 5856
-Particles in sphere: 2357
-Particles in sphere: 1207
-Particles in sphere: 12230
-Particles in sphere: 2637
-Particles in sphere: 4259
-Particles in sphere: 14446
-Particles in sphere: 10131
-Particles in sphere: 10561
-Particles in sphere: 13529
-Particles in sphere: 3639
-Particles in sphere: 2356
-Particles in sphere: 3459
-Particles in sphere: 3539
-Particles in sphere: 2771
-Particles in sphere: 22463
-Particles in sphere: 15359
-Particles in sphere: 2669
-Particles in sphere: 1453
-Particles in sphere: 3700
-Particles in sphere: 3355
-Particles in sphere: 1373
-Particles in sphere: 8262
-Particles in sphere: 24680
-Particles in sphere: 29171
-Particles in sphere: 2417
-Particles in sphere: 6713
-Particles in sphere: 9523
-Particles in sphere: 2574
-Particles in sphere: 2276
-Particles in sphere: 8606
-Particles in sphere: 13047
-Particles in sphere: 9832
-Particles in sphere: 51317
-Particles in sphere: 4166
-Particles in sphere: 12938
-Particles in sphere: 1809
-Particles in sphere: 6599
-Particles in sphere: 6580
-Particles in sphere: 1679
-Particles in sphere: 13838
-Particles in sphere: 13379
-Particles in sphere: 1249
-Particles in sphere: 43048
-Particles in sphere: 6346
-Particles in sphere: 8465
-Particles in sphere: 3738
-Particles in sphere: 4878
-Particles in sphere: 8042
-Particles in sphere: 3537
-Particles in sphere: 29164
-Particles in sphere: 2075
-Particles in sphere: 764
-Particles in sphere: 1716
-Particles in sphere: 2702
-Particles in sphere: 6988
-Particles in sphere: 2502
-Particles in sphere: 11937
-Particles in sphere: 8684
-Particles in sphere: 3159
-Particles in sphere: 5166
-Particles in sphere: 8907
-Particles in sphere: 10290
-Particles in sphere: 2187
-Particles in sphere: 3863
-Particles in sphere: 1167
-Particles in sphere: 1638
-Particles in sphere: 4405
-Particles in sphere: 4360
-Particles in sphere: 16219
-Particles in sphere: 52385
-Particles in sphere: 2665
-Particles in sphere: 3831
-Particles in sphere: 2717
-Particles in sphere: 7754
-Particles in sphere: 2954
-Particles in sphere: 8751
-Particles in sphere: 4257
-Particles in sphere: 911
-Particles in sphere: 3120
-Particles in sphere: 1949
-Calculated 100/100 spheres
-Mean delta:   -0.5071
-Std delta:    1.0891
-Gaussian mu:      -0.5071
-Gaussian sigma:   1.0891

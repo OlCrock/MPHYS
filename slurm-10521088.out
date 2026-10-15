@@ -1,32 +1,0 @@
-yt : [INFO     ] 2026-09-24 17:34:03,105 Calculating time from 1.000e+00 to be 4.342e+17 seconds
-yt : [INFO     ] 2026-09-24 17:34:03,157 Parameters: current_time              = 4.3420248466376794e+17 s
-yt : [INFO     ] 2026-09-24 17:34:03,158 Parameters: domain_dimensions         = [1 1 1]
-yt : [INFO     ] 2026-09-24 17:34:03,158 Parameters: domain_left_edge          = [0. 0. 0.]
-yt : [INFO     ] 2026-09-24 17:34:03,158 Parameters: domain_right_edge         = [100. 100. 100.]
-yt : [INFO     ] 2026-09-24 17:34:03,158 Parameters: cosmological_simulation   = True
-yt : [INFO     ] 2026-09-24 17:34:03,158 Parameters: current_redshift          = 4.440892098500626e-16
-yt : [INFO     ] 2026-09-24 17:34:03,158 Parameters: omega_lambda              = b'0.715'
-yt : [INFO     ] 2026-09-24 17:34:03,158 Parameters: omega_matter              = b'0.285'
-yt : [INFO     ] 2026-09-24 17:34:03,158 Parameters: omega_radiation           = 0.0
-yt : [INFO     ] 2026-09-24 17:34:03,158 Parameters: hubble_constant           = b'0.695'
-yt : [WARNING  ] 2026-09-24 17:34:03,158 A bounding box was explicitly specified, so we are disabling periodicity.
-yt : [INFO     ] 2026-09-24 17:34:04,086 Allocating for 1.678e+07 particles
-
-============================================================
-SNAPSHOT 015
-============================================================
-snapshot_015
-Particles in z-slice: 16777216
-Initializing coarse index :   0%|          | 0/66 [00:00<?, ?it/s]Initializing coarse index :  23%|██▎       | 15/66 [00:00<00:00, 145.22it/s]Initializing coarse index :  47%|████▋     | 31/66 [00:00<00:00, 148.42it/s]Initializing coarse index :  70%|██████▉   | 46/66 [00:00<00:00, 143.03it/s]Initializing coarse index :  92%|█████████▏| 61/66 [00:00<00:00, 142.38it/s]Initializing coarse index : 100%|██████████| 66/66 [00:00<00:00, 140.83it/s]
-Initializing refined index:   0%|          | 0/66 [00:00<?, ?it/s]Initializing refined index:   6%|▌         | 4/66 [00:00<00:01, 31.86it/s]Initializing refined index:  12%|█▏        | 8/66 [00:00<00:02, 28.48it/s]Initializing refined index:  17%|█▋        | 11/66 [00:00<00:02, 25.96it/s]Initializing refined index:  21%|██        | 14/66 [00:00<00:02, 24.88it/s]Initializing refined index:  26%|██▌       | 17/66 [00:00<00:01, 24.57it/s]Initializing refined index:  30%|███       | 20/66 [00:00<00:01, 25.27it/s]Initializing refined index:  35%|███▍      | 23/66 [00:00<00:01, 23.55it/s]Initializing refined index:  39%|███▉      | 26/66 [00:01<00:01, 23.26it/s]Initializing refined index:  44%|████▍     | 29/66 [00:01<00:01, 22.45it/s]Initializing refined index:  48%|████▊     | 32/66 [00:01<00:01, 22.81it/s]Initializing refined index:  53%|█████▎    | 35/66 [00:01<00:01, 23.97it/s]Initializing refined index:  58%|█████▊    | 38/66 [00:01<00:01, 23.21it/s]Initializing refined index:  62%|██████▏   | 41/66 [00:01<00:01, 22.55it/s]Initializing refined index:  67%|██████▋   | 44/66 [00:01<00:00, 22.48it/s]Initializing refined index:  71%|███████   | 47/66 [00:01<00:00, 22.51it/s]Initializing refined index:  76%|███████▌  | 50/66 [00:02<00:00, 22.99it/s]Initializing refined index:  80%|████████  | 53/66 [00:02<00:00, 24.69it/s]Initializing refined index:  85%|████████▍ | 56/66 [00:02<00:00, 23.22it/s]Initializing refined index:  89%|████████▉ | 59/66 [00:02<00:00, 23.54it/s]Initializing refined index:  94%|█████████▍| 62/66 [00:02<00:00, 23.03it/s]Initializing refined index:  98%|█████████▊| 65/66 [00:02<00:00, 23.20it/s]Initializing refined index: 100%|██████████| 66/66 [00:02<00:00, 23.45it/s]
-Box size:       100.000 Mpc/h
-Total mass:     7.909e+16 Msun/h
-Mean density:   7.909e+10 Msun/h/(Mpc/h)^3
-Traceback (most recent call last):
-  File "/home/ocrocker/MPHYS/snapshots.py", line 179, in <module>
-    overdensities = calculate_overdensities(
-                    ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ocrocker/MPHYS/snapshots.py", line 47, in calculate_overdensities
-    print("Particles in sphere:", sp["PartType1", "particle_position_x"].size)
-                                  ^^
-UnboundLocalError: cannot access local variable 'sp' where it is not associated with a value

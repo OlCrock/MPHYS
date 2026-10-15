@@ -1,45 +1,0 @@
-yt : [INFO     ] 2026-09-28 16:43:23,627 Calculating time from 4.783e-02 to be 5.799e+15 seconds
-yt : [INFO     ] 2026-09-28 16:43:23,739 Parameters: current_time              = 5799142244602275.0 s
-yt : [INFO     ] 2026-09-28 16:43:23,739 Parameters: domain_dimensions         = [1 1 1]
-yt : [INFO     ] 2026-09-28 16:43:23,739 Parameters: domain_left_edge          = [0. 0. 0.]
-yt : [INFO     ] 2026-09-28 16:43:23,739 Parameters: domain_right_edge         = [100. 100. 100.]
-yt : [INFO     ] 2026-09-28 16:43:23,740 Parameters: cosmological_simulation   = True
-yt : [INFO     ] 2026-09-28 16:43:23,740 Parameters: current_redshift          = 19.90800041278718
-yt : [INFO     ] 2026-09-28 16:43:23,740 Parameters: omega_lambda              = b'0.715'
-yt : [INFO     ] 2026-09-28 16:43:23,740 Parameters: omega_matter              = b'0.285'
-yt : [INFO     ] 2026-09-28 16:43:23,740 Parameters: omega_radiation           = 0.0
-yt : [INFO     ] 2026-09-28 16:43:23,740 Parameters: hubble_constant           = b'0.695'
-yt : [WARNING  ] 2026-09-28 16:43:23,740 A bounding box was explicitly specified, so we are disabling periodicity.
-yt : [INFO     ] 2026-09-28 16:43:24,602 Allocating for 1.678e+07 particles
-
-============================================================
-SNAPSHOT 001
-============================================================
-snapshot_001
-Particles in z-slice: 16777216
-Initializing coarse index :   0%|          | 0/67 [00:00<?, ?it/s]Initializing coarse index :  15%|█▍        | 10/67 [00:00<00:00, 97.56it/s]Initializing coarse index :  33%|███▎      | 22/67 [00:00<00:00, 108.19it/s]Initializing coarse index :  49%|████▉     | 33/67 [00:00<00:00, 107.98it/s]Initializing coarse index :  67%|██████▋   | 45/67 [00:00<00:00, 107.43it/s]Initializing coarse index :  84%|████████▎ | 56/67 [00:00<00:00, 105.38it/s]Initializing coarse index : 100%|██████████| 67/67 [00:00<00:00, 103.99it/s]Initializing coarse index : 100%|██████████| 67/67 [00:00<00:00, 103.66it/s]
-Initializing refined index:   0%|          | 0/67 [00:00<?, ?it/s]Initializing refined index:   7%|▋         | 5/67 [00:00<00:01, 49.95it/s]Initializing refined index:  15%|█▍        | 10/67 [00:00<00:01, 45.28it/s]Initializing refined index:  22%|██▏       | 15/67 [00:00<00:01, 42.96it/s]Initializing refined index:  31%|███▏      | 21/67 [00:00<00:01, 45.20it/s]Initializing refined index:  39%|███▉      | 26/67 [00:00<00:00, 44.07it/s]Initializing refined index:  46%|████▋     | 31/67 [00:00<00:00, 43.18it/s]Initializing refined index:  55%|█████▌    | 37/67 [00:00<00:00, 44.71it/s]Initializing refined index:  63%|██████▎   | 42/67 [00:00<00:00, 43.05it/s]Initializing refined index:  70%|███████   | 47/67 [00:01<00:00, 40.49it/s]Initializing refined index:  78%|███████▊  | 52/67 [00:01<00:00, 41.70it/s]Initializing refined index:  85%|████████▌ | 57/67 [00:01<00:00, 41.12it/s]Initializing refined index:  93%|█████████▎| 62/67 [00:01<00:00, 40.68it/s]Initializing refined index: 100%|██████████| 67/67 [00:01<00:00, 39.84it/s]Initializing refined index: 100%|██████████| 67/67 [00:01<00:00, 41.48it/s]
-Box size:       100.000 Mpc/h
-Total particles: 16777216
-Mean density:   1.678e+01 particles/(Mpc/h)^3
-Calculated 100/100 spheres
-
-========== OVERDENSITY DEBUG ==========
-Number of overdensities: 100
-Minimum delta: -0.13256597540838055
-Maximum delta: 0.19437241286289653
-Mean delta: -0.010775733953021555
-Std delta: 0.06736327073139077
-Number delta == -1: 0
-Number delta == 0: 0
-First 20 values:
-[-0.09090182  0.01758435 -0.06358106 -0.07200496 -0.10057792 -0.06597163
- -0.04536723 -0.07940434  0.04103467  0.02020259 -0.06175968 -0.10763578
-  0.01360007 -0.09682132 -0.08805591  0.01542146  0.0217963  -0.05549867
- -0.09852887 -0.11366912]
-========================================
-
-Mean delta:   -0.0108
-Std delta:    0.0674
-Gaussian mu:      -0.0108
-Gaussian sigma:   0.0674

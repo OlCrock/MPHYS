@@ -1,20 +1,0 @@
-yt : [INFO     ] 2026-10-08 13:27:23,718 Parameters: current_time              = 0.81651282078501
-yt : [INFO     ] 2026-10-08 13:27:23,718 Parameters: domain_dimensions         = [256 256 256]
-yt : [INFO     ] 2026-10-08 13:27:23,718 Parameters: domain_left_edge          = [0. 0. 0.]
-yt : [INFO     ] 2026-10-08 13:27:23,719 Parameters: domain_right_edge         = [1. 1. 1.]
-yt : [INFO     ] 2026-10-08 13:27:23,719 Parameters: cosmological_simulation   = 1
-yt : [INFO     ] 2026-10-08 13:27:23,719 Parameters: current_redshift          = 99
-yt : [INFO     ] 2026-10-08 13:27:23,719 Parameters: omega_lambda              = 0.715
-yt : [INFO     ] 2026-10-08 13:27:23,719 Parameters: omega_matter              = 0.285
-yt : [INFO     ] 2026-10-08 13:27:23,719 Parameters: omega_radiation           = 0.0
-yt : [INFO     ] 2026-10-08 13:27:23,719 Parameters: hubble_constant           = 0.695
-DD0000
-Redshift: 99
-Domain width: [1. 1. 1.] code_length
-Domain left: [0. 0. 0.] code_length
-Domain right: [1. 1. 1.] code_length
-
-Particle fields:
-Parsing Hierarchy :   0%|          | 0/64 [00:00<?, ?it/s]Parsing Hierarchy : 100%|██████████| 64/64 [00:00<00:00, 36348.74it/s]
-yt : [INFO     ] 2026-10-08 13:27:24,083 Gathering a field list (this may take a moment.)
-[('all', 'particle_index'), ('all', 'particle_mass'), ('all', 'particle_position_x'), ('all', 'particle_position_y'), ('all', 'particle_position_z'), ('all', 'particle_type'), ('all', 'particle_velocity_x'), ('all', 'particle_velocity_y'), ('all', 'particle_velocity_z'), ('io', 'particle_index'), ('io', 'particle_mass'), ('io', 'particle_position_x'), ('io', 'particle_position_y'), ('io', 'particle_position_z'), ('io', 'particle_type'), ('io', 'particle_velocity_x'), ('io', 'particle_velocity_y'), ('io', 'particle_velocity_z'), ('nbody', 'particle_index'), ('nbody', 'particle_mass'), ('nbody', 'particle_position_x'), ('nbody', 'particle_position_y'), ('nbody', 'particle_position_z'), ('nbody', 'particle_type'), ('nbody', 'particle_velocity_x'), ('nbody', 'particle_velocity_y'), ('nbody', 'particle_velocity_z')]

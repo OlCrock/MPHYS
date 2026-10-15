@@ -1,140 +1,0 @@
-yt : [INFO     ] 2026-09-28 16:37:52,347 Calculating time from 4.783e-02 to be 5.799e+15 seconds
-yt : [INFO     ] 2026-09-28 16:37:52,440 Parameters: current_time              = 5799142244602275.0 s
-yt : [INFO     ] 2026-09-28 16:37:52,440 Parameters: domain_dimensions         = [1 1 1]
-yt : [INFO     ] 2026-09-28 16:37:52,441 Parameters: domain_left_edge          = [0. 0. 0.]
-yt : [INFO     ] 2026-09-28 16:37:52,441 Parameters: domain_right_edge         = [100. 100. 100.]
-yt : [INFO     ] 2026-09-28 16:37:52,441 Parameters: cosmological_simulation   = True
-yt : [INFO     ] 2026-09-28 16:37:52,441 Parameters: current_redshift          = 19.90800041278718
-yt : [INFO     ] 2026-09-28 16:37:52,441 Parameters: omega_lambda              = b'0.715'
-yt : [INFO     ] 2026-09-28 16:37:52,441 Parameters: omega_matter              = b'0.285'
-yt : [INFO     ] 2026-09-28 16:37:52,441 Parameters: omega_radiation           = 0.0
-yt : [INFO     ] 2026-09-28 16:37:52,441 Parameters: hubble_constant           = b'0.695'
-yt : [WARNING  ] 2026-09-28 16:37:52,441 A bounding box was explicitly specified, so we are disabling periodicity.
-yt : [INFO     ] 2026-09-28 16:37:53,232 Allocating for 1.678e+07 particles
-
-============================================================
-SNAPSHOT 001
-============================================================
-snapshot_001
-Particles in z-slice: 16777216
-Initializing coarse index :   0%|          | 0/67 [00:00<?, ?it/s]Initializing coarse index :  19%|█▉        | 13/67 [00:00<00:00, 124.83it/s]Initializing coarse index :  40%|████      | 27/67 [00:00<00:00, 129.74it/s]Initializing coarse index :  61%|██████    | 41/67 [00:00<00:00, 133.66it/s]Initializing coarse index :  84%|████████▎ | 56/67 [00:00<00:00, 136.16it/s]Initializing coarse index : 100%|██████████| 67/67 [00:00<00:00, 131.49it/s]
-Initializing refined index:   0%|          | 0/67 [00:00<?, ?it/s]Initializing refined index:   9%|▉         | 6/67 [00:00<00:01, 56.33it/s]Initializing refined index:  18%|█▊        | 12/67 [00:00<00:01, 51.56it/s]Initializing refined index:  27%|██▋       | 18/67 [00:00<00:00, 54.57it/s]Initializing refined index:  36%|███▌      | 24/67 [00:00<00:00, 51.88it/s]Initializing refined index:  45%|████▍     | 30/67 [00:00<00:00, 50.25it/s]Initializing refined index:  54%|█████▎    | 36/67 [00:00<00:00, 52.36it/s]Initializing refined index:  63%|██████▎   | 42/67 [00:00<00:00, 51.33it/s]Initializing refined index:  72%|███████▏  | 48/67 [00:00<00:00, 50.59it/s]Initializing refined index:  81%|████████  | 54/67 [00:01<00:00, 52.13it/s]Initializing refined index:  90%|████████▉ | 60/67 [00:01<00:00, 51.15it/s]Initializing refined index:  99%|█████████▊| 66/67 [00:01<00:00, 50.94it/s]Initializing refined index: 100%|██████████| 67/67 [00:01<00:00, 50.85it/s]
-Box size:       100.000 Mpc/h
-Total mass:     7.909e+16 Msun/h
-Mean density:   7.909e+10 Msun/h/(Mpc/h)^3
-Particles in sphere: 8502
-Particles in sphere: 9092
-Particles in sphere: 9235
-Particles in sphere: 8164
-Particles in sphere: 8992
-Particles in sphere: 7448
-Particles in sphere: 8467
-Particles in sphere: 7860
-Particles in sphere: 8399
-Particles in sphere: 8802
-Particles in sphere: 9319
-Particles in sphere: 9398
-Particles in sphere: 8078
-Particles in sphere: 8173
-Particles in sphere: 8465
-Particles in sphere: 8709
-Particles in sphere: 10325
-Particles in sphere: 8364
-Particles in sphere: 7408
-Particles in sphere: 9042
-Particles in sphere: 8705
-Particles in sphere: 9258
-Particles in sphere: 8484
-Particles in sphere: 8964
-Particles in sphere: 8216
-Particles in sphere: 8869
-Particles in sphere: 9527
-Particles in sphere: 8783
-Particles in sphere: 8294
-Particles in sphere: 9353
-Particles in sphere: 8169
-Particles in sphere: 8731
-Particles in sphere: 7494
-Particles in sphere: 9150
-Particles in sphere: 8272
-Particles in sphere: 8562
-Particles in sphere: 9210
-Particles in sphere: 9651
-Particles in sphere: 7785
-Particles in sphere: 8704
-Particles in sphere: 7937
-Particles in sphere: 8639
-Particles in sphere: 7886
-Particles in sphere: 8455
-Particles in sphere: 8010
-Particles in sphere: 9038
-Particles in sphere: 9021
-Particles in sphere: 8140
-Particles in sphere: 8974
-Particles in sphere: 9488
-Particles in sphere: 8972
-Particles in sphere: 8029
-Particles in sphere: 9182
-Particles in sphere: 9621
-Particles in sphere: 8815
-Particles in sphere: 8376
-Particles in sphere: 9017
-Particles in sphere: 8278
-Particles in sphere: 8907
-Particles in sphere: 8308
-Particles in sphere: 9341
-Particles in sphere: 8289
-Particles in sphere: 7901
-Particles in sphere: 8653
-Particles in sphere: 9145
-Particles in sphere: 9348
-Particles in sphere: 9307
-Particles in sphere: 8079
-Particles in sphere: 9804
-Particles in sphere: 8736
-Particles in sphere: 8840
-Particles in sphere: 9195
-Particles in sphere: 8426
-Particles in sphere: 8080
-Particles in sphere: 8449
-Particles in sphere: 9029
-Particles in sphere: 8896
-Particles in sphere: 8893
-Particles in sphere: 8819
-Particles in sphere: 8702
-Particles in sphere: 8995
-Particles in sphere: 8635
-Particles in sphere: 10466
-Particles in sphere: 8609
-Particles in sphere: 8421
-Particles in sphere: 8849
-Particles in sphere: 8500
-Particles in sphere: 8334
-Particles in sphere: 8949
-Particles in sphere: 8724
-Particles in sphere: 8819
-Particles in sphere: 8485
-Particles in sphere: 9346
-Particles in sphere: 8843
-Particles in sphere: 7509
-Particles in sphere: 8906
-Particles in sphere: 9270
-Particles in sphere: 8508
-Particles in sphere: 10390
-Particles in sphere: 8942
-Calculated 100/100 spheres
-
-========== OVERDENSITY DEBUG ==========
-Number of overdensities: 100
-Minimum delta: -1.0
-Maximum delta: 0.19141266422255754
-Number delta == -1: 100
-Number delta == 0: 0
-Traceback (most recent call last):
-  File "/home/ocrocker/MPHYS/snapshots.py", line 177, in <module>
-    overdensities = calculate_overdensities(ds, sphere_radius=sphere_radius, n_spheres=n_spheres)
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ocrocker/MPHYS/snapshots.py", line 95, in calculate_overdensities
-    np.sum(overdensities > -0.99))
-           ^^^^^^^^^^^^^^^^^^^^^
-TypeError: '>' not supported between instances of 'list' and 'float'

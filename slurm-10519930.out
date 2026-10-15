@@ -1,9 +1,0 @@
-/home/ocrocker/MPHYS/snapshots.py:52: UserWarning: Creating legend with loc="best" can be slow with large amounts of data.
-  plt.tight_layout()
-/home/ocrocker/MPHYS/snapshots.py:53: UserWarning: Creating legend with loc="best" can be slow with large amounts of data.
-  plt.savefig("slice.png", dpi=200)
-Snapshot 005: 440453 particles in z-slice
-Snapshot 006: 443573 particles in z-slice
-Snapshot 007: 447011 particles in z-slice
-Snapshot 008: 452578 particles in z-slice
-Snapshot 009: 460406 particles in z-slice
