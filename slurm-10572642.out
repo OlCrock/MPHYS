@@ -1,0 +1,326 @@
+yt : [INFO     ] 2026-10-13 15:13:39,619 Parameters: current_time              = 0.81651282078501
+yt : [INFO     ] 2026-10-13 15:13:39,635 Parameters: domain_dimensions         = [256 256 256]
+yt : [INFO     ] 2026-10-13 15:13:39,636 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2026-10-13 15:13:39,636 Parameters: domain_right_edge         = [1. 1. 1.]
+yt : [INFO     ] 2026-10-13 15:13:39,636 Parameters: cosmological_simulation   = 1
+yt : [INFO     ] 2026-10-13 15:13:39,636 Parameters: current_redshift          = 99
+yt : [INFO     ] 2026-10-13 15:13:39,636 Parameters: omega_lambda              = 0.715
+yt : [INFO     ] 2026-10-13 15:13:39,636 Parameters: omega_matter              = 0.285
+yt : [INFO     ] 2026-10-13 15:13:39,636 Parameters: omega_radiation           = 0.0
+yt : [INFO     ] 2026-10-13 15:13:39,636 Parameters: hubble_constant           = 0.695
+
+============================================================
+SNAPSHOT 000
+============================================================
+DD0000
+code length: 100 Mpccm/h
+domain width: [1. 1. 1.] code_length
+4 Mpc/h in code units: 4.0 code_length
+1 code_length in Mpc/h: 1.0 Mpc/h
+Parsing Hierarchy :   0%|          | 0/64 [00:00<?, ?it/s]Parsing Hierarchy : 100%|██████████| 64/64 [00:00<00:00, 11405.31it/s]
+yt : [INFO     ] 2026-10-13 15:13:40,580 Gathering a field list (this may take a moment.)
+yt : [INFO     ] 2026-10-13 15:14:58,786 Parameters: current_time              = 10.816415876108
+yt : [INFO     ] 2026-10-13 15:14:58,790 Parameters: domain_dimensions         = [256 256 256]
+yt : [INFO     ] 2026-10-13 15:14:58,791 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2026-10-13 15:14:58,791 Parameters: domain_right_edge         = [1. 1. 1.]
+yt : [INFO     ] 2026-10-13 15:14:58,792 Parameters: cosmological_simulation   = 1
+yt : [INFO     ] 2026-10-13 15:14:58,792 Parameters: current_redshift          = 16.860706393985
+yt : [INFO     ] 2026-10-13 15:14:58,792 Parameters: omega_lambda              = 0.715
+yt : [INFO     ] 2026-10-13 15:14:58,792 Parameters: omega_matter              = 0.285
+yt : [INFO     ] 2026-10-13 15:14:58,792 Parameters: omega_radiation           = 0.0
+yt : [INFO     ] 2026-10-13 15:14:58,792 Parameters: hubble_constant           = 0.695
+Box size:       100.000 Mpc/h
+Total particles: 16777200
+Mean density:   1.678e+01 particles/(Mpc/h)^3
+Calculated 100/1000 spheres
+Calculated 200/1000 spheres
+Calculated 300/1000 spheres
+Calculated 400/1000 spheres
+Calculated 500/1000 spheres
+Calculated 600/1000 spheres
+Calculated 700/1000 spheres
+Calculated 800/1000 spheres
+Calculated 900/1000 spheres
+Calculated 1000/1000 spheres
+Mean delta:   -0.0001
+Std delta:    0.0110
+Gaussian mu:      -0.0001
+Gaussian sigma:   0.0110
+
+============================================================
+SNAPSHOT 001
+============================================================
+DD0001
+code length: 100 Mpccm/h
+domain width: [1. 1. 1.] code_length
+4 Mpc/h in code units: 0.7144282557593999 code_length
+1 code_length in Mpc/h: 5.598882697812964 Mpc/h
+Parsing Hierarchy :   0%|          | 0/74 [00:00<?, ?it/s]Parsing Hierarchy : 100%|██████████| 74/74 [00:00<00:00, 13221.66it/s]
+yt : [INFO     ] 2026-10-13 15:14:58,835 Gathering a field list (this may take a moment.)
+yt : [INFO     ] 2026-10-13 15:16:16,161 Parameters: current_time              = 20.816432727353
+yt : [INFO     ] 2026-10-13 15:16:16,167 Parameters: domain_dimensions         = [256 256 256]
+yt : [INFO     ] 2026-10-13 15:16:16,167 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2026-10-13 15:16:16,168 Parameters: domain_right_edge         = [1. 1. 1.]
+yt : [INFO     ] 2026-10-13 15:16:16,168 Parameters: cosmological_simulation   = 1
+yt : [INFO     ] 2026-10-13 15:16:16,168 Parameters: current_redshift          = 10.542305762873
+yt : [INFO     ] 2026-10-13 15:16:16,168 Parameters: omega_lambda              = 0.715
+yt : [INFO     ] 2026-10-13 15:16:16,168 Parameters: omega_matter              = 0.285
+yt : [INFO     ] 2026-10-13 15:16:16,168 Parameters: omega_radiation           = 0.0
+yt : [INFO     ] 2026-10-13 15:16:16,168 Parameters: hubble_constant           = 0.695
+Box size:       100.000 Mpc/h
+Total particles: 16777216
+Mean density:   1.678e+01 particles/(Mpc/h)^3
+Calculated 100/1000 spheres
+Calculated 200/1000 spheres
+Calculated 300/1000 spheres
+Calculated 400/1000 spheres
+Calculated 500/1000 spheres
+Calculated 600/1000 spheres
+Calculated 700/1000 spheres
+Calculated 800/1000 spheres
+Calculated 900/1000 spheres
+Calculated 1000/1000 spheres
+Mean delta:   -0.0011
+Std delta:    0.0625
+Gaussian mu:      -0.0011
+Gaussian sigma:   0.0625
+
+============================================================
+SNAPSHOT 002
+============================================================
+DD0002
+code length: 100 Mpccm/h
+domain width: [1. 1. 1.] code_length
+4 Mpc/h in code units: 0.46169223051492 code_length
+1 code_length in Mpc/h: 8.663780188674275 Mpc/h
+Parsing Hierarchy :   0%|          | 0/793 [00:00<?, ?it/s]Parsing Hierarchy : 100%|██████████| 793/793 [00:00<00:00, 18098.77it/s]
+yt : [INFO     ] 2026-10-13 15:16:16,272 Gathering a field list (this may take a moment.)
+yt : [INFO     ] 2026-10-13 15:17:46,172 Parameters: current_time              = 40.816471332484
+yt : [INFO     ] 2026-10-13 15:17:46,178 Parameters: domain_dimensions         = [256 256 256]
+yt : [INFO     ] 2026-10-13 15:17:46,179 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2026-10-13 15:17:46,179 Parameters: domain_right_edge         = [1. 1. 1.]
+yt : [INFO     ] 2026-10-13 15:17:46,180 Parameters: cosmological_simulation   = 1
+yt : [INFO     ] 2026-10-13 15:17:46,180 Parameters: current_redshift          = 6.3640382704389
+yt : [INFO     ] 2026-10-13 15:17:46,180 Parameters: omega_lambda              = 0.715
+yt : [INFO     ] 2026-10-13 15:17:46,180 Parameters: omega_matter              = 0.285
+yt : [INFO     ] 2026-10-13 15:17:46,180 Parameters: omega_radiation           = 0.0
+yt : [INFO     ] 2026-10-13 15:17:46,180 Parameters: hubble_constant           = 0.695
+Box size:       100.000 Mpc/h
+Total particles: 16777216
+Mean density:   1.678e+01 particles/(Mpc/h)^3
+Calculated 100/1000 spheres
+Calculated 200/1000 spheres
+Calculated 300/1000 spheres
+Calculated 400/1000 spheres
+Calculated 500/1000 spheres
+Calculated 600/1000 spheres
+Calculated 700/1000 spheres
+Calculated 800/1000 spheres
+Calculated 900/1000 spheres
+Calculated 1000/1000 spheres
+Mean delta:   -0.0044
+Std delta:    0.0984
+Gaussian mu:      -0.0044
+Gaussian sigma:   0.0984
+
+============================================================
+SNAPSHOT 004
+============================================================
+DD0004
+code length: 100 Mpccm/h
+domain width: [1. 1. 1.] code_length
+4 Mpc/h in code units: 0.2945615308175561 code_length
+1 code_length in Mpc/h: 13.579505745023773 Mpc/h
+Parsing Hierarchy :   0%|          | 0/7641 [00:00<?, ?it/s]Parsing Hierarchy :  14%|█▍        | 1077/7641 [00:00<00:00, 10759.47it/s]Parsing Hierarchy :  28%|██▊       | 2153/7641 [00:00<00:01, 4638.17it/s] Parsing Hierarchy :  43%|████▎     | 3323/7641 [00:00<00:00, 6514.87it/s]Parsing Hierarchy :  56%|█████▌    | 4274/7641 [00:00<00:00, 4615.45it/s]Parsing Hierarchy :  78%|███████▊  | 5924/7641 [00:00<00:00, 6970.74it/s]Parsing Hierarchy :  93%|█████████▎| 7098/7641 [00:01<00:00, 5238.39it/s]Parsing Hierarchy : 100%|██████████| 7641/7641 [00:01<00:00, 5771.54it/s]
+yt : [INFO     ] 2026-10-13 15:17:47,917 Gathering a field list (this may take a moment.)
+yt : [INFO     ] 2026-10-13 15:20:11,381 Parameters: current_time              = 80.816585416985
+yt : [INFO     ] 2026-10-13 15:20:11,391 Parameters: domain_dimensions         = [256 256 256]
+yt : [INFO     ] 2026-10-13 15:20:11,392 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2026-10-13 15:20:11,392 Parameters: domain_right_edge         = [1. 1. 1.]
+yt : [INFO     ] 2026-10-13 15:20:11,392 Parameters: cosmological_simulation   = 1
+yt : [INFO     ] 2026-10-13 15:20:11,392 Parameters: current_redshift          = 3.660760479007
+yt : [INFO     ] 2026-10-13 15:20:11,392 Parameters: omega_lambda              = 0.715
+yt : [INFO     ] 2026-10-13 15:20:11,392 Parameters: omega_matter              = 0.285
+yt : [INFO     ] 2026-10-13 15:20:11,392 Parameters: omega_radiation           = 0.0
+yt : [INFO     ] 2026-10-13 15:20:11,392 Parameters: hubble_constant           = 0.695
+Box size:       100.000 Mpc/h
+Total particles: 16777216
+Mean density:   1.678e+01 particles/(Mpc/h)^3
+Calculated 100/1000 spheres
+Calculated 200/1000 spheres
+Calculated 300/1000 spheres
+Calculated 400/1000 spheres
+Calculated 500/1000 spheres
+Calculated 600/1000 spheres
+Calculated 700/1000 spheres
+Calculated 800/1000 spheres
+Calculated 900/1000 spheres
+Calculated 1000/1000 spheres
+Mean delta:   -0.0006
+Std delta:    0.1520
+Gaussian mu:      -0.0006
+Gaussian sigma:   0.1520
+
+============================================================
+SNAPSHOT 008
+============================================================
+DD0008
+code length: 100 Mpccm/h
+domain width: [1. 1. 1.] code_length
+4 Mpc/h in code units: 0.18643041916028003 code_length
+1 code_length in Mpc/h: 21.455726045228037 Mpc/h
+Parsing Hierarchy :   0%|          | 0/19511 [00:00<?, ?it/s]Parsing Hierarchy :   2%|▏         | 432/19511 [00:00<00:22, 853.49it/s]Parsing Hierarchy :   7%|▋         | 1423/19511 [00:00<00:06, 2846.40it/s]Parsing Hierarchy :  13%|█▎        | 2570/19511 [00:00<00:03, 4908.79it/s]Parsing Hierarchy :  20%|█▉        | 3830/19511 [00:00<00:02, 6867.45it/s]Parsing Hierarchy :  25%|██▍       | 4848/19511 [00:01<00:04, 3036.80it/s]Parsing Hierarchy :  33%|███▎      | 6411/19511 [00:01<00:02, 4672.28it/s]Parsing Hierarchy :  39%|███▉      | 7580/19511 [00:01<00:02, 5770.39it/s]Parsing Hierarchy :  44%|████▍     | 8633/19511 [00:02<00:03, 3566.58it/s]Parsing Hierarchy :  52%|█████▏    | 10132/19511 [00:02<00:01, 4971.32it/s]Parsing Hierarchy :  59%|█████▊    | 11455/19511 [00:02<00:01, 4140.01it/s]Parsing Hierarchy :  65%|██████▌   | 12686/19511 [00:02<00:01, 5158.40it/s]Parsing Hierarchy :  72%|███████▏  | 14126/19511 [00:02<00:00, 6555.12it/s]Parsing Hierarchy :  79%|███████▉  | 15441/19511 [00:03<00:00, 7725.52it/s]Parsing Hierarchy :  85%|████████▌ | 16592/19511 [00:03<00:00, 3878.63it/s]Parsing Hierarchy :  92%|█████████▏| 17978/19511 [00:03<00:00, 5042.74it/s]Parsing Hierarchy :  97%|█████████▋| 18993/19511 [00:03<00:00, 5745.07it/s]Parsing Hierarchy : 100%|██████████| 19511/19511 [00:04<00:00, 4822.02it/s]
+yt : [INFO     ] 2026-10-13 15:20:16,921 Gathering a field list (this may take a moment.)
+yt : [INFO     ] 2026-10-13 15:23:49,707 Parameters: current_time              = 120.816660212
+yt : [INFO     ] 2026-10-13 15:23:49,708 Parameters: domain_dimensions         = [256 256 256]
+yt : [INFO     ] 2026-10-13 15:23:49,708 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2026-10-13 15:23:49,709 Parameters: domain_right_edge         = [1. 1. 1.]
+yt : [INFO     ] 2026-10-13 15:23:49,709 Parameters: cosmological_simulation   = 1
+yt : [INFO     ] 2026-10-13 15:23:49,709 Parameters: current_redshift          = 2.5528638374671
+yt : [INFO     ] 2026-10-13 15:23:49,710 Parameters: omega_lambda              = 0.715
+yt : [INFO     ] 2026-10-13 15:23:49,710 Parameters: omega_matter              = 0.285
+yt : [INFO     ] 2026-10-13 15:23:49,710 Parameters: omega_radiation           = 0.0
+yt : [INFO     ] 2026-10-13 15:23:49,710 Parameters: hubble_constant           = 0.695
+Box size:       100.000 Mpc/h
+Total particles: 16777216
+Mean density:   1.678e+01 particles/(Mpc/h)^3
+Calculated 100/1000 spheres
+Calculated 200/1000 spheres
+Calculated 300/1000 spheres
+Calculated 400/1000 spheres
+Calculated 500/1000 spheres
+Calculated 600/1000 spheres
+Calculated 700/1000 spheres
+Calculated 800/1000 spheres
+Calculated 900/1000 spheres
+Calculated 1000/1000 spheres
+Mean delta:   0.0049
+Std delta:    0.2394
+Gaussian mu:      0.0049
+Gaussian sigma:   0.2394
+
+============================================================
+SNAPSHOT 012
+============================================================
+DD0012
+code length: 100 Mpccm/h
+domain width: [1. 1. 1.] code_length
+4 Mpc/h in code units: 0.14211455349868402 code_length
+1 code_length in Mpc/h: 28.146308041822333 Mpc/h
+Parsing Hierarchy :   0%|          | 0/24875 [00:00<?, ?it/s]Parsing Hierarchy :   1%|          | 224/24875 [00:00<00:11, 2239.31it/s]Parsing Hierarchy :   6%|▋         | 1576/24875 [00:00<00:02, 8871.98it/s]Parsing Hierarchy :  11%|█         | 2730/24875 [00:00<00:02, 10088.61it/s]Parsing Hierarchy :  18%|█▊        | 4358/24875 [00:01<00:07, 2859.61it/s] Parsing Hierarchy :  22%|██▏       | 5463/24875 [00:01<00:05, 3793.03it/s]Parsing Hierarchy :  28%|██▊       | 6920/24875 [00:01<00:03, 5301.63it/s]Parsing Hierarchy :  34%|███▍      | 8457/24875 [00:01<00:02, 6978.16it/s]Parsing Hierarchy :  39%|███▉      | 9662/24875 [00:01<00:01, 7901.50it/s]Parsing Hierarchy :  44%|████▍     | 11030/24875 [00:01<00:01, 9139.24it/s]Parsing Hierarchy :  49%|████▉     | 12277/24875 [00:01<00:01, 9712.19it/s]Parsing Hierarchy :  54%|█████▍    | 13492/24875 [00:03<00:03, 2857.40it/s]Parsing Hierarchy :  60%|█████▉    | 14841/24875 [00:03<00:02, 3803.85it/s]Parsing Hierarchy :  66%|██████▌   | 16327/24875 [00:03<00:01, 5050.91it/s]Parsing Hierarchy :  70%|███████   | 17488/24875 [00:03<00:01, 5942.79it/s]Parsing Hierarchy :  75%|███████▍  | 18641/24875 [00:03<00:01, 4112.88it/s]Parsing Hierarchy :  80%|███████▉  | 19893/24875 [00:03<00:00, 5153.38it/s]Parsing Hierarchy :  87%|████████▋ | 21547/24875 [00:04<00:00, 6863.89it/s]Parsing Hierarchy :  92%|█████████▏| 22866/24875 [00:04<00:00, 7980.91it/s]Parsing Hierarchy :  97%|█████████▋| 24094/24875 [00:04<00:00, 4983.56it/s]Parsing Hierarchy : 100%|██████████| 24875/24875 [00:04<00:00, 5309.07it/s]
+yt : [INFO     ] 2026-10-13 15:23:55,568 Gathering a field list (this may take a moment.)
+yt : [INFO     ] 2026-10-13 15:27:44,580 Parameters: current_time              = 160.81674606626
+yt : [INFO     ] 2026-10-13 15:27:44,587 Parameters: domain_dimensions         = [256 256 256]
+yt : [INFO     ] 2026-10-13 15:27:44,587 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2026-10-13 15:27:44,588 Parameters: domain_right_edge         = [1. 1. 1.]
+yt : [INFO     ] 2026-10-13 15:27:44,588 Parameters: cosmological_simulation   = 1
+yt : [INFO     ] 2026-10-13 15:27:44,588 Parameters: current_redshift          = 1.9224043168037
+yt : [INFO     ] 2026-10-13 15:27:44,588 Parameters: omega_lambda              = 0.715
+yt : [INFO     ] 2026-10-13 15:27:44,588 Parameters: omega_matter              = 0.285
+yt : [INFO     ] 2026-10-13 15:27:44,588 Parameters: omega_radiation           = 0.0
+yt : [INFO     ] 2026-10-13 15:27:44,588 Parameters: hubble_constant           = 0.695
+Box size:       100.000 Mpc/h
+Total particles: 16777216
+Mean density:   1.678e+01 particles/(Mpc/h)^3
+Calculated 100/1000 spheres
+Calculated 200/1000 spheres
+Calculated 300/1000 spheres
+Calculated 400/1000 spheres
+Calculated 500/1000 spheres
+Calculated 600/1000 spheres
+Calculated 700/1000 spheres
+Calculated 800/1000 spheres
+Calculated 900/1000 spheres
+Calculated 1000/1000 spheres
+Mean delta:   0.0137
+Std delta:    0.3381
+Gaussian mu:      0.0137
+Gaussian sigma:   0.3381
+
+============================================================
+SNAPSHOT 016
+============================================================
+DD0016
+code length: 100 Mpccm/h
+domain width: [1. 1. 1.] code_length
+4 Mpc/h in code units: 0.11689617267214802 code_length
+1 code_length in Mpc/h: 34.218400043075576 Mpc/h
+Parsing Hierarchy :   0%|          | 0/26571 [00:00<?, ?it/s]Parsing Hierarchy :   2%|▏         | 547/26571 [00:00<00:04, 5469.78it/s]Parsing Hierarchy :   4%|▍         | 1094/26571 [00:00<00:20, 1249.54it/s]Parsing Hierarchy :  11%|█         | 2951/26571 [00:00<00:05, 4038.93it/s]Parsing Hierarchy :  19%|█▊        | 4953/26571 [00:00<00:03, 7027.70it/s]Parsing Hierarchy :  26%|██▋       | 7006/26571 [00:01<00:01, 9874.23it/s]Parsing Hierarchy :  33%|███▎      | 8871/26571 [00:01<00:01, 11905.16it/s]Parsing Hierarchy :  40%|███▉      | 10582/26571 [00:02<00:05, 2897.28it/s]Parsing Hierarchy :  47%|████▋     | 12437/26571 [00:02<00:03, 4028.85it/s]Parsing Hierarchy :  52%|█████▏    | 13838/26571 [00:03<00:03, 3609.36it/s]Parsing Hierarchy :  56%|█████▌    | 14888/26571 [00:03<00:02, 4163.27it/s]Parsing Hierarchy :  60%|█████▉    | 15895/26571 [00:03<00:02, 4734.59it/s]Parsing Hierarchy :  66%|██████▌   | 17503/26571 [00:03<00:01, 6263.96it/s]Parsing Hierarchy :  70%|███████   | 18663/26571 [00:03<00:01, 6970.51it/s]Parsing Hierarchy :  74%|███████▍  | 19781/26571 [00:04<00:01, 3882.66it/s]Parsing Hierarchy :  80%|███████▉  | 21235/26571 [00:04<00:01, 5123.88it/s]Parsing Hierarchy :  86%|████████▋ | 22958/26571 [00:04<00:00, 6850.52it/s]Parsing Hierarchy :  91%|█████████ | 24226/26571 [00:04<00:00, 7837.41it/s]Parsing Hierarchy :  96%|█████████▋| 25583/26571 [00:04<00:00, 8953.58it/s]Parsing Hierarchy : 100%|██████████| 26571/26571 [00:05<00:00, 4953.90it/s]
+yt : [INFO     ] 2026-10-13 15:27:51,065 Gathering a field list (this may take a moment.)
+yt : [INFO     ] 2026-10-13 15:32:03,336 Parameters: current_time              = 200.81658326267
+yt : [INFO     ] 2026-10-13 15:32:03,348 Parameters: domain_dimensions         = [256 256 256]
+yt : [INFO     ] 2026-10-13 15:32:03,349 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2026-10-13 15:32:03,349 Parameters: domain_right_edge         = [1. 1. 1.]
+yt : [INFO     ] 2026-10-13 15:32:03,349 Parameters: cosmological_simulation   = 1
+yt : [INFO     ] 2026-10-13 15:32:03,349 Parameters: current_redshift          = 1.5050880204715
+yt : [INFO     ] 2026-10-13 15:32:03,349 Parameters: omega_lambda              = 0.715
+yt : [INFO     ] 2026-10-13 15:32:03,350 Parameters: omega_matter              = 0.285
+yt : [INFO     ] 2026-10-13 15:32:03,350 Parameters: omega_radiation           = 0.0
+yt : [INFO     ] 2026-10-13 15:32:03,350 Parameters: hubble_constant           = 0.695
+Box size:       100.000 Mpc/h
+Total particles: 16777216
+Mean density:   1.678e+01 particles/(Mpc/h)^3
+Calculated 100/1000 spheres
+Calculated 200/1000 spheres
+Calculated 300/1000 spheres
+Calculated 400/1000 spheres
+Calculated 500/1000 spheres
+Calculated 600/1000 spheres
+Calculated 700/1000 spheres
+Calculated 800/1000 spheres
+Calculated 900/1000 spheres
+Calculated 1000/1000 spheres
+Mean delta:   -0.0029
+Std delta:    0.3769
+Gaussian mu:      -0.0029
+Gaussian sigma:   0.3769
+
+============================================================
+SNAPSHOT 020
+============================================================
+DD0020
+code length: 100 Mpccm/h
+domain width: [1. 1. 1.] code_length
+4 Mpc/h in code units: 0.10020352081886 code_length
+1 code_length in Mpc/h: 39.91875701883653 Mpc/h
+Parsing Hierarchy :   0%|          | 0/28318 [00:00<?, ?it/s]Parsing Hierarchy :   2%|▏         | 652/28318 [00:00<00:04, 6518.69it/s]Parsing Hierarchy :   5%|▍         | 1304/28318 [00:01<00:24, 1117.98it/s]Parsing Hierarchy :  10%|▉         | 2707/28318 [00:01<00:09, 2744.14it/s]Parsing Hierarchy :  14%|█▎        | 3878/28318 [00:01<00:05, 4111.14it/s]Parsing Hierarchy :  19%|█▊        | 5274/28318 [00:01<00:03, 5871.75it/s]Parsing Hierarchy :  23%|██▎       | 6386/28318 [00:01<00:03, 6803.66it/s]Parsing Hierarchy :  27%|██▋       | 7583/28318 [00:01<00:02, 7948.91it/s]Parsing Hierarchy :  32%|███▏      | 8961/28318 [00:01<00:02, 9351.30it/s]Parsing Hierarchy :  37%|███▋      | 10454/28318 [00:03<00:08, 2035.34it/s]Parsing Hierarchy :  42%|████▏     | 11766/28318 [00:03<00:06, 2750.79it/s]Parsing Hierarchy :  47%|████▋     | 13333/28318 [00:03<00:03, 3841.47it/s]Parsing Hierarchy :  51%|█████     | 14502/28318 [00:03<00:02, 4639.27it/s]Parsing Hierarchy :  55%|█████▌    | 15641/28318 [00:04<00:03, 3681.95it/s]Parsing Hierarchy :  60%|█████▉    | 16876/28318 [00:04<00:02, 4649.25it/s]Parsing Hierarchy :  66%|██████▌   | 18616/28318 [00:04<00:01, 6402.61it/s]Parsing Hierarchy :  71%|███████▏  | 20178/28318 [00:04<00:01, 7915.79it/s]Parsing Hierarchy :  76%|███████▌  | 21492/28318 [00:05<00:01, 4873.94it/s]Parsing Hierarchy :  81%|████████  | 22857/28318 [00:05<00:00, 6007.64it/s]Parsing Hierarchy :  85%|████████▍ | 24004/28318 [00:05<00:00, 6853.29it/s]Parsing Hierarchy :  90%|█████████ | 25534/28318 [00:05<00:00, 8340.26it/s]Parsing Hierarchy :  96%|█████████▌| 27186/28318 [00:05<00:00, 10019.22it/s]Parsing Hierarchy : 100%|██████████| 28318/28318 [00:05<00:00, 5121.36it/s] 
+yt : [INFO     ] 2026-10-13 15:32:10,795 Gathering a field list (this may take a moment.)
+yt : [INFO     ] 2026-10-13 15:36:42,400 Parameters: current_time              = 240.81642943169
+yt : [INFO     ] 2026-10-13 15:36:42,410 Parameters: domain_dimensions         = [256 256 256]
+yt : [INFO     ] 2026-10-13 15:36:42,410 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2026-10-13 15:36:42,411 Parameters: domain_right_edge         = [1. 1. 1.]
+yt : [INFO     ] 2026-10-13 15:36:42,411 Parameters: cosmological_simulation   = 1
+yt : [INFO     ] 2026-10-13 15:36:42,411 Parameters: current_redshift          = 1.2032466177429
+yt : [INFO     ] 2026-10-13 15:36:42,411 Parameters: omega_lambda              = 0.715
+yt : [INFO     ] 2026-10-13 15:36:42,411 Parameters: omega_matter              = 0.285
+yt : [INFO     ] 2026-10-13 15:36:42,411 Parameters: omega_radiation           = 0.0
+yt : [INFO     ] 2026-10-13 15:36:42,411 Parameters: hubble_constant           = 0.695
+Box size:       100.000 Mpc/h
+Total particles: 16777216
+Mean density:   1.678e+01 particles/(Mpc/h)^3
+Calculated 100/1000 spheres
+Calculated 200/1000 spheres
+Calculated 300/1000 spheres
+Calculated 400/1000 spheres
+Calculated 500/1000 spheres
+Calculated 600/1000 spheres
+Calculated 700/1000 spheres
+Calculated 800/1000 spheres
+Calculated 900/1000 spheres
+Calculated 1000/1000 spheres
+Mean delta:   -0.0052
+Std delta:    0.4611
+Gaussian mu:      -0.0052
+Gaussian sigma:   0.4611
+
+============================================================
+SNAPSHOT 024
+============================================================
+DD0024
+code length: 100 Mpccm/h
+domain width: [1. 1. 1.] code_length
+4 Mpc/h in code units: 0.08812986470971602 code_length
+1 code_length in Mpc/h: 45.38756542036327 Mpc/h
+Parsing Hierarchy :   0%|          | 0/29145 [00:00<?, ?it/s]Parsing Hierarchy :   0%|          | 2/29145 [00:00<31:37, 15.36it/s]Parsing Hierarchy :   4%|▍         | 1256/29145 [00:01<00:35, 788.92it/s]Parsing Hierarchy :   8%|▊         | 2231/29145 [00:01<00:17, 1527.09it/s]Parsing Hierarchy :  10%|█         | 3037/29145 [00:01<00:11, 2214.68it/s]Parsing Hierarchy :  14%|█▍        | 4072/29145 [00:01<00:07, 3278.10it/s]Parsing Hierarchy :  19%|█▉        | 5655/29145 [00:02<00:04, 5252.93it/s]Parsing Hierarchy :  24%|██▍       | 6984/29145 [00:02<00:03, 6727.28it/s]Parsing Hierarchy :  28%|██▊       | 8174/29145 [00:02<00:02, 7801.31it/s]Parsing Hierarchy :  32%|███▏      | 9326/29145 [00:02<00:02, 8535.44it/s]Parsing Hierarchy :  38%|███▊      | 10962/29145 [00:04<00:09, 1891.42it/s]Parsing Hierarchy :  42%|████▏     | 12236/29145 [00:04<00:06, 2531.76it/s]Parsing Hierarchy :  47%|████▋     | 13725/29145 [00:04<00:04, 3496.32it/s]Parsing Hierarchy :  52%|█████▏    | 15136/29145 [00:04<00:03, 4560.92it/s]Parsing Hierarchy :  56%|█████▌    | 16336/29145 [00:05<00:04, 2951.59it/s]Parsing Hierarchy :  59%|█████▉    | 17220/29145 [00:05<00:03, 3434.42it/s]Parsing Hierarchy :  63%|██████▎   | 18255/29145 [00:05<00:02, 4198.18it/s]Parsing Hierarchy :  67%|██████▋   | 19502/29145 [00:05<00:01, 5324.61it/s]Parsing Hierarchy :  70%|███████   | 20514/29145 [00:05<00:01, 5951.09it/s]Parsing Hierarchy :  74%|███████▍  | 21516/29145 [00:05<00:01, 6702.89it/s]Parsing Hierarchy :  77%|███████▋  | 22496/29145 [00:06<00:02, 2792.68it/s]Parsing Hierarchy :  81%|████████▏ | 23689/29145 [00:06<00:01, 3723.30it/s]Parsing Hierarchy :  86%|████████▋ | 25188/29145 [00:06<00:00, 5154.29it/s]Parsing Hierarchy :  92%|█████████▏| 26912/29145 [00:07<00:00, 7010.48it/s]Parsing Hierarchy : 100%|█████████▉| 29100/29145 [00:07<00:00, 9683.61it/s]Parsing Hierarchy : 100%|██████████| 29145/29145 [00:07<00:00, 4052.95it/s]
+yt : [INFO     ] 2026-10-13 15:36:51,332 Gathering a field list (this may take a moment.)
+[2026-10-13T15:39:53.016] error: *** JOB 10572642 ON worker091 CANCELLED AT 2026-10-13T15:39:53 DUE TO TIME LIMIT ***

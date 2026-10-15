@@ -1,0 +1,28 @@
+
+============================================================
+SNAPSHOT 015
+============================================================
+Traceback (most recent call last):
+  File "/home/ocrocker/MPHYS/snapshots.py", line 138, in <module>
+    ds = yt.load(str(snapshot_file))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/_maintenance/deprecation.py", line 68, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/loaders.py", line 141, in load
+    return cls(fn, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/frontends/gadget/data_structures.py", line 590, in __init__
+    super().__init__(
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/frontends/gadget/data_structures.py", line 310, in __init__
+    super().__init__(
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/frontends/sph/data_structures.py", line 34, in __init__
+    super().__init__(
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/data_objects/static_output.py", line 2137, in __init__
+    super().__init__(
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/data_objects/static_output.py", line 292, in __init__
+    self._parse_parameter_file()
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/frontends/gadget/data_structures.py", line 360, in _parse_parameter_file
+    self.domain_right_edge = np.ones(3, "float64") * hvals["BoxSize"]
+                             ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+numpy._core._exceptions._UFuncNoLoopError: ufunc 'multiply' did not contain a loop with signature matching types (dtype('float64'), dtype('S5')) -> None

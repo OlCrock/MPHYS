@@ -1,0 +1,29 @@
+yt : [INFO     ] 2026-09-24 17:15:46,374 Calculating time from 1.000e+00 to be 4.342e+17 seconds
+yt : [INFO     ] 2026-09-24 17:15:46,374 Assuming length units are in kpc/h (comoving)
+yt : [INFO     ] 2026-09-24 17:15:46,425 Parameters: current_time              = 4.3420248466376794e+17 s
+yt : [INFO     ] 2026-09-24 17:15:46,426 Parameters: domain_dimensions         = [1 1 1]
+yt : [INFO     ] 2026-09-24 17:15:46,426 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2026-09-24 17:15:46,426 Parameters: domain_right_edge         = [100. 100. 100.]
+yt : [INFO     ] 2026-09-24 17:15:46,426 Parameters: cosmological_simulation   = True
+yt : [INFO     ] 2026-09-24 17:15:46,426 Parameters: current_redshift          = 4.440892098500626e-16
+yt : [INFO     ] 2026-09-24 17:15:46,426 Parameters: omega_lambda              = b'0.715'
+yt : [INFO     ] 2026-09-24 17:15:46,426 Parameters: omega_matter              = b'0.285'
+yt : [INFO     ] 2026-09-24 17:15:46,426 Parameters: omega_radiation           = 0.0
+yt : [INFO     ] 2026-09-24 17:15:46,426 Parameters: hubble_constant           = b'0.695'
+yt : [WARNING  ] 2026-09-24 17:15:46,426 A bounding box was explicitly specified, so we are disabling periodicity.
+yt : [INFO     ] 2026-09-24 17:15:46,959 Allocating for 1.678e+07 particles
+
+============================================================
+SNAPSHOT 015
+============================================================
+snapshot_015
+Particles in z-slice: 16777216
+Initializing coarse index :   0%|          | 0/66 [00:00<?, ?it/s]Initializing coarse index :  24%|██▍       | 16/66 [00:00<00:00, 151.42it/s]Initializing coarse index :  50%|█████     | 33/66 [00:00<00:00, 157.59it/s]Initializing coarse index :  74%|███████▍  | 49/66 [00:00<00:00, 144.39it/s]Initializing coarse index :  97%|█████████▋| 64/66 [00:00<00:00, 142.64it/s]Initializing coarse index : 100%|██████████| 66/66 [00:00<00:00, 143.38it/s]
+Initializing refined index:   0%|          | 0/66 [00:00<?, ?it/s]Initializing refined index:   6%|▌         | 4/66 [00:00<00:01, 35.99it/s]Initializing refined index:  12%|█▏        | 8/66 [00:00<00:02, 27.35it/s]Initializing refined index:  17%|█▋        | 11/66 [00:00<00:02, 25.41it/s]Initializing refined index:  21%|██        | 14/66 [00:00<00:02, 24.67it/s]Initializing refined index:  26%|██▌       | 17/66 [00:00<00:02, 24.42it/s]Initializing refined index:  30%|███       | 20/66 [00:00<00:01, 25.86it/s]Initializing refined index:  35%|███▍      | 23/66 [00:00<00:01, 23.46it/s]Initializing refined index:  39%|███▉      | 26/66 [00:01<00:01, 23.50it/s]Initializing refined index:  44%|████▍     | 29/66 [00:01<00:01, 23.72it/s]Initializing refined index:  48%|████▊     | 32/66 [00:01<00:01, 23.42it/s]Initializing refined index:  53%|█████▎    | 35/66 [00:01<00:01, 24.06it/s]Initializing refined index:  58%|█████▊    | 38/66 [00:01<00:01, 23.31it/s]Initializing refined index:  62%|██████▏   | 41/66 [00:01<00:01, 22.58it/s]Initializing refined index:  67%|██████▋   | 44/66 [00:01<00:00, 23.12it/s]Initializing refined index:  71%|███████   | 47/66 [00:01<00:00, 22.96it/s]Initializing refined index:  76%|███████▌  | 50/66 [00:02<00:00, 23.55it/s]Initializing refined index:  82%|████████▏ | 54/66 [00:02<00:00, 25.71it/s]Initializing refined index:  86%|████████▋ | 57/66 [00:02<00:00, 24.57it/s]Initializing refined index:  91%|█████████ | 60/66 [00:02<00:00, 23.85it/s]Initializing refined index:  95%|█████████▌| 63/66 [00:02<00:00, 23.34it/s]Initializing refined index: 100%|██████████| 66/66 [00:02<00:00, 23.20it/s]Initializing refined index: 100%|██████████| 66/66 [00:02<00:00, 23.78it/s]
+Box size:       0.100 Mpc/h
+Total mass:     7.909e+16 Msun/h
+Mean density:   7.909e+19 Msun/h/(Mpc/h)^3
+Mean delta:   -1.0000
+Std delta:    0.0000
+Gaussian mu:      -1.0000
+Gaussian sigma:   0.0000

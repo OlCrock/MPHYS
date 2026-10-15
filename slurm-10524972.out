@@ -1,0 +1,308 @@
+yt : [INFO     ] 2026-09-29 12:32:39,982 Calculating time from 4.783e-02 to be 5.799e+15 seconds
+yt : [INFO     ] 2026-09-29 12:32:40,020 Parameters: current_time              = 5799142244602275.0 s
+yt : [INFO     ] 2026-09-29 12:32:40,021 Parameters: domain_dimensions         = [1 1 1]
+yt : [INFO     ] 2026-09-29 12:32:40,021 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2026-09-29 12:32:40,021 Parameters: domain_right_edge         = [100. 100. 100.]
+yt : [INFO     ] 2026-09-29 12:32:40,021 Parameters: cosmological_simulation   = True
+yt : [INFO     ] 2026-09-29 12:32:40,021 Parameters: current_redshift          = 19.90800041278718
+yt : [INFO     ] 2026-09-29 12:32:40,021 Parameters: omega_lambda              = b'0.715'
+yt : [INFO     ] 2026-09-29 12:32:40,021 Parameters: omega_matter              = b'0.285'
+yt : [INFO     ] 2026-09-29 12:32:40,021 Parameters: omega_radiation           = 0.0
+yt : [INFO     ] 2026-09-29 12:32:40,021 Parameters: hubble_constant           = b'0.695'
+yt : [WARNING  ] 2026-09-29 12:32:40,021 A bounding box was explicitly specified, so we are disabling periodicity.
+yt : [INFO     ] 2026-09-29 12:32:41,509 Allocating for 1.678e+07 particles
+
+============================================================
+SNAPSHOT 001
+============================================================
+snapshot_001
+Particles in z-slice: 16763278
+Initializing coarse index :   0%|          | 0/67 [00:00<?, ?it/s]Initializing coarse index :  39%|███▉      | 26/67 [00:00<00:00, 248.86it/s]Initializing coarse index :  76%|███████▌  | 51/67 [00:00<00:00, 215.39it/s]Initializing coarse index : 100%|██████████| 67/67 [00:00<00:00, 211.35it/s]
+Initializing refined index:   0%|          | 0/67 [00:00<?, ?it/s]Initializing refined index:   7%|▋         | 5/67 [00:00<00:01, 48.63it/s]Initializing refined index:  15%|█▍        | 10/67 [00:00<00:01, 43.51it/s]Initializing refined index:  22%|██▏       | 15/67 [00:00<00:01, 43.34it/s]Initializing refined index:  31%|███▏      | 21/67 [00:00<00:01, 45.39it/s]Initializing refined index:  39%|███▉      | 26/67 [00:00<00:00, 43.59it/s]Initializing refined index:  46%|████▋     | 31/67 [00:00<00:00, 45.25it/s]Initializing refined index:  55%|█████▌    | 37/67 [00:00<00:00, 49.02it/s]Initializing refined index:  63%|██████▎   | 42/67 [00:00<00:00, 49.23it/s]Initializing refined index:  70%|███████   | 47/67 [00:00<00:00, 49.21it/s]Initializing refined index:  79%|███████▉  | 53/67 [00:01<00:00, 50.68it/s]Initializing refined index:  88%|████████▊ | 59/67 [00:01<00:00, 46.77it/s]Initializing refined index:  96%|█████████▌| 64/67 [00:01<00:00, 44.83it/s]Initializing refined index: 100%|██████████| 67/67 [00:01<00:00, 44.70it/s]
+yt : [INFO     ] 2026-09-29 12:35:40,636 Calculating time from 1.670e-01 to be 3.776e+16 seconds
+yt : [INFO     ] 2026-09-29 12:35:40,680 Parameters: current_time              = 3.775679059885696e+16 s
+yt : [INFO     ] 2026-09-29 12:35:40,680 Parameters: domain_dimensions         = [1 1 1]
+yt : [INFO     ] 2026-09-29 12:35:40,680 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2026-09-29 12:35:40,680 Parameters: domain_right_edge         = [100. 100. 100.]
+yt : [INFO     ] 2026-09-29 12:35:40,680 Parameters: cosmological_simulation   = True
+yt : [INFO     ] 2026-09-29 12:35:40,680 Parameters: current_redshift          = 4.988854334916462
+yt : [INFO     ] 2026-09-29 12:35:40,680 Parameters: omega_lambda              = b'0.715'
+yt : [INFO     ] 2026-09-29 12:35:40,680 Parameters: omega_matter              = b'0.285'
+yt : [INFO     ] 2026-09-29 12:35:40,680 Parameters: omega_radiation           = 0.0
+yt : [INFO     ] 2026-09-29 12:35:40,680 Parameters: hubble_constant           = b'0.695'
+yt : [WARNING  ] 2026-09-29 12:35:40,680 A bounding box was explicitly specified, so we are disabling periodicity.
+yt : [INFO     ] 2026-09-29 12:35:41,827 Allocating for 1.678e+07 particles
+Box size:       100.000 Mpc/h
+Total particles: 16664620
+Mean density:   1.666e+01 particles/(Mpc/h)^3
+Calculated 100/10000 spheres
+Calculated 200/10000 spheres
+Calculated 300/10000 spheres
+Calculated 400/10000 spheres
+Calculated 500/10000 spheres
+Calculated 600/10000 spheres
+Calculated 700/10000 spheres
+Calculated 800/10000 spheres
+Calculated 900/10000 spheres
+Calculated 1000/10000 spheres
+Calculated 1100/10000 spheres
+Calculated 1200/10000 spheres
+Calculated 1300/10000 spheres
+Calculated 1400/10000 spheres
+Calculated 1500/10000 spheres
+Calculated 1600/10000 spheres
+Calculated 1700/10000 spheres
+Calculated 1800/10000 spheres
+Calculated 1900/10000 spheres
+Calculated 2000/10000 spheres
+Calculated 2100/10000 spheres
+Calculated 2200/10000 spheres
+Calculated 2300/10000 spheres
+Calculated 2400/10000 spheres
+Calculated 2500/10000 spheres
+Calculated 2600/10000 spheres
+Calculated 2700/10000 spheres
+Calculated 2800/10000 spheres
+Calculated 2900/10000 spheres
+Calculated 3000/10000 spheres
+Calculated 3100/10000 spheres
+Calculated 3200/10000 spheres
+Calculated 3300/10000 spheres
+Calculated 3400/10000 spheres
+Calculated 3500/10000 spheres
+Calculated 3600/10000 spheres
+Calculated 3700/10000 spheres
+Calculated 3800/10000 spheres
+Calculated 3900/10000 spheres
+Calculated 4000/10000 spheres
+Calculated 4100/10000 spheres
+Calculated 4200/10000 spheres
+Calculated 4300/10000 spheres
+Calculated 4400/10000 spheres
+Calculated 4500/10000 spheres
+Calculated 4600/10000 spheres
+Calculated 4700/10000 spheres
+Calculated 4800/10000 spheres
+Calculated 4900/10000 spheres
+Calculated 5000/10000 spheres
+Calculated 5100/10000 spheres
+Calculated 5200/10000 spheres
+Calculated 5300/10000 spheres
+Calculated 5400/10000 spheres
+Calculated 5500/10000 spheres
+Calculated 5600/10000 spheres
+Calculated 5700/10000 spheres
+Calculated 5800/10000 spheres
+Calculated 5900/10000 spheres
+Calculated 6000/10000 spheres
+Calculated 6100/10000 spheres
+Calculated 6200/10000 spheres
+Calculated 6300/10000 spheres
+Calculated 6400/10000 spheres
+Calculated 6500/10000 spheres
+Calculated 6600/10000 spheres
+Calculated 6700/10000 spheres
+Calculated 6800/10000 spheres
+Calculated 6900/10000 spheres
+Calculated 7000/10000 spheres
+Calculated 7100/10000 spheres
+Calculated 7200/10000 spheres
+Calculated 7300/10000 spheres
+Calculated 7400/10000 spheres
+Calculated 7500/10000 spheres
+Calculated 7600/10000 spheres
+Calculated 7700/10000 spheres
+Calculated 7800/10000 spheres
+Calculated 7900/10000 spheres
+Calculated 8000/10000 spheres
+Calculated 8100/10000 spheres
+Calculated 8200/10000 spheres
+Calculated 8300/10000 spheres
+Calculated 8400/10000 spheres
+Calculated 8500/10000 spheres
+Calculated 8600/10000 spheres
+Calculated 8700/10000 spheres
+Calculated 8800/10000 spheres
+Calculated 8900/10000 spheres
+Calculated 9000/10000 spheres
+Calculated 9100/10000 spheres
+Calculated 9200/10000 spheres
+Calculated 9300/10000 spheres
+Calculated 9400/10000 spheres
+Calculated 9500/10000 spheres
+Calculated 9600/10000 spheres
+Calculated 9700/10000 spheres
+Calculated 9800/10000 spheres
+Calculated 9900/10000 spheres
+Calculated 10000/10000 spheres
+Mean delta:   -0.0010
+Std delta:    0.1287
+Gaussian mu:      -0.0010
+Gaussian sigma:   0.1287
+
+============================================================
+SNAPSHOT 008
+============================================================
+snapshot_008
+Particles in z-slice: 16765779
+Initializing coarse index :   0%|          | 0/66 [00:00<?, ?it/s]Initializing coarse index :  35%|███▍      | 23/66 [00:00<00:00, 226.00it/s]Initializing coarse index :  74%|███████▍  | 49/66 [00:00<00:00, 244.76it/s]Initializing coarse index : 100%|██████████| 66/66 [00:00<00:00, 241.17it/s]
+Initializing refined index:   0%|          | 0/66 [00:00<?, ?it/s]Initializing refined index:   9%|▉         | 6/66 [00:00<00:01, 57.74it/s]Initializing refined index:  18%|█▊        | 12/66 [00:00<00:01, 48.66it/s]Initializing refined index:  26%|██▌       | 17/66 [00:00<00:01, 44.44it/s]Initializing refined index:  33%|███▎      | 22/66 [00:00<00:01, 43.16it/s]Initializing refined index:  41%|████      | 27/66 [00:00<00:00, 41.43it/s]Initializing refined index:  48%|████▊     | 32/66 [00:00<00:00, 40.81it/s]Initializing refined index:  56%|█████▌    | 37/66 [00:00<00:00, 42.66it/s]Initializing refined index:  64%|██████▎   | 42/66 [00:00<00:00, 41.76it/s]Initializing refined index:  71%|███████   | 47/66 [00:01<00:00, 40.82it/s]Initializing refined index:  79%|███████▉  | 52/66 [00:01<00:00, 40.42it/s]Initializing refined index:  86%|████████▋ | 57/66 [00:01<00:00, 40.12it/s]Initializing refined index:  94%|█████████▍| 62/66 [00:01<00:00, 39.81it/s]Initializing refined index: 100%|██████████| 66/66 [00:01<00:00, 41.06it/s]
+yt : [INFO     ] 2026-09-29 12:38:37,002 Calculating time from 1.000e+00 to be 4.342e+17 seconds
+yt : [INFO     ] 2026-09-29 12:38:37,042 Parameters: current_time              = 4.3420248466376794e+17 s
+yt : [INFO     ] 2026-09-29 12:38:37,042 Parameters: domain_dimensions         = [1 1 1]
+yt : [INFO     ] 2026-09-29 12:38:37,042 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2026-09-29 12:38:37,042 Parameters: domain_right_edge         = [100. 100. 100.]
+yt : [INFO     ] 2026-09-29 12:38:37,042 Parameters: cosmological_simulation   = True
+yt : [INFO     ] 2026-09-29 12:38:37,042 Parameters: current_redshift          = 4.440892098500626e-16
+yt : [INFO     ] 2026-09-29 12:38:37,042 Parameters: omega_lambda              = b'0.715'
+yt : [INFO     ] 2026-09-29 12:38:37,042 Parameters: omega_matter              = b'0.285'
+yt : [INFO     ] 2026-09-29 12:38:37,042 Parameters: omega_radiation           = 0.0
+yt : [INFO     ] 2026-09-29 12:38:37,042 Parameters: hubble_constant           = b'0.695'
+yt : [WARNING  ] 2026-09-29 12:38:37,042 A bounding box was explicitly specified, so we are disabling periodicity.
+Box size:       100.000 Mpc/h
+Total particles: 16637798
+Mean density:   1.664e+01 particles/(Mpc/h)^3
+Calculated 100/10000 spheres
+Calculated 200/10000 spheres
+Calculated 300/10000 spheres
+Calculated 400/10000 spheres
+Calculated 500/10000 spheres
+Calculated 600/10000 spheres
+Calculated 700/10000 spheres
+Calculated 800/10000 spheres
+Calculated 900/10000 spheres
+Calculated 1000/10000 spheres
+Calculated 1100/10000 spheres
+Calculated 1200/10000 spheres
+Calculated 1300/10000 spheres
+Calculated 1400/10000 spheres
+Calculated 1500/10000 spheres
+Calculated 1600/10000 spheres
+Calculated 1700/10000 spheres
+Calculated 1800/10000 spheres
+Calculated 1900/10000 spheres
+Calculated 2000/10000 spheres
+Calculated 2100/10000 spheres
+Calculated 2200/10000 spheres
+Calculated 2300/10000 spheres
+Calculated 2400/10000 spheres
+Calculated 2500/10000 spheres
+Calculated 2600/10000 spheres
+Calculated 2700/10000 spheres
+Calculated 2800/10000 spheres
+Calculated 2900/10000 spheres
+Calculated 3000/10000 spheres
+Calculated 3100/10000 spheres
+Calculated 3200/10000 spheres
+Calculated 3300/10000 spheres
+Calculated 3400/10000 spheres
+Calculated 3500/10000 spheres
+Calculated 3600/10000 spheres
+Calculated 3700/10000 spheres
+Calculated 3800/10000 spheres
+Calculated 3900/10000 spheres
+Calculated 4000/10000 spheres
+Calculated 4100/10000 spheres
+Calculated 4200/10000 spheres
+Calculated 4300/10000 spheres
+Calculated 4400/10000 spheres
+Calculated 4500/10000 spheres
+Calculated 4600/10000 spheres
+Calculated 4700/10000 spheres
+Calculated 4800/10000 spheres
+Calculated 4900/10000 spheres
+Calculated 5000/10000 spheres
+Calculated 5100/10000 spheres
+Calculated 5200/10000 spheres
+Calculated 5300/10000 spheres
+Calculated 5400/10000 spheres
+Calculated 5500/10000 spheres
+Calculated 5600/10000 spheres
+Calculated 5700/10000 spheres
+Calculated 5800/10000 spheres
+Calculated 5900/10000 spheres
+Calculated 6000/10000 spheres
+Calculated 6100/10000 spheres
+Calculated 6200/10000 spheres
+Calculated 6300/10000 spheres
+Calculated 6400/10000 spheres
+Calculated 6500/10000 spheres
+Calculated 6600/10000 spheres
+Calculated 6700/10000 spheres
+Calculated 6800/10000 spheres
+Calculated 6900/10000 spheres
+Calculated 7000/10000 spheres
+Calculated 7100/10000 spheres
+Calculated 7200/10000 spheres
+Calculated 7300/10000 spheres
+Calculated 7400/10000 spheres
+Calculated 7500/10000 spheres
+Calculated 7600/10000 spheres
+Calculated 7700/10000 spheres
+Calculated 7800/10000 spheres
+Calculated 7900/10000 spheres
+Calculated 8000/10000 spheres
+Calculated 8100/10000 spheres
+Calculated 8200/10000 spheres
+Calculated 8300/10000 spheres
+Calculated 8400/10000 spheres
+Calculated 8500/10000 spheres
+Calculated 8600/10000 spheres
+Calculated 8700/10000 spheres
+Calculated 8800/10000 spheres
+Calculated 8900/10000 spheres
+Calculated 9000/10000 spheres
+Calculated 9100/10000 spheres
+Calculated 9200/10000 spheres
+Calculated 9300/10000 spheres
+Calculated 9400/10000 spheres
+Calculated 9500/10000 spheres
+Calculated 9600/10000 spheres
+Calculated 9700/10000 spheres
+Calculated 9800/10000 spheres
+Calculated 9900/10000 spheres
+Calculated 10000/10000 spheres
+Mean delta:   0.0040
+Std delta:    0.2724
+Gaussian mu:      0.0040
+Gaussian sigma:   0.2724
+
+============================================================
+SNAPSHOT 015
+============================================================
+snapshot_015
+Particles in z-slice: 16776792
+Traceback (most recent call last):
+  File "/home/ocrocker/MPHYS/snapshots.py", line 142, in <module>
+    overdensities = calculate_overdensities(ds, sphere_radius=sphere_radius, n_spheres=n_spheres)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ocrocker/MPHYS/snapshots.py", line 30, in calculate_overdensities
+    all_data = ds.all_data()
+               ^^^^^^^^^^^^^
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/data_objects/static_output.py", line 1208, in all_data
+    self.index
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/data_objects/static_output.py", line 605, in index
+    self._instantiated_index = self._index_class(
+                               ^^^^^^^^^^^^^^^^^^
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/geometry/particle_geometry_handler.py", line 72, in __init__
+    super().__init__(ds, dataset_type)
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/geometry/geometry_handler.py", line 46, in __init__
+    self._detect_output_fields()
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/geometry/particle_geometry_handler.py", line 366, in _detect_output_fields
+    fl, _units = self.io._identify_fields(dom)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/frontends/gadget/io.py", line 301, in _identify_fields
+    if not hasattr(g[kk], "shape"):
+                   ~^^^^
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/h5py/_hl/group.py", line 407, in __getitem__
+    return self._get(name)
+           ^^^^^^^^^^^^^^^
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/h5py/_hl/group.py", line 421, in _get
+    oid = h5o.open(self.id, self._e(name), lapl=lapl)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5o.pyx", line 255, in h5py.h5o.open
+KeyError: 'Unable to synchronously open object (bad object header version number)'

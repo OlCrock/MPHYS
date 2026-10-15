@@ -1,0 +1,52 @@
+Traceback (most recent call last):
+  File "/home/ocrocker/MPHYS/snapshots.py", line 4, in <module>
+    ds = yt.load("/disk12/legacy/GVD_C700_l100n256_SLEGAC/dm_gadget/data/snapdir_005/snapshot_005.0.hdf5")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/_maintenance/deprecation.py", line 68, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/loaders.py", line 146, in load
+    raise YTUnidentifiedDataType(_input_fn, *args, **kwargs)
+yt.utilities.exceptions.YTUnidentifiedDataType: Could not determine input format from '/disk12/legacy/GVD_C700_l100n256_SLEGAC/dm_gadget/data/snapdir_005/snapshot_005.0.hdf5'
+The following types could not be thorougly checked against your data because their requirements are missing. You may want to inspect this list and check your installation:
+- ArepoHDF5Dataset (requires: h5py)
+- CFRadialDataset (requires: xarray, pyart)
+- CM1Dataset (requires: netCDF4)
+- ChimeraDataset (requires: h5py)
+- ChollaDataset (requires: h5py)
+- ChomboDataset (requires: h5py)
+- ChomboPICDataset (requires: h5py)
+- EagleDataset (requires: h5py)
+- EagleNetworkDataset (requires: h5py)
+- EnzoDataset (requires: h5py)
+- EnzoDatasetInMemory (requires: h5py)
+- EnzoEDataset (requires: h5py, libconf)
+- ExodusIIDataset (requires: netCDF4)
+- FLASHDataset (requires: h5py)
+- FLASHParticleDataset (requires: h5py)
+- GAMERDataset (requires: h5py)
+- GDFDataset (requires: h5py)
+- GadgetFOFDataset (requires: h5py)
+- GadgetHDF5Dataset (requires: h5py)
+- GizmoDataset (requires: h5py)
+- HTTPStreamDataset (requires: requests)
+- MoabHex8Dataset (requires: h5py)
+- OWLSDataset (requires: h5py)
+- OWLSSubfindDataset (requires: h5py)
+- OpenPMDDataset (requires: h5py)
+- OpenPMDGroupBasedDataset (requires: h5py)
+- Orion2Dataset (requires: h5py)
+- ParthenonDataset (requires: h5py)
+- PlutoDataset (requires: h5py)
+- SDFDataset (requires: requests)
+- SwiftDataset (requires: h5py)
+- YTClumpTreeDataset (requires: h5py)
+- YTDataContainerDataset (requires: h5py)
+- YTDataLightRayDataset (requires: h5py)
+- YTGridDataset (requires: h5py)
+- YTHaloCatalogDataset (requires: h5py)
+- YTNonspatialDataset (requires: h5py)
+- YTProfileDataset (requires: h5py)
+- YTSpatialPlotDataset (requires: h5py)
+
+Please make sure you are running a sufficiently recent version of yt.

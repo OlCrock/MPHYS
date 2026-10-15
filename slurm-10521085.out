@@ -1,0 +1,17 @@
+
+============================================================
+SNAPSHOT 015
+============================================================
+Traceback (most recent call last):
+  File "/home/ocrocker/MPHYS/snapshots.py", line 99, in <module>
+    ds = yt.load(
+         ^^^^^^^^
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/_maintenance/deprecation.py", line 68, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/loaders.py", line 141, in load
+    return cls(fn, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/frontends/gadget/data_structures.py", line 586, in __init__
+    raise RuntimeError(
+RuntimeError: units_override is not supported for GadgetHDF5Dataset. Use unit_base instead.

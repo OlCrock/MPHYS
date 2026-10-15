@@ -1,0 +1,125 @@
+yt : [INFO     ] 2026-09-29 15:27:20,700 Calculating time from 4.783e-02 to be 5.799e+15 seconds
+yt : [INFO     ] 2026-09-29 15:27:20,804 Parameters: current_time              = 5799142244602275.0 s
+yt : [INFO     ] 2026-09-29 15:27:20,804 Parameters: domain_dimensions         = [1 1 1]
+yt : [INFO     ] 2026-09-29 15:27:20,804 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2026-09-29 15:27:20,805 Parameters: domain_right_edge         = [100. 100. 100.]
+yt : [INFO     ] 2026-09-29 15:27:20,805 Parameters: cosmological_simulation   = True
+yt : [INFO     ] 2026-09-29 15:27:20,805 Parameters: current_redshift          = 19.90800041278718
+yt : [INFO     ] 2026-09-29 15:27:20,805 Parameters: omega_lambda              = b'0.715'
+yt : [INFO     ] 2026-09-29 15:27:20,805 Parameters: omega_matter              = b'0.285'
+yt : [INFO     ] 2026-09-29 15:27:20,805 Parameters: omega_radiation           = 0.0
+yt : [INFO     ] 2026-09-29 15:27:20,805 Parameters: hubble_constant           = b'0.695'
+yt : [WARNING  ] 2026-09-29 15:27:20,805 A bounding box was explicitly specified, so we are disabling periodicity.
+yt : [INFO     ] 2026-09-29 15:27:24,751 Allocating for 1.678e+07 particles
+
+============================================================
+SNAPSHOT 001
+============================================================
+snapshot_001
+Initializing coarse index :   0%|          | 0/67 [00:00<?, ?it/s]Initializing coarse index :   6%|▌         | 4/67 [00:02<00:38,  1.62it/s]Initializing coarse index :  16%|█▋        | 11/67 [00:05<00:24,  2.29it/s]Initializing coarse index :  28%|██▊       | 19/67 [00:05<00:10,  4.70it/s]Initializing coarse index :  34%|███▍      | 23/67 [00:10<00:23,  1.90it/s]Initializing coarse index :  45%|████▍     | 30/67 [00:13<00:17,  2.07it/s]Initializing coarse index :  54%|█████▎    | 36/67 [00:13<00:10,  3.03it/s]Initializing coarse index :  58%|█████▊    | 39/67 [00:16<00:11,  2.35it/s]Initializing coarse index :  64%|██████▍   | 43/67 [00:16<00:07,  3.14it/s]Initializing coarse index :  72%|███████▏  | 48/67 [00:16<00:04,  4.50it/s]Initializing coarse index :  81%|████████  | 54/67 [00:16<00:01,  6.66it/s]Initializing coarse index :  88%|████████▊ | 59/67 [00:16<00:00,  8.98it/s]Initializing coarse index :  97%|█████████▋| 65/67 [00:16<00:00, 12.56it/s]Initializing coarse index : 100%|██████████| 67/67 [00:16<00:00,  4.01it/s]
+Initializing refined index:   0%|          | 0/67 [00:00<?, ?it/s]Initializing refined index:   3%|▎         | 2/67 [00:00<00:03, 17.15it/s]Initializing refined index:  10%|█         | 7/67 [00:00<00:01, 31.75it/s]Initializing refined index:  18%|█▊        | 12/67 [00:00<00:01, 37.82it/s]Initializing refined index:  25%|██▌       | 17/67 [00:00<00:01, 39.42it/s]Initializing refined index:  34%|███▍      | 23/67 [00:00<00:00, 44.80it/s]Initializing refined index:  42%|████▏     | 28/67 [00:00<00:00, 43.32it/s]Initializing refined index:  49%|████▉     | 33/67 [00:00<00:00, 44.94it/s]Initializing refined index:  57%|█████▋    | 38/67 [00:00<00:00, 46.40it/s]Initializing refined index:  64%|██████▍   | 43/67 [00:01<00:00, 43.81it/s]Initializing refined index:  72%|███████▏  | 48/67 [00:01<00:00, 43.08it/s]Initializing refined index:  81%|████████  | 54/67 [00:01<00:00, 46.86it/s]Initializing refined index:  88%|████████▊ | 59/67 [00:01<00:00, 46.32it/s]Initializing refined index:  96%|█████████▌| 64/67 [00:01<00:00, 46.68it/s]Initializing refined index: 100%|██████████| 67/67 [00:01<00:00, 42.99it/s]
+yt : [INFO     ] 2026-09-29 15:28:19,829 Calculating time from 1.670e-01 to be 3.776e+16 seconds
+yt : [INFO     ] 2026-09-29 15:28:19,902 Parameters: current_time              = 3.775679059885696e+16 s
+yt : [INFO     ] 2026-09-29 15:28:19,902 Parameters: domain_dimensions         = [1 1 1]
+yt : [INFO     ] 2026-09-29 15:28:19,902 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2026-09-29 15:28:19,902 Parameters: domain_right_edge         = [100. 100. 100.]
+yt : [INFO     ] 2026-09-29 15:28:19,903 Parameters: cosmological_simulation   = True
+yt : [INFO     ] 2026-09-29 15:28:19,903 Parameters: current_redshift          = 4.988854334916462
+yt : [INFO     ] 2026-09-29 15:28:19,903 Parameters: omega_lambda              = b'0.715'
+yt : [INFO     ] 2026-09-29 15:28:19,903 Parameters: omega_matter              = b'0.285'
+yt : [INFO     ] 2026-09-29 15:28:19,903 Parameters: omega_radiation           = 0.0
+yt : [INFO     ] 2026-09-29 15:28:19,903 Parameters: hubble_constant           = b'0.695'
+yt : [WARNING  ] 2026-09-29 15:28:19,903 A bounding box was explicitly specified, so we are disabling periodicity.
+yt : [INFO     ] 2026-09-29 15:28:20,083 Allocating for 1.678e+07 particles
+Box size:       100.000 Mpc/h
+Total particles: 16664620
+Mean density:   1.666e+01 particles/(Mpc/h)^3
+Calculated 100/1000 spheres
+Calculated 200/1000 spheres
+Calculated 300/1000 spheres
+Calculated 400/1000 spheres
+Calculated 500/1000 spheres
+Calculated 600/1000 spheres
+Calculated 700/1000 spheres
+Calculated 800/1000 spheres
+Calculated 900/1000 spheres
+Calculated 1000/1000 spheres
+Mean delta:   -0.0023
+Std delta:    0.1188
+Gaussian mu:      -0.0023
+Gaussian sigma:   0.1188
+
+============================================================
+SNAPSHOT 008
+============================================================
+snapshot_008
+Initializing coarse index :   0%|          | 0/66 [00:00<?, ?it/s]Initializing coarse index :   9%|▉         | 6/66 [00:00<00:01, 58.60it/s]Initializing coarse index :  18%|█▊        | 12/66 [00:00<00:01, 52.48it/s]Initializing coarse index :  27%|██▋       | 18/66 [00:00<00:00, 55.52it/s]Initializing coarse index :  36%|███▋      | 24/66 [00:00<00:00, 43.13it/s]Initializing coarse index :  44%|████▍     | 29/66 [00:00<00:00, 44.51it/s]Initializing coarse index :  53%|█████▎    | 35/66 [00:00<00:00, 48.45it/s]Initializing coarse index :  62%|██████▏   | 41/66 [00:00<00:00, 41.25it/s]Initializing coarse index :  71%|███████   | 47/66 [00:01<00:00, 44.38it/s]Initializing coarse index :  79%|███████▉  | 52/66 [00:05<00:03,  3.57it/s]Initializing coarse index :  89%|████████▉ | 59/66 [00:05<00:01,  5.40it/s]Initializing coarse index :  98%|█████████▊| 65/66 [00:05<00:00,  7.44it/s]Initializing coarse index : 100%|██████████| 66/66 [00:06<00:00, 10.97it/s]
+Initializing refined index:   0%|          | 0/66 [00:00<?, ?it/s]Initializing refined index:   8%|▊         | 5/66 [00:00<00:01, 45.15it/s]Initializing refined index:  15%|█▌        | 10/66 [00:00<00:01, 45.37it/s]Initializing refined index:  23%|██▎       | 15/66 [00:00<00:01, 46.62it/s]Initializing refined index:  32%|███▏      | 21/66 [00:00<00:00, 49.30it/s]Initializing refined index:  39%|███▉      | 26/66 [00:00<00:00, 48.87it/s]Initializing refined index:  48%|████▊     | 32/66 [00:00<00:00, 50.11it/s]Initializing refined index:  58%|█████▊    | 38/66 [00:00<00:00, 52.96it/s]Initializing refined index:  67%|██████▋   | 44/66 [00:00<00:00, 50.63it/s]Initializing refined index:  76%|███████▌  | 50/66 [00:01<00:00, 48.86it/s]Initializing refined index:  83%|████████▎ | 55/66 [00:01<00:00, 48.60it/s]Initializing refined index:  91%|█████████ | 60/66 [00:01<00:00, 46.87it/s]Initializing refined index:  98%|█████████▊| 65/66 [00:01<00:00, 47.56it/s]Initializing refined index: 100%|██████████| 66/66 [00:01<00:00, 47.73it/s]
+yt : [INFO     ] 2026-09-29 15:29:05,418 Calculating time from 1.000e+00 to be 4.342e+17 seconds
+yt : [INFO     ] 2026-09-29 15:29:05,484 Parameters: current_time              = 4.3420248466376794e+17 s
+yt : [INFO     ] 2026-09-29 15:29:05,484 Parameters: domain_dimensions         = [1 1 1]
+yt : [INFO     ] 2026-09-29 15:29:05,484 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2026-09-29 15:29:05,484 Parameters: domain_right_edge         = [100. 100. 100.]
+yt : [INFO     ] 2026-09-29 15:29:05,484 Parameters: cosmological_simulation   = True
+yt : [INFO     ] 2026-09-29 15:29:05,484 Parameters: current_redshift          = 4.440892098500626e-16
+yt : [INFO     ] 2026-09-29 15:29:05,484 Parameters: omega_lambda              = b'0.715'
+yt : [INFO     ] 2026-09-29 15:29:05,484 Parameters: omega_matter              = b'0.285'
+yt : [INFO     ] 2026-09-29 15:29:05,484 Parameters: omega_radiation           = 0.0
+yt : [INFO     ] 2026-09-29 15:29:05,484 Parameters: hubble_constant           = b'0.695'
+yt : [WARNING  ] 2026-09-29 15:29:05,484 A bounding box was explicitly specified, so we are disabling periodicity.
+Box size:       100.000 Mpc/h
+Total particles: 16637798
+Mean density:   1.664e+01 particles/(Mpc/h)^3
+Calculated 100/1000 spheres
+Calculated 200/1000 spheres
+Calculated 300/1000 spheres
+Calculated 400/1000 spheres
+Calculated 500/1000 spheres
+Calculated 600/1000 spheres
+Calculated 700/1000 spheres
+Calculated 800/1000 spheres
+Calculated 900/1000 spheres
+Calculated 1000/1000 spheres
+Mean delta:   0.0035
+Std delta:    0.2739
+Gaussian mu:      0.0035
+Gaussian sigma:   0.2739
+
+============================================================
+SNAPSHOT 015
+============================================================
+snapshot_015
+Traceback (most recent call last):
+  File "/home/ocrocker/MPHYS/overdensity.py", line 90, in <module>
+    overdensities = calculate_overdensities(ds, sphere_radius=sphere_radius, n_spheres=n_spheres)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ocrocker/MPHYS/overdensity.py", line 29, in calculate_overdensities
+    all_data = ds.all_data()
+               ^^^^^^^^^^^^^
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/data_objects/static_output.py", line 1208, in all_data
+    self.index
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/data_objects/static_output.py", line 605, in index
+    self._instantiated_index = self._index_class(
+                               ^^^^^^^^^^^^^^^^^^
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/geometry/particle_geometry_handler.py", line 72, in __init__
+    super().__init__(ds, dataset_type)
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/geometry/geometry_handler.py", line 46, in __init__
+    self._detect_output_fields()
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/geometry/particle_geometry_handler.py", line 366, in _detect_output_fields
+    fl, _units = self.io._identify_fields(dom)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/yt/frontends/gadget/io.py", line 301, in _identify_fields
+    if not hasattr(g[kk], "shape"):
+                   ~^^^^
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/h5py/_hl/group.py", line 407, in __getitem__
+    return self._get(name)
+           ^^^^^^^^^^^^^^^
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "/home/ocrocker/python-envs/astro/lib/python3.12/site-packages/h5py/_hl/group.py", line 421, in _get
+    oid = h5o.open(self.id, self._e(name), lapl=lapl)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5o.pyx", line 255, in h5py.h5o.open
+KeyError: 'Unable to synchronously open object (bad object header version number)'

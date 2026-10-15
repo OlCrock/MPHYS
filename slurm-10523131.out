@@ -1,0 +1,130 @@
+yt : [INFO     ] 2026-09-28 16:32:55,466 Calculating time from 4.783e-02 to be 5.799e+15 seconds
+yt : [INFO     ] 2026-09-28 16:32:55,565 Parameters: current_time              = 5799142244602275.0 s
+yt : [INFO     ] 2026-09-28 16:32:55,565 Parameters: domain_dimensions         = [1 1 1]
+yt : [INFO     ] 2026-09-28 16:32:55,565 Parameters: domain_left_edge          = [0. 0. 0.]
+yt : [INFO     ] 2026-09-28 16:32:55,566 Parameters: domain_right_edge         = [100. 100. 100.]
+yt : [INFO     ] 2026-09-28 16:32:55,566 Parameters: cosmological_simulation   = True
+yt : [INFO     ] 2026-09-28 16:32:55,566 Parameters: current_redshift          = 19.90800041278718
+yt : [INFO     ] 2026-09-28 16:32:55,566 Parameters: omega_lambda              = b'0.715'
+yt : [INFO     ] 2026-09-28 16:32:55,566 Parameters: omega_matter              = b'0.285'
+yt : [INFO     ] 2026-09-28 16:32:55,566 Parameters: omega_radiation           = 0.0
+yt : [INFO     ] 2026-09-28 16:32:55,566 Parameters: hubble_constant           = b'0.695'
+yt : [WARNING  ] 2026-09-28 16:32:55,566 A bounding box was explicitly specified, so we are disabling periodicity.
+yt : [INFO     ] 2026-09-28 16:32:57,176 Allocating for 1.678e+07 particles
+
+============================================================
+SNAPSHOT 001
+============================================================
+snapshot_001
+Particles in z-slice: 16777216
+Initializing coarse index :   0%|          | 0/67 [00:00<?, ?it/s]Initializing coarse index :  13%|█▎        | 9/67 [00:00<00:00, 84.99it/s]Initializing coarse index :  30%|██▉       | 20/67 [00:00<00:00, 98.85it/s]Initializing coarse index :  46%|████▋     | 31/67 [00:00<00:00, 100.35it/s]Initializing coarse index :  64%|██████▍   | 43/67 [00:00<00:00, 105.65it/s]Initializing coarse index :  82%|████████▏ | 55/67 [00:00<00:00, 107.77it/s]Initializing coarse index :  99%|█████████▊| 66/67 [00:00<00:00, 103.49it/s]Initializing coarse index : 100%|██████████| 67/67 [00:00<00:00, 101.24it/s]
+Initializing refined index:   0%|          | 0/67 [00:00<?, ?it/s]Initializing refined index:   4%|▍         | 3/67 [00:00<00:02, 24.67it/s]Initializing refined index:  12%|█▏        | 8/67 [00:00<00:01, 34.72it/s]Initializing refined index:  19%|█▉        | 13/67 [00:00<00:01, 37.89it/s]Initializing refined index:  27%|██▋       | 18/67 [00:00<00:01, 42.06it/s]Initializing refined index:  34%|███▍      | 23/67 [00:00<00:01, 41.61it/s]Initializing refined index:  42%|████▏     | 28/67 [00:00<00:00, 41.11it/s]Initializing refined index:  49%|████▉     | 33/67 [00:00<00:00, 40.73it/s]Initializing refined index:  57%|█████▋    | 38/67 [00:00<00:00, 42.16it/s]Initializing refined index:  64%|██████▍   | 43/67 [00:01<00:00, 40.17it/s]Initializing refined index:  72%|███████▏  | 48/67 [00:01<00:00, 39.47it/s]Initializing refined index:  79%|███████▉  | 53/67 [00:01<00:00, 41.33it/s]Initializing refined index:  87%|████████▋ | 58/67 [00:01<00:00, 40.25it/s]Initializing refined index:  94%|█████████▍| 63/67 [00:01<00:00, 39.08it/s]Initializing refined index: 100%|██████████| 67/67 [00:01<00:00, 38.36it/s]Initializing refined index: 100%|██████████| 67/67 [00:01<00:00, 38.90it/s]
+Box size:       100.000 Mpc/h
+Total mass:     7.909e+16 Msun/h
+Mean density:   7.909e+10 Msun/h/(Mpc/h)^3
+Particles in sphere: 8293
+Particles in sphere: 9096
+Particles in sphere: 9368
+Particles in sphere: 8739
+Particles in sphere: 9376
+Particles in sphere: 7733
+Particles in sphere: 9093
+Particles in sphere: 9366
+Particles in sphere: 9094
+Particles in sphere: 9832
+Particles in sphere: 9766
+Particles in sphere: 8209
+Particles in sphere: 9446
+Particles in sphere: 8351
+Particles in sphere: 9347
+Particles in sphere: 9777
+Particles in sphere: 8841
+Particles in sphere: 8907
+Particles in sphere: 7832
+Particles in sphere: 7976
+Particles in sphere: 8620
+Particles in sphere: 8804
+Particles in sphere: 8878
+Particles in sphere: 8564
+Particles in sphere: 8809
+Particles in sphere: 8296
+Particles in sphere: 8901
+Particles in sphere: 9959
+Particles in sphere: 7412
+Particles in sphere: 8901
+Particles in sphere: 8444
+Particles in sphere: 10316
+Particles in sphere: 8513
+Particles in sphere: 8148
+Particles in sphere: 8671
+Particles in sphere: 8148
+Particles in sphere: 8917
+Particles in sphere: 8400
+Particles in sphere: 7271
+Particles in sphere: 8410
+Particles in sphere: 8924
+Particles in sphere: 8720
+Particles in sphere: 10396
+Particles in sphere: 9606
+Particles in sphere: 8441
+Particles in sphere: 9624
+Particles in sphere: 9948
+Particles in sphere: 9296
+Particles in sphere: 8136
+Particles in sphere: 9270
+Particles in sphere: 9250
+Particles in sphere: 8719
+Particles in sphere: 8214
+Particles in sphere: 8141
+Particles in sphere: 11073
+Particles in sphere: 9476
+Particles in sphere: 9207
+Particles in sphere: 8925
+Particles in sphere: 8946
+Particles in sphere: 8602
+Particles in sphere: 8661
+Particles in sphere: 8091
+Particles in sphere: 8038
+Particles in sphere: 8772
+Particles in sphere: 9012
+Particles in sphere: 8519
+Particles in sphere: 9158
+Particles in sphere: 7682
+Particles in sphere: 8821
+Particles in sphere: 8447
+Particles in sphere: 8696
+Particles in sphere: 8925
+Particles in sphere: 10546
+Particles in sphere: 8848
+Particles in sphere: 10165
+Particles in sphere: 8552
+Particles in sphere: 8832
+Particles in sphere: 8992
+Particles in sphere: 9816
+Particles in sphere: 7125
+Particles in sphere: 8317
+Particles in sphere: 9002
+Particles in sphere: 8873
+Particles in sphere: 8078
+Particles in sphere: 8573
+Particles in sphere: 8354
+Particles in sphere: 8383
+Particles in sphere: 8785
+Particles in sphere: 9182
+Particles in sphere: 9913
+Particles in sphere: 8634
+Particles in sphere: 9050
+Particles in sphere: 7641
+Particles in sphere: 7462
+Particles in sphere: 8405
+Particles in sphere: 9749
+Particles in sphere: 8710
+Particles in sphere: 8812
+Particles in sphere: 8971
+Particles in sphere: 9063
+Calculated 100/100 spheres
+Number of spheres with delta=0: 0
+Mean delta:   -0.4972
+Std delta:    0.5060
+Gaussian mu:      -0.4972
+Gaussian sigma:   0.5060
