@@ -36,10 +36,10 @@ base_path = Path(
     "GVD_C700_l100n256_SLEGAC/dm_gadget/data"
 )
 
-snapshot_numbers = [1, 8, 12]
+snapshot_numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 n_files_per_snapshot = 4
 sphere_radius = 8.0  # Mpc/h
-n_spheres = 10  # Test run; increase for final results
+n_spheres = 1000  # Test run; increase for final results
 
 plot_dir = Path("plots")
 plot_dir.mkdir(exist_ok=True)
