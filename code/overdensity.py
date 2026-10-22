@@ -38,7 +38,7 @@ base_path = Path(
 
 snapshot_numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 n_files_per_snapshot = 4
-sphere_radius = 30.0  # Mpc/h
+sphere_radius = 15.0  # Mpc/h
 n_spheres = 1000  # Test run; increase for final results
 
 plot_dir = Path("plots")
@@ -158,12 +158,6 @@ for snap in snapshot_numbers:
     snapdir = base_path / f"snapdir_{snap:03d}"
     snapshot_file = snapdir / f"snapshot_{snap:03d}.0.hdf5"
 
-    if not snapshot_file.exists():
-        raise FileNotFoundError(
-            f"Snapshot file not found: {snapshot_file}"
-        )
-
-    # Original GADGET loading method
     ds = yt.load(
         str(snapshot_file),
         unit_base={"length": (1.0, "Mpc/h")},
@@ -256,7 +250,6 @@ for snap in snapshot_numbers:
 
 # Linear growth comparison, using Planck cosmological parameters
 # sigma8 is the z=0 variance normalisation at R=8 h^-1 Mpc.
-# This is a growth reference, not the exact R=4 h^-1 Mpc prediction.
 varr_theory = linear_sigma(
     H0=67.4,
     Omega_m=0.315,
@@ -272,6 +265,20 @@ plot_sigma_by_z(
     sigmas,
     sigma_theory=sigma_theory,
 )
+
+def save_variance_csv(redshifts, sigmas):
+    """Save redshift, standard deviation, and variance to CSV."""
+    variance = np.asarray(sigmas)**2
+
+    data = np.column_stack((redshifts, sigmas, variance))
+    header = "redshift,sigma_delta,variance"
+
+    csv_path = plot_dir / f"variance_by_z_R{sphere_radius}_GADGET2048.csv"
+    np.savetxt(csv_path, data, delimiter=",", header=header, comments="", fmt="%.8e")
+
+    print("Variance CSV saved to:", csv_path.resolve())
+
+save_variance_csv(redshifts, sigmas)
 
 print("\nFinished. Plots saved to:", plot_dir.resolve())
 
