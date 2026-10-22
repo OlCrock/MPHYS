@@ -32,7 +32,8 @@ plt.rcParams.update({
 
 # GADGET simulation data
 base_path = Path(
-    "/ceph/cephfs2/TMOX/legacy/GVD_C700_l100n2048_SLEGAC/dm_gadget/data"
+    "/home/sadeghk/DataManagement/cmcinerney/UserscoreyDocumentsMScProject/"
+    "GVD_C700_l100n256_SLEGAC/dm_gadget/data"
 )
 
 snapshot_numbers = [1, 8, 12]
