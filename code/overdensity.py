@@ -36,9 +36,9 @@ base_path = Path(
     "GVD_C700_l100n256_SLEGAC/dm_gadget/data"
 )
 
-snapshot_numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+snapshot_numbers = [0, 1, 3, 4, 6, 7, 9, 10, 12, 14, 15]
 n_files_per_snapshot = 4
-sphere_radius = 15.0  # Mpc/h
+sphere_radius = 30.0  # Mpc/h
 n_spheres = 1000  # Test run; increase for final results
 
 plot_dir = Path("plots")
@@ -242,7 +242,7 @@ for snap in snapshot_numbers:
 
     plt.tight_layout()
     plt.savefig(
-        plot_dir / f"snapshot_{snap:03d}_overdensity_GADGET2048_30.png",
+        plot_dir / f"snapshot_{snap:03d}_overdensity_GADGET2048_LARGETEST.png",
         dpi=200,
     )
     plt.close(fig)
