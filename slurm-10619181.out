@@ -1,0 +1,8 @@
+
+============================================================
+SNAPSHOT 001
+============================================================
+Traceback (most recent call last):
+  File "/home/ocrocker/MPHYS/code/overdensity.py", line 161, in <module>
+    raise FileNotFoundError(
+FileNotFoundError: Snapshot file not found: /Backup00/jonorbe/legacy/GVD_C700_l100n2048_SLEGAC/dm_gadget/data/snapdir_001/snapshot_001.0.hdf5

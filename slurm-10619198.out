@@ -1,0 +1,4 @@
+worker094
+ls: cannot access '/Backup00': No such file or directory
+ls: cannot access '/Backup00/jonorbe': No such file or directory
+ls: cannot access '/Backup00/jonorbe/legacy/GVD_C700_l100n2048_SLEGAC/dm_gadget/data/snapdir_001': No such file or directory
