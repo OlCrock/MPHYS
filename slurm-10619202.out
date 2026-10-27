@@ -1,5 +1,0 @@
-worker094
-lrwxrwxrwx 1 root root 13 Jun 17 17:26 /cephfs2 -> /ceph/cephfs2
-drwxr-xr-x 2 root root 0 Oct 16 15:45 /disk12
-ls: cannot access '/Backup00': No such file or directory
-drwxr-xr-x 2 root root 4096 Feb 17  2023 /mnt
