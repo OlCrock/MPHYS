@@ -5,6 +5,7 @@ from pathlib import Path
 import yt
 from scipy.stats import norm
 from scipy.integrate import quad
+import os
 
 plt.style.use("seaborn-v0_8-whitegrid")
 plt.rcParams.update({
@@ -24,9 +25,10 @@ base_path = Path(
 )
 
 # Start with one snapshot and a small test
-snapshot_numbers = [0, 1, 12, 25, 49, 62, 77, 83, 87, 101]
+snapshot_numbers = [0, 1, 12, 25, 49, 62, 83, 101]
+snapshot_numbers = [snapshot_numbers[int(os.environ["SLURM_ARRAY_TASK_ID"])]]
 sphere_radius = 8.0  # Mpc/h
-n_spheres = 100
+n_spheres = 1000
 
 plot_dir = Path("plots")
 plot_dir.mkdir(exist_ok=True)
