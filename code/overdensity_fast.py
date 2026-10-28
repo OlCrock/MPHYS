@@ -1,10 +1,11 @@
-
 import h5py
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
-from scipy.spatial import cKDTree
+import yt
 from scipy.stats import norm
+from scipy.integrate import quad
+import sys
 
 plt.style.use("seaborn-v0_8-whitegrid")
 plt.rcParams.update({
@@ -29,101 +30,179 @@ plt.rcParams.update({
     "axes.spines.right": False,
 })
 
-# LEGACY GADGET simulation data
 base_path = Path(
     "/cephfs2/TMOX/legacy/GVD_C700_l100n2048_SLEGAC/dm_gadget/data"
 )
 
 snapshot_numbers = [0, 1, 3, 4, 6, 7, 9, 10, 12, 14, 15]
-sphere_radius = 10.0  # Mpc/h
+all_snapshot_numbers = snapshot_numbers.copy()
+batch_mode = len(sys.argv) > 1
+
+if batch_mode:
+    requested_snap = int(sys.argv[1])
+    if requested_snap not in all_snapshot_numbers:
+        raise ValueError(f"Snapshot {requested_snap} is not in {all_snapshot_numbers}")
+    snapshot_numbers = [requested_snap]
+    snapshot_index = all_snapshot_numbers.index(requested_snap)
+
+n_files_per_snapshot = 4
+sphere_radius = 10.0
 n_spheres = 100
+
 plot_dir = Path("plots")
 plot_dir.mkdir(exist_ok=True)
 
-# Reproducible sphere centres, reused across snapshots
-rng = np.random.default_rng(42)
+np.random.seed(42)
 
 
-def get_snapshot_files(snapdir):
-    """Return all HDF5 chunks for a snapshot."""
-    files = sorted(snapdir.glob("snapshot_*.hdf5"))
-    if not files:
-        raise FileNotFoundError(f"No HDF5 files found in {snapdir}")
-    return files
+def calculate_overdensities(ds, sphere_radius, n_spheres=1):
+    """Calculate density contrast in randomly placed spheres."""
 
-
-def get_snapshot_metadata(first_file):
-    """Read snapshot metadata without loading particle coordinates."""
-    with h5py.File(first_file, "r") as h:
-        header = h["Header"].attrs
-        box_size = float(header["BoxSize"])
-        scale_factor = float(header["Time"])
-        redshift = 1.0 / scale_factor - 1.0
-        hubble_param = float(header["HubbleParam"])
-
-    return box_size, redshift, hubble_param
-
-
-def calculate_overdensities(snapdir, sphere_radius, centres):
-    """
-    Count particles in periodic spheres, processing one HDF5 file at a time.
-
-    Each file's coordinates are indexed temporarily. Counts are accumulated
-    across all files, so every particle is included exactly once.
-    """
-    files = get_snapshot_files(snapdir)
-    box_size, redshift, hubble_param = get_snapshot_metadata(files[0])
-
-    counts = np.zeros(len(centres), dtype=np.int64)
-    n_total = 0
-
-    print(f"Redshift: {redshift:.3f}")
-    print(f"Box size: {box_size:.3f} Mpc/h")
-    print(f"Hubble parameter h: {hubble_param:.3f}")
-    print(f"HDF5 files: {len(files)}")
-
-    for file_num, filename in enumerate(files, start=1):
-        print(f"Processing file {file_num}/{len(files)}: {filename.name}")
-
-        with h5py.File(filename, "r") as h:
-            coords_ds = h["PartType1/Coordinates"]
-            n_file = coords_ds.shape[0]
-
-            # Read only this file's coordinates into memory.
-            coords = np.asarray(coords_ds[:], dtype=np.float64)
-            coords %= box_size
-
-            # Build a periodic spatial index for this file only.
-            tree = cKDTree(coords, boxsize=box_size)
-
-            # Count particles from this file inside every sphere.
-            counts += tree.query_ball_point(
-                centres,
-                r=sphere_radius,
-                return_length=True,
-            )
-
-            n_total += n_file
-
-            del tree, coords
+    box_size = ds.domain_width[0].to("Mpc/h").value
+    all_data = ds.all_data()
+    n_total = all_data["PartType1", "particle_position_x"].size
 
     box_volume = box_size**3
+    mean_density = n_total / box_volume
     sphere_volume = (4.0 / 3.0) * np.pi * sphere_radius**3
-    expected_count = n_total * sphere_volume / box_volume
 
-    overdensities = counts / expected_count - 1.0
+    print(f"Box size:       {box_size:.3f} Mpc/h")
+    print(f"Total particles: {n_total}")
+    print(f"Mean density:   {mean_density:.3e} particles/(Mpc/h)^3")
 
-    print(f"Total particles: {n_total:,}")
-    print(f"Mean count per sphere: {expected_count:,.1f}")
+    centres = np.random.uniform(0, box_size, size=(n_spheres, 3))
+    overdensities = []
 
-    return overdensities, redshift
+    for i, centre in enumerate(centres):
+        sp = ds.sphere(centre, (sphere_radius, "Mpc/h"))
+        n_sphere = sp["PartType1", "particle_position_x"].size
+
+        density = n_sphere / sphere_volume
+        delta = density / mean_density - 1.0
+        overdensities.append(delta)
+
+        if (i + 1) % 100 == 0:
+            print(f"Calculated {i + 1}/{n_spheres} spheres")
+
+    return np.asarray(overdensities)
 
 
-def plot_overdensity_histogram(overdensities, redshift, snap):
-    """Save the overdensity histogram and Gaussian fit."""
+def linear_sigma(H0, Omega_m, Omega_L, z, sigma0_sq):
+    """Return linear-theory variance evolved from z=0."""
+
+    def H(a):
+        return H0 * np.sqrt(Omega_m / a**3 + Omega_L)
+
+    def D(a):
+        integrand = lambda x: 1.0 / (x**3 * H(x)**3)
+        return H(a) * quad(integrand, 0, a)[0]
+
+    z = np.atleast_1d(z).astype(float)
+    a = 1.0 / (1.0 + z)
+    D_ratio = np.array([D(ai) for ai in a]) / D(1.0)
+
+    return D_ratio**2 * sigma0_sq
+
+
+def plot_sigma_by_z(redshifts, sigmas, sigma_theory=None):
+    fig, ax = plt.subplots(figsize=(8.5, 6.0))
+
+    z = np.asarray(redshifts, dtype=float)
+    sigma_sim = np.asarray(sigmas, dtype=float)
+    order = np.argsort(z)
+
+    ax.plot(
+        z[order], sigma_sim[order],
+        marker="o", linestyle="-", linewidth=2.2, markersize=6,
+        color="#2C5F8A", label="Simulation",
+    )
+
+    if sigma_theory is not None:
+        sigma_theory = np.asarray(sigma_theory, dtype=float)
+        ax.plot(
+            z[order], sigma_theory[order],
+            marker="s", linestyle="--", linewidth=2.0, markersize=5,
+            color="#C76A4A",
+            label="Linear growth reference (normalised to sigma8)",
+        )
+
+    ax.set_xlabel("Redshift z")
+    ax.set_ylabel(r"Standard deviation $\sigma_\delta$")
+    ax.set_title(
+        rf"Overdensity amplitude for $R={sphere_radius}\,h^{{-1}}$ Mpc"
+    )
+    ax.grid(True, alpha=0.25)
+    ax.legend(loc="best")
+
+    plt.tight_layout()
+    plt.savefig(
+        plot_dir / f"sigma_by_z_R{sphere_radius}_GADGET2048.png",
+        dpi=200,
+    )
+    plt.close(fig)
+
+
+redshifts = []
+means = []
+stds = []
+sigmas = []
+
+for snap in snapshot_numbers:
+    print()
+    print("=" * 60)
+    print(f"SNAPSHOT {snap:03d}")
+    print("=" * 60)
+
+    snapdir = base_path / f"snapdir_{snap:03d}"
+    snapshot_file = snapdir / f"snapshot_{snap:03d}.0.hdf5"
+
+    ds = yt.load(
+        str(snapshot_file),
+        unit_base={"length": (1.0, "Mpc/h")},
+        bounding_box=np.array([[0, 100], [0, 100], [0, 100]]),
+    )
+
+    ds.force_periodicity()
+
+    redshift = float(ds.current_redshift)
+    redshifts.append(redshift)
+
+    print(ds)
+    print("Redshift:", redshift)
+    print("Code length:", ds.length_unit)
+    print("Domain width:", ds.domain_width)
+    print(
+        "4 Mpc/h in code units:",
+        ds.quan(4.0, "Mpc/h").to("code_length"),
+    )
+
+    # Advance the RNG to the same state as the original sequential run.
+    # Each previous snapshot consumed n_spheres * 3 uniform draws.
+    if batch_mode:
+        np.random.uniform(
+            0, 1, size=(snapshot_index * n_spheres, 3)
+        )
+
+    overdensities = calculate_overdensities(
+        ds, sphere_radius=sphere_radius, n_spheres=n_spheres
+    )
+
+    mean_delta = np.mean(overdensities)
+    std_delta = np.std(overdensities)
+
+    means.append(mean_delta)
+    stds.append(std_delta)
+
     mu, sigma = norm.fit(overdensities)
+    sigmas.append(sigma)
 
-    fig, ax = plt.subplots(figsize=(8, 6))
+    print(f"Mean delta:      {mean_delta:.4f}")
+    print(f"Std delta:       {std_delta:.4f}")
+    print(f"Gaussian mu:     {mu:.4f}")
+    print(f"Gaussian sigma:  {sigma:.4f}")
+
+    fig, ax = plt.subplots(figsize=(8.0, 6.0))
+
     ax.hist(
         overdensities,
         bins=min(100, max(5, n_spheres)),
@@ -142,132 +221,65 @@ def plot_overdensity_histogram(overdensities, redshift, snap):
     )
 
     if sigma > 0:
+        gaussian = norm.pdf(delta_range, mu, sigma)
         ax.plot(
-            delta_range,
-            norm.pdf(delta_range, mu, sigma),
-            linewidth=2.2,
-            color="#C44E52",
-            label=rf"Gaussian fit: $\mu={mu:.3f}$, $\sigma={sigma:.3f}$",
+            delta_range, gaussian,
+            linewidth=2.2, color="#C44E52",
+            label=(
+                rf"Gaussian fit: $\mu={mu:.3f}$, "
+                rf"$\sigma={sigma:.3f}$, $z={redshift:.2f}$"
+            ),
         )
 
     ax.axvline(0, linestyle="--", linewidth=1.2, color="#2E2E2E")
     ax.set_xlabel(r"Overdensity $\delta$")
     ax.set_ylabel("Probability density")
-    ax.set_title(
-        rf"$R={sphere_radius}\,h^{{-1}}$ Mpc, $z={redshift:.2f}$"
-    )
-    ax.legend(loc="best", fontsize=9)
+    ax.set_title(rf"$R={sphere_radius}\,h^{{-1}}$ Mpc")
+    ax.legend(loc="best", frameon=True, fontsize=9)
     ax.grid(True, alpha=0.25)
 
     plt.tight_layout()
     plt.savefig(
-        plot_dir / f"snapshot_{snap:03d}_overdensity_GADGET2048_HDF5.png",
+        plot_dir / f"snapshot_{snap:03d}_overdensity_GADGET2048_LARGETEST.png",
         dpi=200,
     )
     plt.close(fig)
 
-    return mu, sigma
+    # Each batch task writes its own result file.
+    if batch_mode:
+        result_path = plot_dir / f"variance_snapshot_{snap:03d}.csv"
+        np.savetxt(
+            result_path,
+            [[snap, redshift, sigma, sigma**2]],
+            delimiter=",",
+            header="snapshot,redshift,sigma_delta,variance",
+            comments="",
+            fmt=["%d", "%.8e", "%.8e", "%.8e"],
+        )
+        print("Snapshot result saved to:", result_path.resolve())
 
 
-def plot_sigma_by_z(redshifts, sigmas):
-    """Plot measured overdensity standard deviation against redshift."""
-    z = np.asarray(redshifts, dtype=float)
-    sigma_sim = np.asarray(sigmas, dtype=float)
-    order = np.argsort(z)
-
-    fig, ax = plt.subplots(figsize=(8.5, 6.0))
-    ax.plot(
-        z[order],
-        sigma_sim[order],
-        marker="o",
-        linestyle="-",
-        linewidth=2.2,
-        markersize=6,
-        color="#2C5F8A",
-        label="Simulation",
+if not batch_mode:
+    varr_theory = linear_sigma(
+        H0=67.4,
+        Omega_m=0.315,
+        Omega_L=0.685,
+        z=np.array(redshifts),
+        sigma0_sq=0.811**2,
     )
 
-    ax.set_xlabel("Redshift z")
-    ax.set_ylabel(r"Standard deviation $\sigma_\delta$")
-    ax.set_title(
-        rf"Overdensity amplitude for $R={sphere_radius}\,h^{{-1}}$ Mpc"
-    )
-    ax.grid(True, alpha=0.25)
-    ax.legend(loc="best")
+    sigma_theory = np.sqrt(varr_theory)
 
-    plt.tight_layout()
-    plt.savefig(
-        plot_dir / f"sigma_by_z_R{sphere_radius}_GADGET2048_HDF5.png",
-        dpi=200,
-    )
-    plt.close(fig)
+    plot_sigma_by_z(redshifts, sigmas, sigma_theory=sigma_theory)
 
-
-def save_variance_csv(redshifts, sigmas):
-    """Save redshift, standard deviation and variance to CSV."""
-    sigmas = np.asarray(sigmas)
-    variance = sigmas**2
+    variance = np.asarray(sigmas)**2
     data = np.column_stack((redshifts, sigmas, variance))
-
-    csv_path = (
-        plot_dir / f"variance_by_z_R{sphere_radius}_GADGET2048_HDF5.csv"
-    )
+    header = "redshift,sigma_delta,variance"
+    csv_path = plot_dir / f"variance_by_z_R{sphere_radius}_GADGET2048.csv"
     np.savetxt(
-        csv_path,
-        data,
-        delimiter=",",
-        header="redshift,sigma_delta,variance",
-        comments="",
-        fmt="%.8e",
+        csv_path, data, delimiter=",", header=header,
+        comments="", fmt="%.8e",
     )
     print("Variance CSV saved to:", csv_path.resolve())
 
-
-# Generate the same sphere centres for every snapshot.
-# This assumes all snapshots share the same 100 Mpc/h box.
-first_snapdir = base_path / f"snapdir_{snapshot_numbers[0]:03d}"
-first_files = get_snapshot_files(first_snapdir)
-box_size, _, _ = get_snapshot_metadata(first_files[0])
-centres = rng.uniform(0.0, box_size, size=(n_spheres, 3))
-
-redshifts = []
-means = []
-stds = []
-sigmas = []
-
-for snap in snapshot_numbers:
-    print()
-    print("=" * 60)
-    print(f"SNAPSHOT {snap:03d}")
-    print("=" * 60)
-
-    snapdir = base_path / f"snapdir_{snap:03d}"
-
-    overdensities, redshift = calculate_overdensities(
-        snapdir,
-        sphere_radius=sphere_radius,
-        centres=centres,
-    )
-
-    redshifts.append(redshift)
-
-    mean_delta = np.mean(overdensities)
-    std_delta = np.std(overdensities)
-    mu, sigma = plot_overdensity_histogram(
-        overdensities, redshift, snap
-    )
-
-    means.append(mean_delta)
-    stds.append(std_delta)
-    sigmas.append(sigma)
-
-    print(f"Mean delta:      {mean_delta:.4f}")
-    print(f"Std delta:       {std_delta:.4f}")
-    print(f"Gaussian mu:     {mu:.4f}")
-    print(f"Gaussian sigma:  {sigma:.4f}")
-
-plot_sigma_by_z(redshifts, sigmas)
-save_variance_csv(redshifts, sigmas)
-
 print("\nFinished. Plots saved to:", plot_dir.resolve())
-
