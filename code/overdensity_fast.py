@@ -46,8 +46,8 @@ if batch_mode:
     snapshot_index = all_snapshot_numbers.index(requested_snap)
 
 n_files_per_snapshot = 4
-sphere_radius = 10.0
-n_spheres = 100
+sphere_radius = 8
+n_spheres = 1
 
 plot_dir = Path("plots")
 plot_dir.mkdir(exist_ok=True)
