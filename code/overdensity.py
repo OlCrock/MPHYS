@@ -28,7 +28,7 @@ base_path = Path(
 snapshot_numbers = [0, 1, 12, 25, 49, 62, 83, 101]
 snapshot_numbers = [snapshot_numbers[int(os.environ["SLURM_ARRAY_TASK_ID"])]]
 sphere_radius = 8.0  # Mpc/h
-n_spheres = 1000
+n_spheres = 1
 
 plot_dir = Path("plots")
 plot_dir.mkdir(exist_ok=True)
@@ -235,24 +235,19 @@ def main():
         del ds
         print(f"Finished snapshot {snap:03d}", flush=True)
 
-    plot_sigma_by_redshift(redshifts, stds)
-
-    # Save the measured summary statistics.
-    results_file = plot_dir / "overdensity_summary.txt"
-    results = np.column_stack([
-        snapshot_numbers,
-        redshifts,
-        means,
-        stds,
-        fitted_sigmas,
+    results_file = plot_dir / f"overdensity_snapshot_{snap:03d}_summary.txt"
+    results = np.array([
+        snap,
+        redshifts[0],
+        means[0],
+        stds[0],
+        fitted_sigmas[0],
     ])
 
     np.savetxt(
         results_file,
-        results,
-        header=(
-            "snapshot redshift mean_delta std_delta gaussian_sigma"
-        ),
+        results.reshape(1, -1),
+        header="snapshot redshift mean_delta std_delta gaussian_sigma",
         fmt=["%d", "%.8e", "%.8e", "%.8e", "%.8e"],
     )
 
