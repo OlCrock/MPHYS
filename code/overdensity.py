@@ -24,9 +24,9 @@ base_path = Path(
 )
 
 # Start with one snapshot and a small test
-snapshot_numbers = [0]
-sphere_radius = 10.0  # Mpc/h
-n_spheres = 10
+snapshot_numbers = [0, 1, 12, 25, 49, 62, 77, 83, 87, 101]
+sphere_radius = 8.0  # Mpc/h
+n_spheres = 100
 
 plot_dir = Path("plots")
 plot_dir.mkdir(exist_ok=True)
