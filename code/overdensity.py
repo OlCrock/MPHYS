@@ -34,7 +34,7 @@ base_path = Path(
     "/cephfs2/TMOX/legacy/GVD_C700_l100n2048_SLEGAC/dm_gadget/data"
 )
 
-snapshot_numbers = [15]
+snapshot_numbers = [25]
                     #0, 1, 3, 4, 6, 7, 9, 10, 12, 14, 15]
 n_files_per_snapshot = 4
 sphere_radius = 8  # Mpc/h
