@@ -43,7 +43,7 @@ def linear_sigma(pk, k, R, z=0.0, z_ref=99.0, Omega_m=0.3, Omega_L=0.7):
 power_spectrum = np.loadtxt("generated_data/input_powerspec 2.txt")
 
 k = power_spectrum[:, 0]
-pk = power_spectrum[:, 6]
+pk = power_spectrum[:, 1]
 
 # Smoothing radii
 R = np.linspace(1, 51, 101)
