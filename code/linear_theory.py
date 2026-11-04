@@ -1,4 +1,3 @@
-
 import numpy as np
 import pandas as pd
 import h5py
@@ -38,10 +37,10 @@ with h5py.File("optimised/output/variances.h5", "r") as f:
     redshifts = f["redshift"][:]
     R = f["radii"][:]
 
-# Load initial-condition power spectrum (z=99)
+# Load CDM power spectrum at z=99
 power_spectrum = np.loadtxt("generated_data/input_powerspec 2.txt")
 k = power_spectrum[:, 0]
-pk = power_spectrum[:, 5]
+pk = power_spectrum[:, 1]  # P_cdm
 
 # Calculate sigma(R) at z=99
 sigma_ref = np.array([
@@ -49,13 +48,10 @@ sigma_ref = np.array([
 ])
 
 # Evolve to every LEGACY snapshot redshift
-growth_ratios = (
-    growth_factor(redshifts) / growth_factor(99.0)
-)
-
+growth_ratios = growth_factor(redshifts) / growth_factor(99.0)
 sigma_all = growth_ratios[:, None] * sigma_ref[None, :]
 
-# Save results in long format
+# Save results
 df = pd.DataFrame({
     "Redshift": np.repeat(redshifts, len(R)),
     "Radius (Mpc/h)": np.tile(R, len(redshifts)),
@@ -65,14 +61,16 @@ df = pd.DataFrame({
 df.to_csv("linear_sigma.csv", index=False)
 
 # Report results
-print(f"Initial-condition redshift: z = 99")
+print("Power spectrum: P_cdm")
+print("Initial-condition redshift: z = 99")
 print(f"Growth factor D(0)/D(99): {1/growth_factor(99.0):.6f}")
 print(f"Number of LEGACY snapshots: {len(redshifts)}")
 print(f"Number of radii: {len(R)}")
-print("\nSigma8 at each snapshot:")
+print("\nCDM sigma8 at each snapshot:")
 
 for z, sigma in zip(redshifts, sigma_all):
     print(f"z = {z:10.6f}  sigma8 = {np.interp(8, R, sigma):.6f}")
 
 print("\nSaved linear_sigma.csv")
+
 
