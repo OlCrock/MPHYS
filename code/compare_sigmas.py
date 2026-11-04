@@ -27,7 +27,7 @@ for ax, target in zip(axes, target_z):
     # Match theoretical redshift
     theory_z = linear_df.index[np.argmin(np.abs(linear_df.index - z))]
 
-    ax.plot(sim_radii, np.sqrt(sim_variance[i]), "o", markersize =2, label="LEGACY simulation")
+    ax.plot(sim_radii, sim_variance[i], "o", markersize =2, label="LEGACY simulation")
     ax.plot(linear_df.columns, linear_df.loc[theory_z], "-", label="Linear theory (CAMB)")
 
     ax.set_title(f"z = {z:.3f}")
@@ -39,5 +39,5 @@ for ax, target in zip(axes, target_z):
     ax.legend()
 
 plt.tight_layout()
-plt.savefig("linear_theory_comparison.png", dpi=200)
+plt.savefig("linear_theory_comparison_initial.png", dpi=200)
 plt.show()
