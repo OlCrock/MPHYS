@@ -1,5 +1,7 @@
+
 import numpy as np
 import pandas as pd
+import h5py
 from scipy.integrate import quad
 
 
@@ -9,7 +11,6 @@ def window_function(k, R):
 
 
 def growth_factor(z, Omega_m=0.285, Omega_L=0.715):
-    """Linear growth factor D(z), normalized so D(0)=1 in an LCDM cosmology."""
     z = np.atleast_1d(np.asarray(z, dtype=float))
 
     def H(a):
@@ -26,49 +27,52 @@ def growth_factor(z, Omega_m=0.285, Omega_L=0.715):
     return float(out[0]) if out.size == 1 else out
 
 
-def linear_sigma(pk, k, R, z=0.0, z_ref=99.0, Omega_m=0.3, Omega_L=0.7):
-    """Return sigma(R) at redshift z, assuming pk is the power spectrum at z_ref."""
+def linear_sigma(pk, k, R):
     integrand = pk * k**2 * window_function(k, R)**2
     sigma_squared = np.trapezoid(integrand, k) / (2 * np.pi**2)
-    sigma = np.sqrt(sigma_squared)
+    return np.sqrt(sigma_squared)
 
-    if np.isclose(z, z_ref):
-        return sigma
 
-    growth_ratio = growth_factor(z, Omega_m, Omega_L) / growth_factor(z_ref, Omega_m, Omega_L)
-    return sigma * growth_ratio
-
+# Load LEGACY snapshot redshifts and radii
+with h5py.File("optimised/output/variances.h5", "r") as f:
+    redshifts = f["redshift"][:]
+    R = f["radii"][:]
 
 # Load initial-condition power spectrum (z=99)
 power_spectrum = np.loadtxt("generated_data/input_powerspec 2.txt")
-
 k = power_spectrum[:, 0]
-pk = power_spectrum[:, 1]
+pk = power_spectrum[:, 5]
 
-# Smoothing radii
-R = np.linspace(1, 51, 101)
-
-# Calculate sigma at the reference redshift z=99
+# Calculate sigma(R) at z=99
 sigma_ref = np.array([
-    linear_sigma(pk, k, r, z=99.0, z_ref=99.0) for r in R
-], dtype=float)
+    linear_sigma(pk, k, r) for r in R
+])
 
-# Evolve to z=0 using linear growth, assuming the loaded power spectrum is at z=99
-sigma_z0 = np.array([
-    linear_sigma(pk, k, r, z=0.0, z_ref=99.0) for r in R
-], dtype=float)
+# Evolve to every LEGACY snapshot redshift
+growth_ratios = (
+    growth_factor(redshifts) / growth_factor(99.0)
+)
 
-# Save theoretical standard deviation at z=0
-# (sigma at z=99 is used internally as the initial spectrum normalization)
+sigma_all = growth_ratios[:, None] * sigma_ref[None, :]
+
+# Save results in long format
 df = pd.DataFrame({
-    "Radius (Mpc/h)": R,
-    "Sigma_z0": sigma_z0,
-    "Sigma_z99": sigma_ref,
+    "Redshift": np.repeat(redshifts, len(R)),
+    "Radius (Mpc/h)": np.tile(R, len(redshifts)),
+    "Sigma": sigma_all.flatten()
 })
 
 df.to_csv("linear_sigma.csv", index=False)
 
+# Report results
 print(f"Initial-condition redshift: z = 99")
-print(f"Growth factor D(z=0) / D(z=99): {growth_factor(0.0) / growth_factor(99.0):.6f}")
-print(f"Sigma8 at z=0: {np.interp(8, R, sigma_z0):.6f}")
-print(f"Sigma8 at z=99: {np.interp(8, R, sigma_ref):.6f}")
+print(f"Growth factor D(0)/D(99): {1/growth_factor(99.0):.6f}")
+print(f"Number of LEGACY snapshots: {len(redshifts)}")
+print(f"Number of radii: {len(R)}")
+print("\nSigma8 at each snapshot:")
+
+for z, sigma in zip(redshifts, sigma_all):
+    print(f"z = {z:10.6f}  sigma8 = {np.interp(8, R, sigma):.6f}")
+
+print("\nSaved linear_sigma.csv")
+
