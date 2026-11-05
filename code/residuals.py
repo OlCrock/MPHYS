@@ -13,7 +13,7 @@ with h5py.File("optimised/output/variances.h5", "r") as f:
 linear_df = pd.read_csv("linear_sigma.csv")
 
 # Select redshift to plot
-target_z = 3.031519
+target_z = 13
 
 # Find nearest LEGACY snapshot
 i = np.argmin(np.abs(sim_redshifts - target_z))
@@ -45,5 +45,5 @@ plt.xlim(1, 20)
 plt.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig("residuals.png", dpi=300)
+plt.savefig(f"residuals_provided_{z:.3f}.png", dpi=300)
 plt.show()
