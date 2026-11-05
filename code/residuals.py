@@ -1,76 +1,49 @@
 import numpy as np
+import pandas as pd
 import h5py
 import matplotlib.pyplot as plt
 
-# Select redshift
-target_z = 13
-
-# Load CAMB data
-with open("generated_data/CAMBlinear_sigma.csv", "r") as f:
-    camb_radii = np.array(f.readline().strip().split(",")[1:], dtype=float)
-
-linear_camb = np.loadtxt(
-    "generated_data/CAMBlinear_sigma.csv",
-    delimiter=",",
-    skiprows=1
-)
-
-camb_redshifts = linear_camb[:, 0]
-camb_sigma = linear_camb[:, 1:]
-
-# Load LEGACY data
+# Load LEGACY simulation data
 with h5py.File("optimised/output/variances.h5", "r") as f:
     sim_redshifts = f["redshift"][:]
     sim_radii = f["radii"][:]
     sim_sigma = np.sqrt(f["variance"][:])
 
-# Find selected LEGACY redshift
-idx = np.argmin(np.abs(sim_redshifts - target_z))
-z = sim_redshifts[idx]
+# Load theoretical linear sigma
+linear_df = pd.read_csv("linear_sigma.csv")
 
-# Find matching CAMB redshift
-camb_idx = np.argmin(np.abs(camb_redshifts - z))
+# Select redshift to plot
+target_z = 3.031519
 
-if not np.isclose(camb_redshifts[camb_idx], z):
-    raise ValueError(
-        f"No matching CAMB redshift found for LEGACY z = {z}"
-    )
+# Find nearest LEGACY snapshot
+i = np.argmin(np.abs(sim_redshifts - target_z))
+z = sim_redshifts[i]
 
-print(f"LEGACY redshift: {z}")
-print(f"CAMB redshift:   {camb_redshifts[camb_idx]}")
+# Select theoretical values at the same redshift
+theory = linear_df[
+    np.isclose(linear_df["Redshift"], z, atol=1e-5)
+].sort_values("Radius (Mpc/h)")
 
-# Extract sigma values
-legacy_sigma = sim_sigma[idx, :]
-camb_sigma_z = camb_sigma[camb_idx, :]
+linear_radii = theory["Radius (Mpc/h)"].values
+linear_sigma = theory["Sigma"].values
 
-# Interpolate CAMB onto LEGACY radii
-camb_matched = np.interp(
-    sim_radii,
-    camb_radii,
-    camb_sigma_z
-)
+# Interpolate theory onto LEGACY radii
+theory_matched = np.interp(sim_radii, linear_radii, linear_sigma)
 
 # Calculate fractional residuals
-residuals = (legacy_sigma - camb_matched) / camb_matched
+residuals = (sim_sigma[i] - theory_matched) / theory_matched
 
-# Plot residuals
+# Plot
 plt.figure(figsize=(8, 5))
-
-plt.plot(
-    sim_radii,
-    residuals,
-    marker="o",
-    markersize=4
-)
-
 plt.axhline(0, color="black", linestyle="--", linewidth=1)
+plt.plot(sim_radii, residuals, "o", markersize=3)
 
-plt.xlabel(r"$R\ [\mathrm{Mpc}/h]$")
-plt.ylabel(r"Fractional residual")
-plt.title(f"LEGACY vs CAMB at z = {z:.3f}")
+plt.xlabel(r"Radius ($\mathrm{Mpc}/h$)")
+plt.ylabel("Fractional residual")
+plt.title(f"LEGACY vs linear theory (z = {z:.3f})")
+plt.xlim(1, 20)
+plt.grid(True, alpha=0.3)
 
-plt.grid(alpha=0.3)
 plt.tight_layout()
-
-plt.savefig(f"optimised/output/residuals_{z:.3f}.png", dpi=300)
+plt.savefig("residuals.png", dpi=300)
 plt.show()
