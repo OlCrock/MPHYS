@@ -3,7 +3,7 @@ import h5py
 import matplotlib.pyplot as plt
 
 # Select redshift
-target_z = 0.0
+target_z = 13
 
 # Load CAMB data
 with open("generated_data/CAMBlinear_sigma.csv", "r") as f:
@@ -72,5 +72,5 @@ plt.title(f"LEGACY vs CAMB at z = {z:.3f}")
 plt.grid(alpha=0.3)
 plt.tight_layout()
 
-plt.savefig("plots/residuals.png", dpi=300)
+plt.savefig(f"optimised/output/residuals_{z:.3f}.png", dpi=300)
 plt.show()
