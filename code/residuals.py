@@ -12,8 +12,9 @@ linear_camb = np.loadtxt(
 camb_radii = np.loadtxt(
     "generated_data/CAMBlinear_sigma.csv",
     delimiter=",",
-    max_rows=1
-)[1:]
+    skiprows=1,
+    max_rows=0
+)
 
 camb_redshifts = linear_camb[:, 0]
 camb_sigma = linear_camb[:, 1:]
