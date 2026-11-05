@@ -42,6 +42,18 @@ power_spectrum = np.loadtxt("generated_data/input_powerspec 2.txt")
 k = power_spectrum[:, 0]
 pk = power_spectrum[:, 1]  # P_cdm
 
+# Normalise power spectrum to sigma8 = 0.828 at z=0
+sigma8_raw = linear_sigma(pk, k, 8)
+sigma8_raw_z0 = sigma8_raw / growth_factor(99.0)
+
+sigma8_target = 0.828
+normalisation = (sigma8_target / sigma8_raw_z0)**2
+
+pk *= normalisation
+
+print(f"Raw sigma8 at z=0: {sigma8_raw_z0:.6f}")
+print(f"Power spectrum normalisation: {normalisation:.6f}")
+
 # Calculate sigma(R) at z=99
 sigma_ref = np.array([
     linear_sigma(pk, k, r) for r in R
