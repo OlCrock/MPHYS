@@ -3,7 +3,7 @@ import numpy as np
 
 BASE_PATH = Path("/cephfs2/TMOX/legacy/GVD_C700_l100n2048_SLEGAC/dm_gadget/data")
 OUT_DIR = Path("output")              # all products go here
-SNAPSHOTS = [55, 60, 65, 70, 75, 78, 81, 88, 95, 101]
+SNAPSHOTS = [65, 70, 75, 78, 81, 84, 88, 95, 97, 101]
 N_FILES = 128                           # files per snapshot
 N_PARTS = 4                           # sub-chunks per file (raise if RAM is tight)
 BOX = 100.0                           # Mpc/h
