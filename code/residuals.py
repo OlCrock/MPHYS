@@ -24,18 +24,24 @@ with h5py.File("optimised/output/variances.h5", "r") as f:
     sim_radii = f["radii"][:]
     sim_sigma = np.sqrt(f["variance"][:])
 
-# Check redshift arrays match
-if not np.allclose(sim_redshifts, camb_redshifts):
-    raise ValueError("LEGACY and CAMB redshift arrays do not match.")
-
-# Select the matching redshift
-idx = np.where(np.isclose(sim_redshifts, target_z))[0][0]
-
+# Find selected LEGACY redshift
+idx = np.argmin(np.abs(sim_redshifts - target_z))
 z = sim_redshifts[idx]
 
-# Extract sigma values at this redshift
+# Find matching CAMB redshift
+camb_idx = np.argmin(np.abs(camb_redshifts - z))
+
+if not np.isclose(camb_redshifts[camb_idx], z):
+    raise ValueError(
+        f"No matching CAMB redshift found for LEGACY z = {z}"
+    )
+
+print(f"LEGACY redshift: {z}")
+print(f"CAMB redshift:   {camb_redshifts[camb_idx]}")
+
+# Extract sigma values
 legacy_sigma = sim_sigma[idx, :]
-camb_sigma_z = camb_sigma[idx, :]
+camb_sigma_z = camb_sigma[camb_idx, :]
 
 # Interpolate CAMB onto LEGACY radii
 camb_matched = np.interp(
