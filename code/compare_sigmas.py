@@ -15,10 +15,12 @@ sim_sigma = np.sqrt(sim_variance)
 # Load theoretical linear sigma
 linear_df = pd.read_csv("linear_sigma.csv")
 
-# Select actual LEGACY redshifts
-target_z = [99.000000, 19.908000, 13.989296, 3.031519]
 
-fig, axes = plt.subplots(2, 2, figsize=(12, 9))
+
+# Select actual LEGACY redshifts
+target_z = [99.000000, 3.031519, 2.0, 1.5, 1.0, 0.0]
+
+fig, axes = plt.subplots(3, 2, figsize=(12, 9))
 axes = axes.flatten()
 
 for ax, target in zip(axes, target_z):
