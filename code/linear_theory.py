@@ -40,7 +40,7 @@ with h5py.File("optimised/output/variances.h5", "r") as f:
 # Load CDM power spectrum at z=99
 power_spectrum = np.loadtxt("generated_data/input_powerspec 2.txt")
 k = power_spectrum[:, 0]
-pk = power_spectrum[:, 1]  # P_cdm
+pk = power_spectrum[:, 5]  # P_cdm
 
 # Normalise power spectrum to sigma8 = 0.828 at z=0
 sigma8_raw = linear_sigma(pk, k, 8)

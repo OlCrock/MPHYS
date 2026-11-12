@@ -12,10 +12,23 @@ with h5py.File("optimised/output/variances.h5", "r") as f:
 
 sim_sigma8 = np.sqrt(sim_variance[:, sim_radii == 8.0].flatten())
 
-sim_sigma8 = sim_sigma8[:-1]
-sim_redshifts = sim_redshifts[:-1]
+sim_sigma8 = sim_sigma8[1:]
+sim_redshifts = sim_redshifts[1:]
 
-plt.scatter(sim_redshifts, sim_sigma8, label="Simulation", color="blue")
+sigma_lin = np.loadtxt("linear_sigma.csv", delimiter=",", skiprows=1)
+
+camb_redshifts = sigma_lin[sigma_lin[:, 1] == 8.0, 0]
+camb_sigma8 = sigma_lin[sigma_lin[:, 1] == 8.0, 2]
+
+# Match to simulation redshifts
+matched_sigma8 = np.array([
+    camb_sigma8[np.argmin(np.abs(camb_redshifts - z))]
+    for z in sim_redshifts
+])
+
+
+plt.scatter(sim_redshifts, sim_sigma8/matched_sigma8 - 1, label="Simulation", color="blue")
+plt.axhline(0, color="black", linestyle="--", label="Linear Theory")
 plt.xlabel("Redshift (z)")
 plt.ylabel(r"$\sigma_8$")
 plt.show()
