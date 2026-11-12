@@ -1,131 +1,84 @@
-import numpy as np
-import pandas as pd
+"""Append new snapshot results to the existing variances.h5 file."""
+
 import h5py
-import matplotlib.pyplot as plt
+import numpy as np
+import config as c
 
-# Load LEGACY data
-with h5py.File("optimised/output/variances.h5", "r") as f:
-    sim_redshifts = f["redshift"][:]
-    sim_snapshots = f["snapshots"][:]
-    sim_radii = f["radii"][:]
-    sim_variance = f["variance"][:]
-    counts_by_snap = {
-        name: f["counts"][name][:] for name in f["counts"].keys()
+new_snapshots = np.array(c.SNAPSHOTS, dtype=int)
+
+with h5py.File(c.FINAL_FILE, "r+") as out:
+
+    old_snapshots = out["snapshots"][:].astype(int)
+
+    overlap = np.intersect1d(old_snapshots, new_snapshots)
+    if len(overlap):
+        raise ValueError(f"Snapshots already exist: {overlap}")
+
+    new_var = []
+    new_mean = []
+    new_z = []
+    new_counts = {}
+
+    for snap in new_snapshots:
+        files = sorted(c.COUNTS_DIR.glob(f"snap{snap:03d}_f*_p*.h5"))
+
+        if len(files) != c.N_FILES * c.N_PARTS:
+            raise RuntimeError(
+                f"Snapshot {snap}: expected {c.N_FILES*c.N_PARTS} "
+                f"chunks, found {len(files)}"
+            )
+
+        total = 0
+
+        for fn in files:
+            with h5py.File(fn, "r") as f:
+                total += f["counts"][:]
+                redshift = float(f.attrs["redshift"])
+                n_total = int(f.attrs["n_total"])
+
+        nbar = n_total / c.BOX**3 * (4 / 3) * np.pi * c.RADII**3
+        delta = total / nbar - 1.0
+
+        new_var.append(delta.var(axis=0))
+        new_mean.append(delta.mean(axis=0))
+        new_z.append(redshift)
+        new_counts[f"snap{snap:03d}"] = total
+
+        print(f"Processed snapshot {snap}: z={redshift:.6f}")
+
+    new_var = np.array(new_var)
+    new_mean = np.array(new_mean)
+    new_z = np.array(new_z)
+
+    # Preserve existing measurements and append new ones.
+    combined = {
+        "snapshots": np.concatenate((old_snapshots, new_snapshots)),
+        "variance": np.concatenate((out["variance"][:], new_var)),
+        "mean_delta": np.concatenate((out["mean_delta"][:], new_mean)),
+        "redshift": np.concatenate((out["redshift"][:], new_z))
     }
-    n_spheres = f.attrs["n_spheres"]
-    box = f.attrs["box"]
 
-# Convert variance to standard deviation
-sim_sigma = np.sqrt(sim_variance)
+    # Extend the existing datasets without changing their values.
+    for name, data in combined.items():
+        temp = name + "_new"
+        out.create_dataset(temp, data=data)
+        del out[name]
+        out.move(temp, name)
 
-# Load theoretical linear sigma
-linear_df = pd.read_csv("linear_sigma.csv")
+    # Add the new raw counts.
+    for name, data in new_counts.items():
+        out.create_dataset(
+            f"counts/{name}",
+            data=data,
+            compression="gzip"
+        )
 
-
-def poisson_errors(counts, radii, n_total, box, n_boot=2000):
-
-    rng = np.random.default_rng(42)
-
-    # Expected number of particles per sphere
-    nbar = (
-        n_total / box**3
-        * (4 / 3) * np.pi * radii**3
+    out.attrs.update(
+        n_spheres=c.N_SPHERES,
+        seed=c.SEED,
+        box=c.BOX
     )
 
-    # Poisson bootstrap
-    boot_sigma = np.empty((n_boot, len(radii)))
-
-    for i in range(n_boot):
-
-        samples = rng.poisson(lam=nbar, size=counts.shape)
-
-        delta = samples / nbar - 1.0
-
-        boot_sigma[i] = np.sqrt(delta.var(axis=0))
-
-    # Asymmetric 16th and 84th percentile uncertainties
-    lower = np.percentile(boot_sigma, 16, axis=0)
-    upper = np.percentile(boot_sigma, 84, axis=0)
-
-    return lower, upper
-
-
-# Select actual LEGACY redshifts
-target_z = [99.000000, 3.031519, 2.0, 1.5, 1.0, 0.0]
-
-fig, axes = plt.subplots(3, 2, figsize=(12, 9))
-axes = axes.flatten()
-
-for ax, target in zip(axes, target_z):
-
-    # Find LEGACY snapshot
-    i = np.argmin(np.abs(sim_redshifts - target))
-    z = sim_redshifts[i]
-
-    # Get snapshot counts
-    snapshot_id = sim_snapshots[i]
-    counts = counts_by_snap[f"snap{snapshot_id:03d}"]
-
-    # Recover total particle count from the mean sphere counts
-    nbar = (
-        counts.mean(axis=0)
-        / (1 + sim_sigma[i] * 0)  # Placeholder removed below
-    )
-
-    # Calculate expected counts using the simulation's total particle count
-    # This is recovered from the stored counts and sphere volumes.
-    n_total = (
-        counts.mean(axis=0)[0]
-        * box**3
-        / ((4 / 3) * np.pi * sim_radii[0]**3)
-    )
-
-    err_low, err_high = poisson_errors(
-        counts, sim_radii, n_total, box
-    )
-
-    # Convert percentile bounds into distances from measured sigma
-    err_down = np.maximum(sim_sigma[i] - err_low, 0)
-    err_up = np.maximum(err_high - sim_sigma[i], 0)
-
-    # Extract theoretical values at the same redshift
-    theory = linear_df[
-        np.isclose(linear_df["Redshift"], z, atol=1e-5)
-    ].sort_values("Radius (Mpc/h)")
-
-    linear_radii = theory["Radius (Mpc/h)"].values
-    linear_sigma = theory["Sigma"].values
-
-    # Plot LEGACY with error bars
-    ax.errorbar(
-        sim_radii,
-        sim_sigma[i],
-        yerr=[err_down, err_up],
-        fmt="o",
-        markersize=3,
-        label="LEGACY simulation",
-        capsize=2,
-        color="#2C5F8A",
-    )
-
-    # Plot linear theory
-    ax.plot(
-        linear_radii,
-        linear_sigma,
-        "-",
-        label="Linear theory (CAMB)",
-        color="#C76A4A",
-        linewidth=2,
-    )
-
-    ax.set_title(f"z = {z:.3f}")
-    ax.set_xlabel(r"Radius ($\mathrm{Mpc}/h$)")
-    ax.set_ylabel(r"Standard deviation ($\sigma$)")
-    ax.set_yscale("log")
-    ax.set_xlim(1, 20)
-    ax.grid(True, which="both", alpha=0.3)
-    ax.legend()
-
-plt.tight_layout()
-plt.savefig("linear_theory_comparison_initial.png", dpi=200)
-plt.show()
+    print("\nAppend complete.")
+    print("Total snapshots:", len(combined["snapshots"]))
+    print("Snapshots:", combined["snapshots"])
