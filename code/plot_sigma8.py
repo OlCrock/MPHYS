@@ -27,8 +27,14 @@ matched_sigma8 = np.array([
 ])
 
 
-plt.scatter(sim_redshifts, sim_sigma8/matched_sigma8 - 1, label="Simulation", color="blue")
+plt.scatter(sim_redshifts, sim_sigma8, label="Simulation", color="blue")
+plt.scatter(sim_redshifts, matched_sigma8, label="Linear Theory", color="red", marker="x")
 plt.axhline(0, color="black", linestyle="--", label="Linear Theory")
 plt.xlabel("Redshift (z)")
 plt.ylabel(r"$\sigma_8$")
 plt.show()
+
+# print ratio alonf with redshifts
+
+for z, ratio in zip(sim_redshifts, sim_sigma8/matched_sigma8):
+    print(f"z = {z:.2f}, ratio = {ratio:.6f}")
