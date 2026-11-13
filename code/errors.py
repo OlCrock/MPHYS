@@ -1,71 +1,35 @@
 import numpy as np
 import h5py
-import matplotlib.pyplot as plt
 
-# Load geometry and metadata while both HDF5 files remain open
-with h5py.File("optimised/output/centres.h5", "r") as centres_file, \
-     h5py.File("optimised/output/variances.h5", "r") as variances_file:
-    centres = centres_file["centres"][:]
-    radii = variances_file["radii"][:]
-    redshifts = variances_file["redshift"][:]
-    snapshots = variances_file["snapshots"][:]
-    counts_group = variances_file["counts"]
+# --------------------------------------------------
+# Configuration
+# --------------------------------------------------
 
-    # Pair separations between all centres in the box
-    box_size = 100.0
-    pair_i, pair_j = np.triu_indices(len(centres), k=1)
-    separation = np.abs(centres[pair_i] - centres[pair_j])
-    separation = np.minimum(separation, box_size - separation)
-    r = np.sqrt(np.sum(separation**2, axis=1))
+CENTRES_FILE = "optimised/output/centres.h5"
+VARIANCES_FILE = "optimised/output/variances.h5"
 
-    # Radial-bin definition for the spatial covariance curve
-    bins = np.linspace(0.0, 50.0, 26)
-    r_mid = (bins[:-1] + bins[1:]) / 2.0
+BOX = 100.0
+N_TOTAL = 2048**3
+N_BINS = 30
 
-    # Store covariance as [redshift, radius, separation_bin]
-    N_total = 2048**3
-    n_redshifts = len(redshifts)
-    n_radii = len(radii)
-    full_covariance = np.full((n_redshifts, n_radii, len(r_mid)), np.nan)
 
-    for z_index, snapshot in enumerate(snapshots):
-        snapshot_name = f"snap{int(snapshot):03d}"
-        counts = counts_group[snapshot_name][:]
-
-        for radius_index, R in enumerate(radii):
-            volume = (4.0 / 3.0) * np.pi * R**3
-            delta = counts[:, radius_index] * 100.0**3 / (N_total * volume) - 1.0
-            products = delta[pair_i] * delta[pair_j]
-
-            covariance_hist, _ = np.histogram(r, bins=bins, weights=products)
-            pair_count, _ = np.histogram(r, bins=bins)
-
-            full_covariance[z_index, radius_index, :] = np.divide(
-                covariance_hist,
-                pair_count,
-                out=np.full(len(r_mid), np.nan),
-                where=pair_count > 0,
-            )
-
-# Plot the representative case at z ~ 99 and R = 8 Mpc/h
-reference_snapshot_index = np.argmin(np.abs(redshifts - 99.0))
-reference_radius_index = np.argmin(np.abs(radii - 8.0))
-reference_cov = full_covariance[reference_snapshot_index, reference_radius_index, :]
-
-# calculate the error on the variance
-
-# Calculate the Gaussian error on the variance
+# --------------------------------------------------
+# Gaussian error on the variance
+# --------------------------------------------------
 
 def variance_error(counts, N_total, volume, r, pair_i, pair_j, bins):
 
-    delta = counts * 100.0**3 / (N_total * volume) - 1.0
+    delta = counts * BOX**3 / (N_total * volume) - 1.0
 
     N = len(delta)
 
-    # Two-point covariance
+    # Calculate spatial covariance
     products = delta[pair_i] * delta[pair_j]
 
-    xi_sum, _ = np.histogram(r, bins=bins, weights=products)
+    xi_sum, _ = np.histogram(
+        r, bins=bins, weights=products
+    )
+
     pair_count, _ = np.histogram(r, bins=bins)
 
     xi = np.divide(
@@ -79,39 +43,133 @@ def variance_error(counts, N_total, volume, r, pair_i, pair_j, bins):
 
     valid = np.isfinite(xi)
 
-    xi_pairs = np.interp(r, r_mid[valid], xi[valid])
+    if np.sum(valid) < 2:
+        return np.nan
 
-    # Gaussian approximation to variance of the variance
-    diagonal = np.var(delta)
+    # Interpolate covariance to individual pair separations
+    xi_pairs = np.interp(
+        r, r_mid[valid], xi[valid]
+    )
 
-    covariance_sum = N * diagonal**2 + 2 * np.sum(xi_pairs**2)
+    # Construct covariance matrix
+    C = np.zeros((N, N))
 
-    return np.sqrt(2 * covariance_sum / N**2)
+    C[pair_i, pair_j] = xi_pairs
+    C[pair_j, pair_i] = xi_pairs
+
+    # Diagonal terms
+    C[np.diag_indices(N)] = np.var(delta)
+
+    # Account for subtraction of the sample mean
+    row_sums = np.sum(C, axis=1)
+
+    trace_C2 = np.sum(C**2)
+    ones_C2_ones = np.sum(row_sums**2)
+    ones_C_ones = np.sum(C)
+
+    trace_PCP_C = (
+        trace_C2
+        - 2.0 * ones_C2_ones / N
+        + ones_C_ones**2 / N**2
+    )
+
+    # Gaussian approximation to variance of the variance estimator
+    error = np.sqrt(
+        2.0 * max(trace_PCP_C, 0.0) / N**2
+    )
+
+    return error
 
 
-# Select z ~ 99 and R = 8 Mpc/h
-reference_snapshot_index = np.argmin(np.abs(redshifts - 99.0))
-reference_radius_index = np.argmin(np.abs(radii - 8.0))
+# --------------------------------------------------
+# Load centres and calculate pair separations
+# --------------------------------------------------
 
-snapshot = int(snapshots[reference_snapshot_index])
-R = radii[reference_radius_index]
-volume = (4.0 / 3.0) * np.pi * R**3
+with h5py.File(CENTRES_FILE, "r") as f:
+    centres = f["centres"][:]
 
-# Load counts for the correct snapshot
-with h5py.File("optimised/output/variances.h5", "r") as f:
-    counts = f[f"counts/snap{snapshot:03d}"][:]
+pair_i, pair_j = np.triu_indices(len(centres), k=1)
 
-error = variance_error(
-    counts[:, reference_radius_index],
-    N_total,
-    volume,
-    r,
-    pair_i,
-    pair_j,
-    bins
+separation = np.abs(centres[pair_i] - centres[pair_j])
+
+separation = np.minimum(
+    separation,
+    BOX - separation
 )
 
-print(f"Snapshot: {snapshot}")
-print(f"Redshift: {redshifts[reference_snapshot_index]:.4f}")
-print(f"Radius: {R:.2f} Mpc/h")
-print(f"Gaussian error on variance: {error:.6e}")
+r = np.sqrt(np.sum(separation**2, axis=1))
+
+# Cover the full range of periodic minimum-image separations
+bins = np.linspace(
+    0.0,
+    np.sqrt(3.0) * BOX / 2.0 + 1e-8,
+    N_BINS + 1
+)
+
+
+# --------------------------------------------------
+# Calculate errors for every snapshot and radius
+# --------------------------------------------------
+
+with h5py.File(VARIANCES_FILE, "r+") as f:
+
+    radii = f["radii"][:]
+    redshifts = f["redshift"][:]
+    snapshots = f["snapshots"][:]
+
+    counts_group = f["counts"]
+
+    errors = np.full(
+        (len(snapshots), len(radii)),
+        np.nan
+    )
+
+    for z_index, snapshot in enumerate(snapshots):
+
+        snapshot_name = f"snap{int(snapshot):03d}"
+        counts = counts_group[snapshot_name][:]
+
+        for radius_index, R in enumerate(radii):
+
+            volume = (4.0 / 3.0) * np.pi * R**3
+
+            errors[z_index, radius_index] = variance_error(
+                counts[:, radius_index],
+                N_TOTAL,
+                volume,
+                r,
+                pair_i,
+                pair_j,
+                bins
+            )
+
+        print(
+            f"Finished snapshot {int(snapshot)} "
+            f"(z = {redshifts[z_index]:.4f})"
+        )
+
+    # --------------------------------------------------
+    # Save to HDF5
+    # --------------------------------------------------
+
+    if "variance_error_gaussian" in f:
+        del f["variance_error_gaussian"]
+
+    dataset = f.create_dataset(
+        "variance_error_gaussian",
+        data=errors
+    )
+
+    dataset.attrs["description"] = (
+        "Gaussian approximation to the standard error "
+        "of the variance, accounting for spatial covariance "
+        "between sphere centres."
+    )
+
+    dataset.attrs["method"] = (
+        "Two-point covariance with Gaussian four-point approximation."
+    )
+
+print("\nAll errors calculated and saved.")
+print("Dataset: variance_error_gaussian")
+print("Shape:", errors.shape)
