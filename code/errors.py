@@ -1,22 +1,15 @@
 import numpy as np
 import h5py
 
-# --------------------------------------------------
-# Configuration
-# --------------------------------------------------
 
 CENTRES_FILE = "optimised/output/centres.h5"
 VARIANCES_FILE = "optimised/output/variances.h5"
-
 BOX = 100.0
 N_TOTAL = 2048**3
 N_BINS = 30
 
 
-# --------------------------------------------------
 # Gaussian error on the variance
-# --------------------------------------------------
-
 def variance_error(counts, N_total, volume, r, pair_i, pair_j, bins):
 
     delta = counts * BOX**3 / (N_total * volume) - 1.0
@@ -80,10 +73,7 @@ def variance_error(counts, N_total, volume, r, pair_i, pair_j, bins):
 
     return error
 
-
-# --------------------------------------------------
-# Load centres and calculate pair separations
-# --------------------------------------------------
+# Load centres and calculate separations
 
 with h5py.File(CENTRES_FILE, "r") as f:
     centres = f["centres"][:]
@@ -106,10 +96,7 @@ bins = np.linspace(
     N_BINS + 1
 )
 
-
-# --------------------------------------------------
 # Calculate errors for every snapshot and radius
-# --------------------------------------------------
 
 with h5py.File(VARIANCES_FILE, "r+") as f:
 
@@ -148,9 +135,7 @@ with h5py.File(VARIANCES_FILE, "r+") as f:
             f"(z = {redshifts[z_index]:.4f})"
         )
 
-    # --------------------------------------------------
-    # Save to HDF5
-    # --------------------------------------------------
+# add this to the hdf5 
 
     if "variance_error_gaussian" in f:
         del f["variance_error_gaussian"]
